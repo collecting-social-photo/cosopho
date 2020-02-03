@@ -1,9 +1,10 @@
 
+require('dotenv').config()
+const webpack = require('webpack')
+
 module.exports = {
   mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -15,48 +16,53 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
+
+  loading: {
+    color: '#000000',
+    height: '2px'
+  },
+
   css: [
+    '@/assets/css/main.scss',
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
+
   plugins: [
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
+
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    //'@nuxtjs/eslint-module'
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-i18n'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.json' },
+    ],
+    lazy: true,
+    langDir: './locales/',
+    strategy: 'prefix',
+    defaultLocale: 'en',
+    rootRedirect: 'en/',
+    detectBrowserLanguage: false,
+    vueI18n: {
+      fallbackLocale: 'en'
+    }
+  },
+
   axios: {
   },
-  /*
-  ** Build configuration
-  */
+
   build: {
-    /*
-    ** You can extend webpack config here
-    */
     extend (config, ctx) {
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        '_': 'lodash'
+      })
+    ]
   }
 }
