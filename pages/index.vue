@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    {{ $store.state.host }}
+    <h1>{{ $t('home.title') }}</h1>
   </div>
 </template>
 
@@ -13,14 +13,3 @@ export default {
   ])
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-</style>

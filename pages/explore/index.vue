@@ -1,3 +1,5 @@
 <template>
-  <div>Explore</div>
+  <div class="container">
+    <h1>Explore</h1>
+  </div>
 </template>

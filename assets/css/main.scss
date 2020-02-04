@@ -1,0 +1,61 @@
+$white: #ffffff;
+$black: #000000;
+$blue: #0000ff;
+$blue-hover: #0000bf;
+
+body {
+  font-size: 1.1rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 1rem 0 1.68rem;
+  color: $blue;
+  line-height: 110%;
+  font-weight: 400;
+}
+
+.md-toolbar {
+  background-color: $blue;
+  color: $white;
+
+  button {
+    color: $white;
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.md-drawer {
+  background-color: $blue;
+  color: $white;
+
+  button {
+    color: $white;
+  }
+
+  a, a:visited {
+    color: $white;
+  }
+
+  .md-list-item:hover {
+    background-color: $blue-hover;
+  }
+
+  .md-list-item-content {
+    font-size: 1.5rem;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
