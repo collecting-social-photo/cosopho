@@ -40,11 +40,18 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     'nuxt-i18n',
+    'nuxt-basic-auth-module',
     ['nuxt-vue-material', {
       theme: null,
       components: ['MdDrawer', 'MdRadio', 'MdMenu', 'MdContent', 'MdList', 'MdButton', 'MdToolbar', 'MdIcon', 'MdApp']
     }]
   ],
+
+  basic: {
+    name: 'cosopho',
+    pass: 'cosopho!',
+    enabled: true
+  },
 
   i18n: {
     locales: [
