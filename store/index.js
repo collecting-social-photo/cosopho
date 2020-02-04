@@ -14,7 +14,12 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit ({ commit }, { req }) {
-    commit('initHost', req.headers.host)
+    const subdomains = req.subdomains
+    if (subdomains.length) {
+      commit('initHost', subdomains[0])
+    } else {
+      commit('initHost', req.headers.host)
+    }
   }
 }
 

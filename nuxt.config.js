@@ -5,6 +5,12 @@ const webpack = require('webpack')
 module.exports = {
   mode: 'universal',
 
+  env: {
+    apiKey: process.env.API_KEY,
+    apiEndpoint: process.env.API_ENDPOINT,
+    instanceId: process.env.INSTANCE_ID
+  },
+
   head: {
     title: 'Collecting Social Photo',
     meta: [
@@ -70,6 +76,17 @@ module.exports = {
   },
 
   axios: {
+    proxy: true,
+    proxyHeaders: true
+  },
+
+  proxy: {
+    '/api': {
+      target: process.env.API_ENDPOINT,
+      pathRewrite: {
+        '^/api' : '/'
+        }
+      }
   },
 
   build: {
