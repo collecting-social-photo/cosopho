@@ -17,8 +17,9 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit ({ commit }, { req }) {
     const subdomains = req.subdomains
+    console.log(subdomains)
     var subdomain = null
-    if (subdomains.length) {
+    if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
     } else {
       console.log("Invalid instance!")
