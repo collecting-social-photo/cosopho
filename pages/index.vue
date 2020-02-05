@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h1>{{ $t('home.title') }}</h1>
+    <h1 :style="`color:#${$store.state.instance.colour};`">
+      {{ $t('home.title') }}
+    </h1>
   </div>
 </template>
 

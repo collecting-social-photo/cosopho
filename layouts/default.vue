@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <md-app>
-      <md-app-toolbar class="md-primary">
+      <md-app-toolbar class="md-primary" :style="`background-color:#${$store.state.instance.colour};`">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
@@ -31,8 +31,10 @@
         </div>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">Logo</md-toolbar>
+      <md-app-drawer :md-active.sync="menuVisible" :style="`background-color:#${$store.state.instance.colour};`">
+        <md-toolbar class="md-transparent" md-elevation="0" :style="`background-color:#${$store.state.instance.colour};`">
+          <img :src="`data:image/png;base64,${$store.state.instance.logo}`"/>
+        </md-toolbar>
 
         <md-list>
           <md-list-item :to="localePath('index')" @click="menuVisible=false">Home</md-list-item>
@@ -58,7 +60,8 @@
 <script>
 export default {
   data: () => ({
-    menuVisible: false
+    menuVisible: false,
+    color: '#cccccc'
   })
 }
 </script>
