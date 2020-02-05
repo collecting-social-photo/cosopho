@@ -36,7 +36,7 @@ h1 {
 }
 
 .md-menu-content-container {
-  background-color: $black;
+  background-color: #696868;
   color: $white;
 
   button {
@@ -48,7 +48,7 @@ h1 {
   }
 
   .md-menu-item:hover {
-    background-color: $black;
+    background-color: rgba($color: $black, $alpha: 0.1);
   }
 }
 
@@ -67,7 +67,7 @@ h1 {
   }
 
   .md-list-item:hover {
-    background-color: $black;
+    background-color: rgba($color: $black, $alpha: 0.1);
   }
 
   .md-list-item-content {
@@ -79,4 +79,8 @@ h1 {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.photo-list {
+  margin-bottom: 10px;
 }

@@ -37,6 +37,7 @@ module.exports = {
   ],
 
   plugins: [
+    { src: './plugins/api.js' }
   ],
 
   buildModules: [
