@@ -2,6 +2,10 @@
 
 > Cosopho
 
+## .env
+API_KEY=123456
+API_ENDPOINT=https://my_api.com/graphql
+
 ## Build Setup
 
 ``` bash
