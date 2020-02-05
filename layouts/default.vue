@@ -9,7 +9,7 @@
           <md-icon>add_circle_outline</md-icon>
         </md-button>
 
-        <span><nuxt-link :to="localePath('index')">{{ $store.state.host }}</nuxt-link></span>
+        <span><nuxt-link :to="localePath('index')">{{ $store.state.instance.title }}</nuxt-link></span>
 
         <div class="md-toolbar-section-end">
 

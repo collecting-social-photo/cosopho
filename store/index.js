@@ -1,11 +1,13 @@
+import axios from 'axios'
+
 export const state = () => ({
-  host: null,
+  instance: null,
   user: null
 })
 
 export const mutations = {
-  initHost (state, host) {
-    state.host = host
+  SET_INSTANCE (state, instance) {
+    state.instance = instance || null
   },
   SET_USER (state, user) {
     state.user = user || null
@@ -13,12 +15,52 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit ({ commit }, { req }) {
+  async nuxtServerInit ({ commit }, { req }) {
     const subdomains = req.subdomains
+    var subdomain = null
     if (subdomains.length) {
-      commit('initHost', subdomains[0])
+      subdomain = subdomains[0]
     } else {
-      commit('initHost', req.headers.host)
+      console.log("Invalid instance!")
+      return
+    }
+
+    const payload = {
+      query: `query instances($id: String) {
+        instance(id: $id){
+          id
+          title
+          colour
+          logo
+          languages
+          defaultLanguage
+          userFields
+          initiatives {
+            id
+          }
+        }
+      }`,
+      variables: {
+        id: subdomain
+      }
+    }
+
+    const response = await axios.post(
+      process.env.API_ENDPOINT,
+      payload,
+      {
+        headers: {
+          'Authorization': `Bearer ${process.env.API_KEY}`,
+          'content-type': 'application/json'
+        }
+      }
+    )
+
+    if(response.data.data.instance) {
+      commit('SET_INSTANCE', response.data.data.instance)
+    } else {
+      console.log("Invalid instance!")
+      return
     }
   }
 }
