@@ -33,7 +33,7 @@
 
       <md-app-drawer :md-active.sync="menuVisible" :style="`background-color:#${$store.state.instance.colour};`">
         <md-toolbar class="md-transparent" md-elevation="0" :style="`background-color:#${$store.state.instance.colour};`">
-          <img :src="`data:image/png;base64,${$store.state.instance.logo}`"/>
+          <img class="logo" :src="`data:image/png;base64,${$store.state.instance.logo}`"/>
         </md-toolbar>
 
         <md-list>
