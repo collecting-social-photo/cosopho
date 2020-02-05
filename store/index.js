@@ -17,7 +17,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit ({ commit }, { req }) {
     const subdomains = req.subdomains
-    console.log(subdomains)
+    console.log(req)
     var subdomain = null
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
