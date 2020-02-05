@@ -15,8 +15,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPhotos (variables) {
     const payload = {
-      query: `query photos($instance: String) {
-        photos(instance: $instance) {
+      query: `query photos($instance: String, $per_page: Int, $page: Int) {
+        photos(instance: $instance, per_page: $per_page, page: $page) {
           id
           title
           data {

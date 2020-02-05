@@ -18,7 +18,8 @@ export default {
   },
   async asyncData (context) {
     let response = await context.app.$api.getPhotos({
-      instance: context.app.store.state.instance.id
+      instance: context.app.store.state.instance.id,
+      per_page: 2
     })
     const photos = response.data.data.photos
 
