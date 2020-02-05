@@ -5,14 +5,29 @@
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <md-button class="md-icon-button">
+        <md-button :to="localePath('contribute')" class="md-icon-button">
           <md-icon>add_circle_outline</md-icon>
         </md-button>
 
         <span><nuxt-link :to="localePath('index')">{{ $store.state.host }}</nuxt-link></span>
 
         <div class="md-toolbar-section-end">
-          <md-button @click="showSidepanel = true">Languages</md-button>
+
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>Languages</md-button>
+
+            <md-menu-content>
+              <md-menu-item :to="switchLocalePath('en')">
+                <span class="md-list-item-text">English</span>
+              </md-menu-item>
+
+              <md-menu-item :to="switchLocalePath('fr')">
+                <span class="md-list-item-text">French</span>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+
         </div>
       </md-app-toolbar>
 
@@ -34,29 +49,6 @@
       </md-app-drawer>
 
       <md-app-content>
-
-        <md-drawer class="md-right" :md-active.sync="showSidepanel">
-          <md-toolbar class="md-transparent" md-elevation="0">
-            <span class="md-title">Languages</span>
-          </md-toolbar>
-
-          <md-list>
-            <md-list-item :to="switchLocalePath('en')" @click="showSidepanel=false">
-              <span class="md-list-item-text">English</span>
-              <md-button class="md-icon-button md-list-action">
-                <md-icon class="md-primary">chat_bubble</md-icon>
-              </md-button>
-            </md-list-item>
-
-            <md-list-item :to="switchLocalePath('fr')" @click="showSidepanel=false">
-              <span class="md-list-item-text">French</span>
-              <md-button class="md-icon-button md-list-action">
-                <md-icon class="md-primary">chat_bubble</md-icon>
-              </md-button>
-            </md-list-item>
-          </md-list>
-        </md-drawer>
-
         <nuxt />
       </md-app-content>
     </md-app>
@@ -66,20 +58,7 @@
 <script>
 export default {
   data: () => ({
-    menuVisible: false,
-    showSidepanel: false
+    menuVisible: false
   })
 }
 </script>
-
-<style lang="scss" scoped>
-  .md-app {
-    min-height: 100vh;
-  }
-
-   // Demo purposes only
-  .md-drawer {
-    width: 300px;
-    max-width: calc(100vw - 125px);
-  }
-</style>

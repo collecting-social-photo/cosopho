@@ -16,6 +16,10 @@ h1 {
   font-weight: 400;
 }
 
+.md-app {
+  min-height: 100vh;
+}
+
 .md-toolbar {
   background-color: $blue;
   color: $white;
@@ -33,7 +37,26 @@ h1 {
   }
 }
 
+.md-menu-content-container {
+  background-color: $blue-hover;
+  color: $white;
+
+  button {
+    color: $white;
+  }
+
+  a, a:visited {
+    color: $white;
+  }
+
+  .md-menu-item:hover {
+    background-color: $blue;
+  }
+}
+
 .md-drawer {
+  width: 300px;
+  max-width: calc(100vw - 125px);
   background-color: $blue;
   color: $white;
 
