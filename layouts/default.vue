@@ -82,8 +82,7 @@
 <script>
 export default {
   data: () => ({
-    menuVisible: false,
-    color: '#cccccc'
+    menuVisible: false
   })
 }
 </script>
