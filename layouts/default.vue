@@ -27,6 +27,13 @@
             </md-menu-content>
           </md-menu>
 
+          <md-button v-if="$auth.loggedIn" :to="localePath('profile')">
+            <img class="avatar" :src="$auth.user.picture"/>
+          </md-button>
+          <md-button v-else @click="$auth.loginWith('auth0')">
+            Login
+          </md-button>
+
 
         </div>
       </md-app-toolbar>
