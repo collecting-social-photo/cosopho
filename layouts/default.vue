@@ -27,13 +27,31 @@
             </md-menu-content>
           </md-menu>
 
-          <md-button v-if="$auth.loggedIn" :to="localePath('profile')">
-            <img class="avatar" :src="$auth.user.picture"/>
-          </md-button>
-          <md-button v-else @click="$auth.loginWith('auth0')">
-            Login
-          </md-button>
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button v-if="$auth.loggedIn" md-menu-trigger>
+              <img class="avatar" :src="$auth.user.picture"/>
+            </md-button>
 
+            <md-menu-content>
+              <md-menu-item :to="localePath('profile')">
+                <span class="md-list-item-text">Profile</span>
+              </md-menu-item>
+
+              <md-menu-item :to="localePath('account')">
+                <span class="md-list-item-text">Account</span>
+              </md-menu-item>
+
+              <md-menu-item @click="$auth.logout()">
+                <span class="md-list-item-text">Logout</span>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+          <md-menu md-size="medium">
+            <md-button v-if="!$auth.loggedIn" @click="$auth.loginWith('auth0')">
+              Login
+            </md-button>
+          </md-menu>
 
         </div>
       </md-app-toolbar>
@@ -48,11 +66,6 @@
           <md-list-item :to="localePath('about')" @click="menuVisible=false">About</md-list-item>
           <md-list-item :to="localePath('contribute')" @click="menuVisible=false">Contribute</md-list-item>
           <md-list-item :to="localePath('explore')" @click="menuVisible=false">Explore</md-list-item>
-
-          <md-list-item v-if="$auth.loggedIn" :to="localePath('profile')" @click="menuVisible=false">My Profile</md-list-item>
-          <md-list-item v-if="$auth.loggedIn" :to="localePath('account')" @click="menuVisible=false">My Account</md-list-item>
-          <md-list-item v-if="$auth.loggedIn" @click="$auth.logout();menuVisible=false">Logout</md-list-item>
-
           <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">Privacy & Terms</md-list-item>
           <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">Initiatives</md-list-item>
         </md-list>
