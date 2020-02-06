@@ -1,16 +1,12 @@
 import axios from 'axios'
 
 export const state = () => ({
-  instance: null,
-  user: null
+  instance: null
 })
 
 export const mutations = {
   SET_INSTANCE (state, instance) {
     state.instance = instance || null
-  },
-  SET_USER (state, user) {
-    state.user = user || null
   }
 }
 
@@ -62,14 +58,5 @@ export const actions = {
       console.log("Invalid instance!")
       return
     }
-  }
-}
-
-export const getters = {
-  isAuthenticated (state) {
-    return !!state.user
-  },
-  loggedUser (state) {
-    return state.user
   }
 }

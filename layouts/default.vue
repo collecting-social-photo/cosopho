@@ -41,9 +41,11 @@
           <md-list-item :to="localePath('about')" @click="menuVisible=false">About</md-list-item>
           <md-list-item :to="localePath('contribute')" @click="menuVisible=false">Contribute</md-list-item>
           <md-list-item :to="localePath('explore')" @click="menuVisible=false">Explore</md-list-item>
-          <md-list-item :to="localePath('profile')" @click="menuVisible=false">My Profile</md-list-item>
-          <md-list-item :to="localePath('account')" @click="menuVisible=false">My Account</md-list-item>
-          <md-list-item :to="localePath('index')" @click="menuVisible=false">Logout</md-list-item>
+
+          <md-list-item v-if="$auth.loggedIn" :to="localePath('profile')" @click="menuVisible=false">My Profile</md-list-item>
+          <md-list-item v-if="$auth.loggedIn" :to="localePath('account')" @click="menuVisible=false">My Account</md-list-item>
+          <md-list-item v-if="$auth.loggedIn" @click="$auth.logout();menuVisible=false">Logout</md-list-item>
+
           <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">Privacy & Terms</md-list-item>
           <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">Initiatives</md-list-item>
         </md-list>

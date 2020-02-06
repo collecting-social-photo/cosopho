@@ -48,6 +48,7 @@ module.exports = {
     '@nuxtjs/axios',
     'nuxt-i18n',
     'nuxt-basic-auth-module',
+    '@nuxtjs/auth',
     ['nuxt-vue-material', {
       theme: null,
       components: ['MdDrawer', 'MdRadio', 'MdMenu', 'MdContent', 'MdList', 'MdButton', 'MdToolbar', 'MdIcon', 'MdApp']
@@ -58,6 +59,20 @@ module.exports = {
     name: 'cosopho',
     pass: 'cosopho!',
     enabled: true
+  },
+
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/signed-in'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: process.env.AUTH0_DOMAIN,
+        client_id: process.env.AUTH0_CLIENT_ID
+      }
+    }
   },
 
   i18n: {

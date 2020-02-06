@@ -1,5 +1,5 @@
-export default function ({ store, redirect }) {
-  if (!store.getters.isAuthenticated) {
-    return redirect('/en/auth/login')
+export default function ({ app, store, redirect }) {
+  if (!app.$auth.loggedIn) {
+    app.$auth.loginWith('auth0')
   }
 }
