@@ -6,6 +6,15 @@
         <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg`" />
       </nuxt-link>
     </div>
+
+    <div class="spinner objects-spinner" v-bind:class="spinnerClass">
+      <div class="dot-flashing"></div>
+    </div>
+
+    <div v-if="page < maxPage" v-observe-visibility="{
+      callback: visibilityChanged,
+      once: false,
+    }"></div>
   </div>
 </template>
 
@@ -13,7 +22,11 @@
 export default {
   data () {
     return {
-      photos: null
+      photos: null,
+      perPage: 2,
+      page: 1,
+      maxPage: 1,
+      spinnerClass: 'spinner-hide'
     }
   },
   async asyncData (context) {
@@ -22,8 +35,34 @@ export default {
       per_page: 2
     })
     const photos = response.data.data.photos
+    const maxPage = photos[0]._sys.pagination.maxPage
 
-    return { photos: photos }
+    return { photos: photos, maxPage: maxPage }
+  },
+  methods: {
+    visibilityChanged(isVisible, entry) {
+      var vm = this
+      if (isVisible && vm.page < vm.maxPage) {
+        vm.loadMore()
+      }
+    },
+    loadMore() {
+      var vm = this
+      vm.page = vm.page + 1
+      vm.fetchPhotos()
+    },
+    async fetchPhotos () {
+      const vm = this
+
+      vm.spinnerClass = 'spinner-show'
+      const response = await vm.$api.getPhotos({
+        instance: vm.$store.state.instance.id,
+        per_page: vm.perPage,
+        page: vm.page
+      })
+      vm.spinnerClass = 'spinner-hide'
+      vm.photos = vm.photos.concat(response.data.data.photos)
+    }
   }
 }
 </script>

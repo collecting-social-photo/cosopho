@@ -25,6 +25,13 @@ const apiFactory = ($axios, app, store) => ({
             public_id
             version
           }
+          _sys {
+            pagination {
+              page
+              total
+              maxPage
+            }
+          }
         }
       }`,
       variables: variables

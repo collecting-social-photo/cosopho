@@ -23,7 +23,8 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons' }
     ],
     script: [
-      { src: 'https://code.jquery.com/jquery-3.4.0.min.js', integrity: 'sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=', crossorigin: 'anonymous' }
+      { src: 'https://code.jquery.com/jquery-3.4.0.min.js', integrity: 'sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=', crossorigin: 'anonymous' },
+      { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry', crossorigin: "anonymous" }
     ]
   },
 
@@ -37,7 +38,8 @@ module.exports = {
   ],
 
   plugins: [
-    { src: './plugins/api.js' }
+    { src: './plugins/api.js' },
+    { src: './plugins/observe-visibility.js' }
   ],
 
   buildModules: [
@@ -63,7 +65,7 @@ module.exports = {
 
   auth: {
     redirect: {
-      login: '/', // redirect user when not connected
+      login: '/auth/login-redirect',
       callback: '/auth/signed-in'
     },
     strategies: {

@@ -48,7 +48,7 @@
           </md-menu>
 
           <md-menu md-size="medium">
-            <md-button v-if="!$auth.loggedIn" @click="$auth.loginWith('auth0')">
+            <md-button v-if="!$auth.loggedIn" :to="localePath('auth-login')">
               Login
             </md-button>
           </md-menu>
