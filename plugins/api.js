@@ -80,6 +80,28 @@ const apiFactory = ($axios, app, store) => ({
     }
 
     return this.makeRequest(payload)
+  },
+
+  getInitiatives (variables) {
+    const payload = {
+      query: `query initiatives($instance: String!, $per_page: Int, $isFeatured: Boolean) {
+        initiatives(instance: $instance, per_page: $per_page, isFeatured: $isFeatured) {
+          id
+          title
+          photos {
+            data {
+              height
+              width
+              public_id
+              version
+            }
+          }
+        }
+      }`,
+      variables: variables
+    }
+
+    return this.makeRequest(payload)
   }
 
 })
