@@ -66,6 +66,20 @@ const apiFactory = ($axios, app, store) => ({
     }
 
     return this.makeRequest(payload)
+  },
+
+  getInstances (variables) {
+    const payload = {
+      query: `query instances($per_page: Int) {
+        instances(per_page: $per_page) {
+          id
+          title
+        }
+      }`,
+      variables: variables
+    }
+
+    return this.makeRequest(payload)
   }
 
 })

@@ -11,13 +11,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }, { req }) {
+  async nuxtServerInit ({ commit }, { req, redirect }) {
     const subdomains = req.headers.host.split(".")
     var subdomain = null
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
     } else {
       console.log("Invalid instance!")
+      redirect('/home')
       return
     }
 
@@ -55,7 +56,7 @@ export const actions = {
     if(response.data.data.instance) {
       commit('SET_INSTANCE', response.data.data.instance)
     } else {
-      console.log("Invalid instance!")
+      redirect('/home')
       return
     }
   }
