@@ -46,6 +46,14 @@ const apiFactory = ($axios, app, store) => ({
         photo(instance: $instance, id: $id) {
           id
           title
+          location
+          date
+          license
+          person {
+            id
+            username
+            name
+          }
           data {
             height
             width

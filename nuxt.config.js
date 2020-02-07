@@ -51,6 +51,7 @@ module.exports = {
     'nuxt-i18n',
     'nuxt-basic-auth-module',
     '@nuxtjs/auth',
+    '@nuxtjs/moment',
     ['nuxt-vue-material', {
       theme: null,
       components: ['MdDrawer', 'MdRadio', 'MdMenu', 'MdContent', 'MdList', 'MdButton', 'MdToolbar', 'MdIcon', 'MdApp']
