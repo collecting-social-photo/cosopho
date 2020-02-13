@@ -171,3 +171,15 @@ $flash-color: #cccccc;
      background-color: $flash-color;
    }
  }
+
+.md-radio {
+  display: flex;
+}
+
+.md-radio-container {
+  border: 2px solid black !important;
+}
+
+.md-checked .md-radio-container:after {
+  background-color: black !important;
+}

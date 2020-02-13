@@ -17,7 +17,6 @@ export default {
     }
   },
   async asyncData (context) {
-    console.log(context.params.id)
     let response = await context.app.$api.getPhoto({
       instance: context.app.store.state.instance.id,
       id: context.params.id

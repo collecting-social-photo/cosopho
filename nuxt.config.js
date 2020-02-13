@@ -48,7 +48,7 @@ module.exports = {
 
   modules: [
     '@nuxtjs/axios',
-    'nuxt-i18n',
+    ['nuxt-i18n', { vueI18nLoader: true }],
     'nuxt-basic-auth-module',
     '@nuxtjs/auth',
     '@nuxtjs/moment',

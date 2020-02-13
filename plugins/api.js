@@ -87,6 +87,7 @@ const apiFactory = ($axios, app, store) => ({
       query: `query initiatives($instance: String!, $per_page: Int, $isFeatured: Boolean) {
         initiatives(instance: $instance, per_page: $per_page, isFeatured: $isFeatured) {
           id
+          slug
           title
           photos {
             data {

@@ -17,7 +17,6 @@ export const actions = {
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
     } else {
-      console.log("Invalid instance!")
       redirect('/home')
       return
     }

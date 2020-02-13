@@ -4,5 +4,8 @@
     <div>
       <md-button :style="`background-color:#${$store.state.instance.colour};color:#fff;`" @click="$auth.loginWith('auth0')">Login</md-button>
     </div>
+    <div>
+      <nuxt-link :to="localePath('privacy_and_terms')">Privacy & Terms</nuxt-link>
+    </div>
   </div>
 </template>
