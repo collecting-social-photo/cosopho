@@ -34,7 +34,8 @@ export default {
       options: {
         url: "http://httpbin.org/anything",
         maxFiles: 10,
-        addRemoveLinks: true
+        addRemoveLinks: true,
+        acceptedFiles: '.png,.jpg,.gif'
       }
     }
   },
