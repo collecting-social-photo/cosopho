@@ -1,8 +1,19 @@
 <template>
   <div class="container">
-    Upload to {{ selectedInitiative }} here...
     <div>
-      <dropzone id="foo" ref="el" :options="options" :destroyDropzone="true"></dropzone>
+      <dropzone
+        id="customdropzone"
+        ref="el"
+        :options="options"
+        :destroyDropzone="true"
+        :useCustomSlot="true"
+        v-on:vdropzone-complete="uploadSuccess"
+      >
+        <div class="dropzone-custom-content">
+          <h3 class="dropzone-custom-title"><md-icon>cloud_upload</md-icon> Drag and drop photos here to upload!</h3>
+          <div class="subtitle">...or click to select photos from your computer</div>
+        </div>
+      </dropzone>
     </div>
   </div>
 </template>
@@ -19,8 +30,11 @@ export default {
   data () {
     return {
       selectedInitiative: null,
+      src: null,
       options: {
-        url: "http://httpbin.org/anything"
+        url: "http://httpbin.org/anything",
+        maxFiles: 10,
+        addRemoveLinks: true
       }
     }
   },
@@ -30,9 +44,20 @@ export default {
     }
     return { selectedInitiative: context.params.id }
   },
-  mounted() {
-    // Everything is mounted and you can access the dropzone instance
+  mounted () {
     const instance = this.$refs.el.dropzone
+  },
+  methods: {
+    uploadSuccess (response) {
+      this.src = response.dataURL
+    }
   }
 }
 </script>
+
+<style lang="scss">
+#customdropzone {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+}
+</style>
