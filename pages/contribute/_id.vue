@@ -45,7 +45,7 @@ export default {
       selectedInitiative: null,
       uploadedFiles: null,
       options: {
-        url: "http://httpbin.org/anything",
+        url: "https://httpbin.org/anything",
         maxFiles: 10,
         addRemoveLinks: true,
         uploadMultiple: true,
