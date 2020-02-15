@@ -16,14 +16,28 @@
       </dropzone>
     </div>
     <div v-if="uploadedFiles">
-      <div class="md-layout md-gutter photoAddContainer" v-for="file in uploadedFiles" :key="file.upload.uuid">
-        <div class="md-layout-item md-size-30">
-          <img :src="file.dataURL" width="200" />
-        </div>
-        <div class="md-layout-item md-size-70">
-          <p>add user data here <pre>{{ file.upload.filename }}</pre> {{ file.width }} x {{ file.height }}</p>
-        </div>
-      </div>
+      <md-card v-for="file in uploadedFiles" :key="file.id">
+        <md-card-content>
+          <div class="md-layout md-gutter">
+            <div class="md-layout-item md-size-30">
+              <img :src="file.dataURL" width="200" />
+            </div>
+            <div class="md-layout-item md-size-70">
+              <p>add user data here <pre>{{ file.filename }}</pre> {{ file.width }} x {{ file.height }} - {{ file.title }}</p>
+
+              <md-field>
+                <label for="title">Title</label>
+                <md-input name="title" id="title" v-model="file.title" />
+              </md-field>
+
+              <md-field>
+                <label for="something">Something</label>
+                <md-input name="something" id="something" v-model="file.something" />
+              </md-field>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
 
       <md-button :style="`background-color:#${$store.state.instance.colour};color:#fff;`">Continue</md-button>
       <md-button class="md-primary" :to="localePath('contribute')">Cancel</md-button>
@@ -68,7 +82,16 @@ export default {
     uploadSuccess (response) {
       const vm = this
       setTimeout(function() {
-        vm.uploadedFiles = response
+        vm.uploadedFiles = []
+        _.each(response, function(file) {
+          vm.uploadedFiles.push({
+            id: file.upload.uuid,
+            dataURL: file.dataURL,
+            filename: file.upload.filename,
+            width: file.width,
+            height: file.height
+          })
+        })
       }, 500)
     }
   }
