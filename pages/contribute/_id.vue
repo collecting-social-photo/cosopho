@@ -7,7 +7,7 @@
         :options="options"
         :destroyDropzone="true"
         :useCustomSlot="true"
-        v-on:vdropzone-complete-multiple="uploadSuccess"
+        v-on:vdropzone-files-added="uploadSuccess"
       >
         <div class="dropzone-custom-content">
           <h3 class="dropzone-custom-title"><md-icon>cloud_upload</md-icon> Drag and drop photos here to upload!</h3>
@@ -21,7 +21,7 @@
           <img :src="file.dataURL" width="200" />
         </div>
         <div class="md-layout-item md-size-70">
-          <p>add user data here...</p>
+          <p>add user data here <pre>{{ file.upload.filename }}</pre> {{ file.width }} x {{ file.height }}</p>
         </div>
       </div>
 
@@ -45,8 +45,10 @@ export default {
       selectedInitiative: null,
       uploadedFiles: null,
       options: {
-        url: "https://httpbin.org/anything",
+        url: 'https://httpbin.org/anything',
         maxFiles: 10,
+        parallelUploads: 10,
+        autoProcessQueue: false,
         addRemoveLinks: true,
         uploadMultiple: true,
         acceptedFiles: '.png,.jpg,.jpeg,.gif'
@@ -64,7 +66,10 @@ export default {
   },
   methods: {
     uploadSuccess (response) {
-      this.uploadedFiles = response
+      const vm = this
+      setTimeout(function() {
+        vm.uploadedFiles = response
+      }, 500)
     }
   }
 }
