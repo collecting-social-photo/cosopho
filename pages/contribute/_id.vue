@@ -26,14 +26,86 @@
               <p>add user data here <pre>{{ file.filename }}</pre> {{ file.width }} x {{ file.height }} - {{ file.title }}</p>
 
               <md-field>
-                <label for="title">Title</label>
+                <label for="title">Short Description</label>
                 <md-input name="title" id="title" v-model="file.title" />
               </md-field>
 
               <md-field>
-                <label for="something">Something</label>
-                <md-input name="something" id="something" v-model="file.something" />
+                <label for="something">Tell us about this photo (limit 400 characters)</label>
+                <md-textarea v-model="file.story"></md-textarea>
               </md-field>
+
+              <md-field>
+                <label for="tags">Add some tags</label>
+                <md-input name="tags" v-model="file.tags" />
+                <span class="md-helper-text">Separate the tags by using commas.</span>
+              </md-field>
+
+              <h3>We pulled this information from your photo:</h3>
+
+              <md-field>
+                <label for="make">Make</label>
+                <md-input name="make" v-model="file.make" />
+              </md-field>
+
+              <md-field>
+                <label for="model">Model</label>
+                <md-input name="model" v-model="file.model" />
+              </md-field>
+
+              <md-field>
+                <label for="aperture">Aperture</label>
+                <md-input name="aperture" v-model="file.aperture" />
+              </md-field>
+
+              <md-field>
+                <label for="shutterspeed">Shutter Speed</label>
+                <md-input name="shutterspeed" v-model="file.shutterspeed" />
+              </md-field>
+
+              <md-field>
+                <label for="iso">ISO</label>
+                <md-input name="iso" v-model="file.iso" />
+              </md-field>
+
+              <md-field>
+                <label for="focallength">Focal Length</label>
+                <md-input name="focallength" v-model="file.focallength" />
+              </md-field>
+
+              <md-field>
+                <label for="location">Location</label>
+                <md-input name="location" v-model="file.location" />
+                <span class="md-helper-text">Please be as specific as possible. ex. London, UK</span>
+              </md-field>
+
+              <md-field>
+                <label for="date">Date</label>
+                <md-input type="date" name="date" v-model="file.date" />
+                <span class="md-helper-text">Please select the date the photo was taken.</span>
+              </md-field>
+
+              <h3>Where did you post this photo? Select all that apply.</h3>
+
+              <div>
+                <md-checkbox v-model="file.where_facebook">Facebook</md-checkbox>
+                <md-checkbox v-model="file.where_instagram">Instagram</md-checkbox>
+                <md-checkbox v-model="file.where_snapchat">SnapChat</md-checkbox>
+                <md-checkbox v-model="file.where_twitter">Twitter</md-checkbox>
+                <md-checkbox v-model="file.where_other">other</md-checkbox>
+                <md-field v-if="file.where_other">
+                  <md-input name="otherSM" v-model="file.otherSM" placeholder="Say where" />
+                </md-field>
+              </div>
+
+              <h3>Select a license to choose how you want others sharing and using your image.</h3>
+
+              <div>
+                <md-radio v-model="file.license" value="CC-0">CC-0 Free to use without restrictions.</md-radio>
+                <md-radio v-model="file.license" value="CC-BY">CC-BY-NC My image cannot be used commercially.</md-radio>
+                <md-radio v-model="file.license" value="CC-BY-NYC">CC-BY-NC My image cannot be used commercially.</md-radio>
+              </div>
+
             </div>
           </div>
         </md-card-content>
@@ -89,7 +161,9 @@ export default {
             dataURL: file.dataURL,
             filename: file.upload.filename,
             width: file.width,
-            height: file.height
+            height: file.height,
+            date: vm.$moment().format("YYYY-MM-DD"),
+            license: 'CC-0'
           })
         })
       }, 500)

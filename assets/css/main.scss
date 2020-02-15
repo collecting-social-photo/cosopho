@@ -1,5 +1,6 @@
 $white: #ffffff;
 $black: #000000;
+$grey: rgb(136, 127, 127);
 
 body {
   font-size: 1.1rem;
@@ -178,19 +179,25 @@ $flash-color: #cccccc;
 }
 
 .md-radio-container {
-  border: 2px solid black !important;
+  border: 2px solid $grey !important;
 }
 
 .md-checked .md-radio-container:after {
-  background-color: black !important;
+  background-color: $grey !important;
 }
 
 .md-field.md-theme-default:after {
   background-color: rgba(0,0,0,0.42);
 }
 
-.md-field label {
-  color: #828282;
+.md-field {
+  margin-bottom: 40px;
+  label {
+    color: #828282;
+  }
+  .md-helper-text {
+    color: #828282;
+  }
 }
 
 .md-card {
@@ -206,4 +213,29 @@ $flash-color: #cccccc;
   .md-card-content {
     background-color: $white;
   }
+}
+
+.md-has-textarea:not(.md-autogrow):after {
+  border-color: $grey !important;
+}
+
+.md-checkbox-container {
+  border-color: $grey !important;
+}
+
+.md-checked .md-ripple {
+  color: $grey !important;
+}
+
+.md-checkbox.md-theme-default.md-checked .md-checkbox-container {
+  background-color: $grey !important;
+  border-color: $grey !important;
+}
+
+.md-checkbox.md-theme-default.md-checked .md-checkbox-container:after {
+  border-color: #fff !important;
+}
+
+.md-checkbox, .md-radio {
+  display: flex;
 }

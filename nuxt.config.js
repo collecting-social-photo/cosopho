@@ -54,7 +54,20 @@ module.exports = {
     '@nuxtjs/moment',
     ['nuxt-vue-material', {
       theme: null,
-      components: ['MdDrawer', 'MdRadio', 'MdMenu', 'MdContent', 'MdList', 'MdButton', 'MdToolbar', 'MdIcon', 'MdApp', 'MdField', 'MdCard']
+      components: [
+        'MdDrawer',
+        'MdRadio',
+        'MdMenu',
+        'MdContent',
+        'MdList',
+        'MdButton',
+        'MdToolbar',
+        'MdIcon',
+        'MdApp',
+        'MdField',
+        'MdCard',
+        'MdCheckbox'
+      ]
     }]
   ],
 
