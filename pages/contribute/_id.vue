@@ -39,7 +39,7 @@
         </md-card-content>
       </md-card>
 
-      <md-button :style="`background-color:#${$store.state.instance.colour};color:#fff;`">Continue</md-button>
+      <md-button :style="`background-color:#${$store.state.instance.colour};color:#fff;`">Save</md-button>
       <md-button class="md-primary" :to="localePath('contribute')">Cancel</md-button>
     </div>
   </div>
