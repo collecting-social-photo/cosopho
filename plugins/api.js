@@ -15,8 +15,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPhotos (variables) {
     const payload = {
-      query: `query photos($instance: String, $per_page: Int, $page: Int) {
-        photos(instance: $instance, per_page: $per_page, page: $page) {
+      query: `query photos($instance: String, $per_page: Int, $page: Int, $initiatives: [String]) {
+        photos(instance: $instance, per_page: $per_page, page: $page, initiatives: $initiatives) {
           id
           title
           data {
@@ -97,6 +97,21 @@ const apiFactory = ($axios, app, store) => ({
               version
             }
           }
+        }
+      }`,
+      variables: variables
+    }
+
+    return this.makeRequest(payload)
+  },
+
+  getInitiative (variables) {
+    const payload = {
+      query: `query initiative($instance: String!, $slug: String) {
+        initiative(instance: $instance, slug: $slug) {
+          id
+          slug
+          title
         }
       }`,
       variables: variables
