@@ -53,7 +53,7 @@ module.exports = {
     '@nuxtjs/auth',
     '@nuxtjs/moment',
     ['nuxt-vue-material', {
-      theme: null,
+      theme: 'default',
       components: [
         'MdDrawer',
         'MdRadio',

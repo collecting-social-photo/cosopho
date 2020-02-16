@@ -11,7 +11,7 @@ body {
 h1 {
   font-size: 2em;
   margin: 1rem 0 1.68rem;
-  color: $black;
+  color: var(--md-theme-default-primary);
   line-height: 110%;
   font-weight: 400;
 }
@@ -24,44 +24,48 @@ h1 {
   min-height: 100vh;
 }
 
-.md-toolbar {
-  background-color: $black;
-  color: $white;
-
-  button {
-    color: $white;
-  }
-
-  a {
-    color: $white;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
+.topnav-title a {
+  color: $white !important;
 }
 
-.md-menu-content-container {
-  background-color: #696868;
-  color: $white;
+// .md-toolbar {
+//   background-color: $black;
+//   color: $white;
 
-  button {
-    color: $white;
-  }
+//   button {
+//     color: $white;
+//   }
 
-  a, a:visited {
-    color: $white;
-  }
+//   a {
+//     color: $white;
 
-  .md-menu-item:hover {
-    background-color: rgba($color: $black, $alpha: 0.1);
-  }
-}
+//     &:hover {
+//       text-decoration: none;
+//     }
+//   }
+// }
+
+// .md-menu-content-container {
+//   background-color: #696868;
+//   color: $white;
+
+//   button {
+//     color: $white;
+//   }
+
+//   a, a:visited {
+//     color: $white;
+//   }
+
+//   .md-menu-item:hover {
+//     background-color: rgba($color: $black, $alpha: 0.1);
+//   }
+// }
 
 .md-drawer {
   width: 300px;
   max-width: calc(100vw - 125px);
-  background-color: $black;
+  background-color: var(--md-theme-default-primary) !important;
   color: $white;
 
   button {
@@ -72,12 +76,20 @@ h1 {
     color: $white;
   }
 
+  .md-list {
+    background-color: var(--md-theme-default-primary) !important;
+    a, a:visited {
+      color: $white;
+    }
+  }
+
   .md-list-item:hover {
-    background-color: rgba($color: $black, $alpha: 0.1);
+    background-color: rgba($black, $alpha: 0.1);
   }
 
   .md-list-item-content {
     font-size: 1.5rem;
+    color: #fff;
   }
 }
 
@@ -175,67 +187,5 @@ $flash-color: #cccccc;
  }
 
 .md-radio {
-  display: flex;
-}
-
-.md-radio-container {
-  border: 2px solid $grey !important;
-}
-
-.md-checked .md-radio-container:after {
-  background-color: $grey !important;
-}
-
-.md-field.md-theme-default:after {
-  background-color: rgba(0,0,0,0.42);
-}
-
-.md-field {
-  margin-bottom: 40px;
-  label {
-    color: #828282;
-  }
-  .md-helper-text {
-    color: #828282;
-  }
-}
-
-.md-card {
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  position: relative;
-  z-index: 1;
-  border-radius: 2px;
-  transition: .3s cubic-bezier(.4,0,.2,1);
-  transition-property: color,background-color;
-  will-change: color,background-color;
-  margin-bottom: 20px;
-
-  .md-card-content {
-    background-color: $white;
-  }
-}
-
-.md-has-textarea:not(.md-autogrow):after {
-  border-color: $grey !important;
-}
-
-.md-checkbox-container {
-  border-color: $grey !important;
-}
-
-.md-checked .md-ripple {
-  color: $grey !important;
-}
-
-.md-checkbox.md-theme-default.md-checked .md-checkbox-container {
-  background-color: $grey !important;
-  border-color: $grey !important;
-}
-
-.md-checkbox.md-theme-default.md-checked .md-checkbox-container:after {
-  border-color: #fff !important;
-}
-
-.md-checkbox, .md-radio {
   display: flex;
 }

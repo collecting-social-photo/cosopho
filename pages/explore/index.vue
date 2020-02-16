@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 :style="`color:#${$store.state.instance.colour};`">Explore</h1>
+    <h1>Explore</h1>
     <div v-if="photos.length">
       <div class="photo-list" v-for="photo in photos" :key="photo.id">
         <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">

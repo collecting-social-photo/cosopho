@@ -1,7 +1,12 @@
 <template>
   <div class="page-container">
+    <style>
+      :root {
+        --md-theme-default-primary: #{{ color }} !important;
+      }
+    </style>
     <md-app>
-      <md-app-toolbar class="md-primary" :style="`background-color:#${$store.state.instance.colour};`">
+      <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
@@ -9,7 +14,7 @@
           <md-icon>add_circle_outline</md-icon>
         </md-button>
 
-        <span><nuxt-link :to="localePath('index')">{{ $store.state.instance.title }}</nuxt-link></span>
+        <span class="topnav-title"><nuxt-link :to="localePath('index')">{{ $store.state.instance.title }}</nuxt-link></span>
 
         <div class="md-toolbar-section-end">
 
@@ -56,8 +61,8 @@
         </div>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible" :style="`background-color:#${$store.state.instance.colour};`">
-        <md-toolbar class="md-transparent" md-elevation="0" :style="`background-color:#${$store.state.instance.colour};`">
+      <md-app-drawer :md-active.sync="menuVisible">
+        <md-toolbar class="md-transparent" md-elevation="0">
           <img class="logo" :src="`data:image/png;base64,${$store.state.instance.logo}`"/>
         </md-toolbar>
 
@@ -83,6 +88,11 @@
 export default {
   data: () => ({
     menuVisible: false
-  })
+  }),
+  computed: {
+    color: function() {
+      return this.$store.state.instance.colour || '333333'
+    }
+  }
 }
 </script>

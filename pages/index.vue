@@ -3,8 +3,8 @@
     <div>
       <div><img class="logo" :src="`data:image/png;base64,${$store.state.instance.logo}`" width="100"/></div>
       <div>
-        <md-button :to="localePath('explore')" class="md-primary" :style="`background-color:#${$store.state.instance.colour};color:#fff;`">Explore</md-button>
-        <md-button :to="localePath('contribute')" class="md-primary" :style="`background-color:#${$store.state.instance.colour};color:#fff;`">Contribute</md-button>
+        <md-button :to="localePath('explore')" class="md-primary md-raised">Explore</md-button>
+        <md-button :to="localePath('contribute')" class="md-primary  md-raised">Contribute</md-button>
       </div>
       <img v-if="photo" :src="`https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg`" />
     </div>
