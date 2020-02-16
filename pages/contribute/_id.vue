@@ -106,6 +106,16 @@
                 <md-radio v-model="file.license" value="CC-BY-NYC">CC-BY-NC My image cannot be used commercially.</md-radio>
               </div>
 
+              <p><a href="https://creativecommons.org/" target="_blank">Learn more about the different image licenses.</a></p>
+
+              <h3>Archived</h3>
+
+              <div>
+                <md-checkbox v-model="file.archived">Archived</md-checkbox>
+
+                <p>This image should not be publicly available for 50 years, but I do wish for them to be saved for the future according to the terms and conditions.</p>
+              </div>
+
             </div>
           </div>
         </md-card-content>
