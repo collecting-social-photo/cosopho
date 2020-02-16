@@ -90,6 +90,7 @@ const apiFactory = ($axios, app, store) => ({
           slug
           title
           photos {
+            id
             data {
               height
               width
