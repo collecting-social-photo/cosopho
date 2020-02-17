@@ -14,7 +14,7 @@
     <div v-for="initiative in initiatives" :key="initiative.slug">
       <h2><nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">{{ initiative.title }}</nuxt-link></h2>
       <div class="md-layout md-gutter md-alignment-center">
-        <div class="md-layout-item" v-for="photo in initiative.photos" :key="photo.data.public_id">
+        <div class="md-layout-item" v-for="photo in initiative.photos.slice(0,4)" :key="photo.data.public_id">
           <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
             <img v-if="photo" :src="`https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg`" />
           </nuxt-link>

@@ -70,6 +70,9 @@ export default {
       })
       vm.spinnerClass = 'spinner-hide'
       vm.photos = vm.photos.concat(response.data.data.photos)
+      if (vm.photos.length) {
+        vm.maxPage = vm.photos[0]._sys.pagination.maxPage
+      }
     }
   },
   head () {

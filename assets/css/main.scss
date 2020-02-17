@@ -16,6 +16,13 @@ h1 {
   font-weight: 400;
 }
 
+h2 {
+  color: var(--md-theme-default-primary) !important;
+  a {
+    color: var(--md-theme-default-primary) !important;
+  }
+}
+
 .tiny {
   font-size: 1rem;
 }
