@@ -15,7 +15,6 @@
         </md-button>
 
         <span class="topnav-title"><nuxt-link :to="localePath('index')">{{ $store.state.instance.title }}</nuxt-link></span>
-
         <div class="md-toolbar-section-end">
 
           <md-menu md-size="medium" md-align-trigger>

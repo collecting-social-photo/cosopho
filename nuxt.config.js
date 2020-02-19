@@ -93,8 +93,8 @@ module.exports = {
 
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.json' },
-      { code: 'fr', iso: 'fr', file: 'fr.json' }
+      { code: 'en', iso: 'en-US', file: 'en.js' },
+      { code: 'fr', iso: 'fr', file: 'fr.js' }
     ],
     lazy: true,
     langDir: './locales/',
@@ -107,19 +107,23 @@ module.exports = {
     }
   },
 
-  axios: {
-    proxy: true,
-    proxyHeaders: true
-  },
+  // axios: {
+  //   proxy: true,
+  //   proxyHeaders: true
+  // },
 
-  proxy: {
-    '/api': {
-      target: process.env.API_ENDPOINT,
-      pathRewrite: {
-        '^/api' : '/'
-        }
-      }
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: process.env.API_ENDPOINT,
+  //     pathRewrite: {
+  //       '^/api' : '/'
+  //       }
+  //     }
+  // },
+
+  serverMiddleware: [
+    '~/api/index.js'
+  ],
 
   build: {
     extend (config, ctx) {
