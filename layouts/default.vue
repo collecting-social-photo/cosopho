@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
-    <style>
+    <component :is="'style'">
       :root {
         --md-theme-default-primary: #{{ color }} !important;
       }
-    </style>
+    </component>
     <md-app>
       <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
@@ -18,15 +18,15 @@
         <div class="md-toolbar-section-end">
 
           <md-menu md-size="medium" md-align-trigger>
-            <md-button md-menu-trigger>Languages</md-button>
+            <md-button md-menu-trigger>Lang</md-button>
 
             <md-menu-content>
               <md-menu-item :to="switchLocalePath('en')">
-                <span class="md-list-item-text">English</span>
+                <span class="md-list-item-text">EN</span>
               </md-menu-item>
 
-              <md-menu-item :to="switchLocalePath('fr')">
-                <span class="md-list-item-text">French</span>
+              <md-menu-item :to="switchLocalePath('sv')">
+                <span class="md-list-item-text">SV</span>
               </md-menu-item>
             </md-menu-content>
           </md-menu>

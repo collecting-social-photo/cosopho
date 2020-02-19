@@ -94,7 +94,7 @@ module.exports = {
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.js' },
-      { code: 'fr', iso: 'fr', file: 'fr.js' }
+      { code: 'sv', iso: 'sv', file: 'sv.js' }
     ],
     lazy: true,
     langDir: './locales/',
@@ -126,6 +126,16 @@ module.exports = {
   ],
 
   build: {
+    collapseBooleanAttributes: true,
+    decodeEntities: true,
+    minifyCSS: true,
+    minifyJS: true,
+    processConditionalComments: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true,
+    trimCustomFragments: true,
+    useShortDoctype: true,
+    extractCSS: true,
     extend (config, ctx) {
     },
     plugins: [
