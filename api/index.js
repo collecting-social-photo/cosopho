@@ -5,12 +5,13 @@ const cors = require('cors')
 const app = express()
 
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', function(req, res) {
   res.end('ok')
 })
 
-app.post('/', cors(), function(req, res) {
+app.post('/', function(req, res) {
   const body = JSON.stringify(req.body)
   axios.post(
     process.env.API_ENDPOINT,
