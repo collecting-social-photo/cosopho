@@ -62,12 +62,12 @@
         </md-toolbar>
 
         <md-list>
-          <md-list-item :to="localePath('index')" @click="menuVisible=false">Home</md-list-item>
-          <md-list-item :to="localePath('about')" @click="menuVisible=false">About</md-list-item>
-          <md-list-item :to="localePath('contribute')" @click="menuVisible=false">Contribute</md-list-item>
-          <md-list-item :to="localePath('explore')" @click="menuVisible=false">Explore</md-list-item>
-          <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">Privacy & Terms</md-list-item>
-          <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">Initiatives</md-list-item>
+          <md-list-item :to="localePath('index')" @click="menuVisible=false">{{ $t('Home') }}</md-list-item>
+          <md-list-item :to="localePath('about')" @click="menuVisible=false">{{ $t('About') }}</md-list-item>
+          <md-list-item :to="localePath('contribute')" @click="menuVisible=false">{{ $t('Contribute') }}</md-list-item>
+          <md-list-item :to="localePath('explore')" @click="menuVisible=false">{{ $t('Explore') }}</md-list-item>
+          <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">{{ $t('Privacy') }}</md-list-item>
+          <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">{{ $t('Initiatives') }}</md-list-item>
         </md-list>
 
       </md-app-drawer>
