@@ -93,7 +93,7 @@ module.exports = {
   },
 
   i18n: {
-    locales: ['en', 'sv'],
+    locales: ['en', 'sv', 'fi', 'bi', 'da'],
     lazy: true,
     strategy: 'prefix',
     defaultLocale: 'en',

@@ -17,13 +17,13 @@ export default function({ store, app }) {
 
   const payload = {
     query: `query strings($instance: String) {
-      default: strings(instance: "cosophoheroku_001") {
+      default: strings(instance: "cosophoheroku_001", per_page: 1000) {
         language
         stub
         string
         instance
       }
-      instance: strings(instance: $instance) {
+      instance: strings(instance: $instance, per_page: 1000) {
         language
         stub
         string
