@@ -53,6 +53,12 @@ export const actions = {
     )
 
     if(response.data.data.instance) {
+
+      var languages = response.data.data.instance.languages
+      languages.push('en')
+
+      response.data.data.instance.languages = _.union(languages)
+
       commit('SET_INSTANCE', response.data.data.instance)
     } else {
       redirect('/home')

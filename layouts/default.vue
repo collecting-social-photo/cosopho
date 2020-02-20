@@ -21,12 +21,8 @@
             <md-button md-menu-trigger>Lang</md-button>
 
             <md-menu-content>
-              <md-menu-item :to="switchLocalePath('en')">
-                <span class="md-list-item-text">EN</span>
-              </md-menu-item>
-
-              <md-menu-item :to="switchLocalePath('sv')">
-                <span class="md-list-item-text">SV</span>
+              <md-menu-item v-for="lang in $store.state.instance.languages" :key="lang" :to="switchLocalePath(lang)">
+                <span class="md-list-item-text">{{ lang }}</span>
               </md-menu-item>
             </md-menu-content>
           </md-menu>

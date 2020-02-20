@@ -39,6 +39,7 @@ module.exports = {
 
   plugins: [
     { src: './plugins/api.js' },
+    { src: './plugins/i18n.js' },
     { src: './plugins/observe-visibility.js' }
   ],
 
@@ -92,12 +93,8 @@ module.exports = {
   },
 
   i18n: {
-    locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js' },
-      { code: 'sv', iso: 'sv', file: 'sv.js' }
-    ],
+    locales: ['en', 'sv'],
     lazy: true,
-    langDir: './locales/',
     strategy: 'prefix',
     defaultLocale: 'en',
     rootRedirect: 'en/',
