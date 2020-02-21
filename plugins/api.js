@@ -1,14 +1,9 @@
-var url = 'https://micah-walter-674bb737a19d3046.collectingsocialphoto.com/api'
-
-if (process.env.NODE_ENV !== 'production') {
-  url = 'http://micah-walter-674bb737a19d3046.cosopho.com:3000/api'
-}
-
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload) {
+    const hostname = store.state.hostname
     return await $axios.post(
-      url,
+      `${hostname}/api`,
       payload
     )
   },

@@ -1,12 +1,16 @@
 import axios from 'axios'
 
 export const state = () => ({
-  instance: null
+  instance: null,
+  hostname: null
 })
 
 export const mutations = {
   SET_INSTANCE (state, instance) {
     state.instance = instance || null
+  },
+  SET_HOSTNAME (state, hostname) {
+    state.hostname = hostname || null
   }
 }
 
@@ -59,7 +63,14 @@ export const actions = {
 
       response.data.data.instance.languages = _.union(languages)
 
+      var currentHostname = `https://${response.data.data.instance.id}.collectingsocialphoto.com`
+
+      if (process.env.NODE_ENV !== 'production') {
+        currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
+      }
+
       commit('SET_INSTANCE', response.data.data.instance)
+      commit('SET_HOSTNAME', currentHostname)
     } else {
       redirect('/home')
       return

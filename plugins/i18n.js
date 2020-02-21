@@ -8,12 +8,7 @@ export default function({ store, app }) {
 
   const instanceId = store.state.instance.id
   const languages = store.state.instance.languages
-
-  var url = `https://${instanceId}.collectingsocialphoto.com/api`
-
-  if (process.env.NODE_ENV !== 'production') {
-    url = `http://${instanceId}.cosopho.com:3000/api`
-  }
+  const hostname = store.state.hostname
 
   const payload = {
     query: `query strings($instance: String) {
@@ -36,7 +31,7 @@ export default function({ store, app }) {
     }
   }
   axios.post(
-    url,
+    `${hostname}/api`,
     payload,
   ).then(function (response) {
     const defaultStrings = response.data.data.default

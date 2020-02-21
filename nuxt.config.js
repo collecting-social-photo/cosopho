@@ -8,7 +8,8 @@ module.exports = {
   env: {
     apiKey: process.env.API_KEY,
     apiEndpoint: process.env.API_ENDPOINT,
-    instanceId: process.env.INSTANCE_ID
+    cloudinaryApi: process.env.CLOUDINARY_API,
+
   },
 
   head: {
@@ -119,7 +120,8 @@ module.exports = {
   // },
 
   serverMiddleware: [
-    '~/api/index.js'
+    '~/api/index.js',
+    '~/api/cloudinary.js'
   ],
 
   build: {

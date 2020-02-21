@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <div>
-      <dropzone v-if="!uploadedFiles"
+      <dropzone v-if="!photosReady || uploadedFiles.length < 1"
         id="customdropzone"
         ref="el"
         :options="options"
         :destroyDropzone="true"
         :useCustomSlot="true"
-        v-on:vdropzone-files-added="uploadSuccess"
+        v-on:vdropzone-success="uploadSuccess"
+        v-on:vdropzone-queue-complete="comp"
       >
         <div class="dropzone-custom-content">
           <h3 class="dropzone-custom-title"><md-icon>cloud_upload</md-icon> Drag and drop photos here to upload!</h3>
@@ -15,16 +16,14 @@
         </div>
       </dropzone>
     </div>
-    <div v-if="uploadedFiles">
-      <md-card v-for="file in uploadedFiles" :key="file.id">
+    <div v-if="photosReady && uploadedFiles.length > 0">
+      <md-card v-for="file in uploadedFiles" :key="file.id" class="upload-card">
         <md-card-content>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-size-30">
               <img :src="file.dataURL" width="200" />
             </div>
             <div class="md-layout-item md-size-70">
-              <p>add user data here <pre>{{ file.filename }}</pre> {{ file.width }} x {{ file.height }} - {{ file.title }}</p>
-
               <md-field>
                 <label for="title">Short Description</label>
                 <md-input name="title" id="title" v-model="file.title" />
@@ -139,14 +138,13 @@ export default {
   data () {
     return {
       selectedInitiative: null,
-      uploadedFiles: null,
+      uploadedFiles: [],
+      photosReady: false,
       options: {
-        url: 'https://httpbin.org/anything',
+        url: `${this.$store.state.hostname}/upload`,
         maxFiles: 10,
         parallelUploads: 10,
-        autoProcessQueue: false,
-        addRemoveLinks: true,
-        uploadMultiple: true,
+        uploadMultiple: false,
         acceptedFiles: '.png,.jpg,.jpeg,.gif'
       }
     }
@@ -158,24 +156,41 @@ export default {
     return { selectedInitiative: context.params.id }
   },
   mounted () {
-    const instance = this.$refs.el.dropzone
+    const myDropzone = this.$refs.el.dropzone
+
+    myDropzone.on('sending', function (file, xhr, formData) {
+      formData.append('api_key', process.env.cloudinaryApi);
+      formData.append('timestamp', Date.now() / 1000 | 0);
+      formData.append('upload_preset', 'ml_default');
+      formData.append('exif', true);
+    })
   },
   methods: {
-    uploadSuccess (response) {
+    comp () {
+      this.photosReady = true
+    },
+    uploadSuccess (file, response) {
       const vm = this
+
       setTimeout(function() {
-        vm.uploadedFiles = []
-        _.each(response, function(file) {
-          vm.uploadedFiles.push({
-            id: file.upload.uuid,
+        vm.uploadedFiles.push(
+          {
+            id: response.public_id,
             dataURL: file.dataURL,
+            secureUrl: response.secure_url,
             filename: file.upload.filename,
             width: file.width,
             height: file.height,
+            make: response.exif.Make,
+            model: response.exif.Model,
+            aperture: response.exif.ApertureValue,
+            shutterspeed: response.exif.ShutterSpeedValue,
+            iso: response.exif.ISOSpeed,
+            focallength: response.exif.FocalLength,
             date: vm.$moment().format("YYYY-MM-DD"),
             license: 'CC-0'
-          })
-        })
+          }
+        )
       }, 500)
     }
   }
