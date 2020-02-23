@@ -124,6 +124,10 @@ module.exports = {
     '~/api/cloudinary.js'
   ],
 
+  router: {
+    middleware: ['user']
+  },
+
   build: {
     collapseBooleanAttributes: true,
     decodeEntities: true,

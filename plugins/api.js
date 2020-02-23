@@ -8,6 +8,22 @@ const apiFactory = ($axios, app, store) => ({
     )
   },
 
+  getPerson (variables) {
+    const payload = {
+      query: `query person($id: String!) {
+        person(id: $id) {
+          name
+          slug
+          username
+          avatar
+        }
+      }`,
+      variables: variables
+    }
+
+    return this.makeRequest(payload)
+  },
+
   getPhotos (variables) {
     const payload = {
       query: `query photos($instance: String, $per_page: Int, $page: Int, $initiatives: [String]) {
@@ -108,6 +124,30 @@ const apiFactory = ($axios, app, store) => ({
           id
           slug
           title
+        }
+      }`,
+      variables: variables
+    }
+
+    return this.makeRequest(payload)
+  },
+
+  createPhoto (variables) {
+    const payload = {
+      query: `mutation (
+        $instance: String!,
+        $initiative: String!,
+        $title: String!,
+        $personSlug: String!,
+        $data: String
+        ) {
+        createPhoto(
+          instance: $instance,
+          initiative: $initiative,
+          personSlug: $personSlug,
+          title: $title,
+          data: $data) {
+          id
         }
       }`,
       variables: variables

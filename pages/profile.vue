@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Profile</h1>
-    <p>{{ $auth.user.name }}</p>
+    <p>{{ $store.state.user.slug }}</p>
   </div>
 </template>
 

@@ -29,7 +29,7 @@
 
           <md-menu md-size="medium" md-align-trigger>
             <md-button v-if="$auth.loggedIn" md-menu-trigger>
-              <img class="avatar" :src="$auth.user.picture"/>
+              <img class="avatar" :src="$store.state.user.avatar"/>
             </md-button>
 
             <md-menu-content>

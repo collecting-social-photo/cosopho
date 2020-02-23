@@ -119,8 +119,7 @@
           </div>
         </md-card-content>
       </md-card>
-
-      <md-button class="md-raised md-primary">Save</md-button>
+      <md-button class="md-raised md-primary" @click="savePhotos()">Save</md-button>
       <md-button class="md-primary" :to="localePath('contribute')">Cancel</md-button>
     </div>
   </div>
@@ -192,6 +191,27 @@ export default {
           }
         )
       }, 500)
+    },
+    savePhotos () {
+      const vm = this
+      _.each(vm.uploadedFiles, async function(photo) {
+        var vars = {
+          instance: vm.$store.state.instance.id,
+          personSlug: vm.$store.state.user.slug,
+          initiative: vm.selectedInitiative,
+          title: photo.title,
+          data: JSON.stringify({
+            public_id: photo.id,
+            width: photo.width,
+            height: photo.height
+          })
+        }
+
+        let response = await vm.$api.createPhoto(vars)
+      })
+
+      vm.$router.push(this.localePath({ name: "explore"}))
+
     }
   }
 }

@@ -1,11 +1,15 @@
 import axios from 'axios'
 
 export const state = () => ({
+  user: null,
   instance: null,
   hostname: null
 })
 
 export const mutations = {
+  SET_USER (state, user) {
+    state.user = user || null
+  },
   SET_INSTANCE (state, instance) {
     state.instance = instance || null
   },
