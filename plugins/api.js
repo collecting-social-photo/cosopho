@@ -57,9 +57,23 @@ const apiFactory = ($axios, app, store) => ({
         photo(instance: $instance, id: $id) {
           id
           title
-          location
           date
           license
+          story
+          initiative
+          tags
+          location
+          socialMedias
+          otherSM
+          make
+          model
+          aperture
+          shutterSpeed
+          ISO
+          focalLength
+          license
+          approved
+          archived
           person {
             id
             username
@@ -136,17 +150,49 @@ const apiFactory = ($axios, app, store) => ({
     const payload = {
       query: `mutation (
         $instance: String!,
-        $initiative: String!,
-        $title: String!,
         $personSlug: String!,
-        $data: String
+        $title: String!,
+        $story: String,
+        $initiative: String!,
+        $tags: [String],
+        $location: String,
+        $date: String,
+        $socialMedias: [String],
+        $otherSM: String,
+        $make: String,
+        $model: String,
+        $aperture: Float,
+        $shutterSpeed: Float,
+        $ISO: Int,
+        $focalLength: Int,
+        $license: String,
+        $approved: Boolean,
+        $archived: Boolean,
+        $data: String,
+        $notes: String,
         ) {
         createPhoto(
           instance: $instance,
-          initiative: $initiative,
           personSlug: $personSlug,
           title: $title,
-          data: $data) {
+          story: $story,
+          initiative: $initiative,
+          tags: $tags,
+          location: $location,
+          date: $date,
+          socialMedias: $socialMedias,
+          otherSM: $otherSM,
+          make: $make,
+          model: $model,
+          aperture: $aperture,
+          shutterSpeed: $shutterSpeed,
+          ISO: $ISO,
+          focalLength: $focalLength,
+          license: $license,
+          approved: $approved,
+          archived: $archived,
+          data: $data,
+          notes: $notes) {
           id
         }
       }`,

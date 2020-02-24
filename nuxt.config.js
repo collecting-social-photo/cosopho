@@ -54,6 +54,7 @@ module.exports = {
     'nuxt-basic-auth-module',
     '@nuxtjs/auth',
     '@nuxtjs/moment',
+    '@nuxtjs/toast',
     ['nuxt-vue-material', {
       theme: 'default',
       components: [
@@ -68,7 +69,8 @@ module.exports = {
         'MdApp',
         'MdField',
         'MdCard',
-        'MdCheckbox'
+        'MdCheckbox',
+        'MdChips'
       ]
     }]
   ],
@@ -89,6 +91,13 @@ module.exports = {
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID
+      }
+    },
+    cookie: {
+      prefix: 'auth.',
+      options: {
+        path: '/',
+        maxAge: 60 * 60 * 365
       }
     }
   },

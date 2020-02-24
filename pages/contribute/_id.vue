@@ -54,22 +54,22 @@
 
               <md-field>
                 <label for="aperture">Aperture</label>
-                <md-input name="aperture" v-model="file.aperture" />
+                <md-input type="number" name="aperture" v-model="file.aperture" />
               </md-field>
 
               <md-field>
                 <label for="shutterspeed">Shutter Speed</label>
-                <md-input name="shutterspeed" v-model="file.shutterspeed" />
+                <md-input type="number" name="shutterspeed" v-model="file.shutterspeed" />
               </md-field>
 
               <md-field>
                 <label for="iso">ISO</label>
-                <md-input name="iso" v-model="file.iso" />
+                <md-input type="number" name="iso" v-model="file.iso" />
               </md-field>
 
               <md-field>
                 <label for="focallength">Focal Length</label>
-                <md-input name="focallength" v-model="file.focallength" />
+                <md-input type="number" name="focallength" v-model="file.focallength" />
               </md-field>
 
               <md-field>
@@ -199,7 +199,22 @@ export default {
           instance: vm.$store.state.instance.id,
           personSlug: vm.$store.state.user.slug,
           initiative: vm.selectedInitiative,
-          title: photo.title,
+          title: photo.title || null,
+          story: photo.story || null,
+          tags: (photo.tags && photo.tags.split(",")) || null,
+          location: photo.location || null,
+          date: photo.date || null,
+          socialMedias: photo.socialMedias || null,
+          otherSM: photo.otherSM || null,
+          make: photo.make || null,
+          model: photo.model || null,
+          aperture: (photo.aperture && parseFloat(photo.aperture)) || null,
+          shutterSpeed: (photo.shutterSpeed && parseFloat(photo.shutterSpeed)) || null,
+          ISO: (photo.ISO && parseInt(photo.ISO)) || null,
+          focalLength: (photo.focalLength && parseInt(photo.focalLength)) || null,
+          license: photo.license || null,
+          approved: photo.approved || false,
+          archived: photo.archived || false,
           data: JSON.stringify({
             public_id: photo.id,
             width: photo.width,
@@ -210,8 +225,14 @@ export default {
         let response = await vm.$api.createPhoto(vars)
       })
 
-      vm.$router.push(this.localePath({ name: "explore"}))
-
+      setTimeout(function() {
+        vm.$toast.success('Successfully added photos!', {
+          theme: "toasted-primary",
+          position: "top-right",
+          duration : 5000
+        })
+        vm.$router.push({path: vm.localePath({ name: "explore"}), force: true})
+      }, 1000)
     }
   }
 }

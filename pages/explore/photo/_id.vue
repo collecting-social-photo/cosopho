@@ -6,6 +6,17 @@
     <p v-if="photo.location"><i class="tiny material-icons">location_on</i> {{ photo.location }}</p>
     <p v-if="photo.date"><i class="tiny material-icons">date_range</i> {{ $moment(photo.date).format('MMMM Do, YYYY') }}</p>
     <p v-if="photo.license"><i class="tiny material-icons">copyright</i> {{ photo.license }}</p>
+
+    <p v-if="photo.story">{{ photo.story }}</p>
+    <p v-if="photo.tags && photo.tags.length">
+      <md-chip v-for="tag in photo.tags" :key="tag">{{ tag }}</md-chip>
+    </p>
+    <p v-if="photo.make">Make: {{ photo.make }}</p>
+    <p v-if="photo.model">Model: {{ photo.model }}</p>
+    <p v-if="photo.aperture">Aperture: {{ photo.aperture }}</p>
+    <p v-if="photo.shutterSpeed">Shutter speed: {{ photo.shutterSpeed }}</p>
+    <p v-if="photo.ISO">ISO: {{ photo.ISO }}</p>
+    <p v-if="photo.focalLength">Focal length: {{ photo.focalLength }}</p>
   </div>
 </template>
 

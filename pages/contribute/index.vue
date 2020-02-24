@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     goToUpload () {
-      console.log(this.selectedInitiative)
       this.$router.push(this.localePath({ name: "contribute-id", params: { id: this.selectedInitiative }}))
     }
   }
