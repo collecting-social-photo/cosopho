@@ -92,23 +92,23 @@
               <h3>Where did you post this photo? Select all that apply.</h3>
 
               <div>
-                <md-checkbox v-model="file.where_facebook">
+                <md-checkbox v-model="file.socialMedias" value="facebook">
                   Facebook
                 </md-checkbox>
-                <md-checkbox v-model="file.where_instagram">
+                <md-checkbox v-model="file.socialMedias" value="instagram">
                   Instagram
                 </md-checkbox>
-                <md-checkbox v-model="file.where_snapchat">
+                <md-checkbox v-model="file.socialMedias" value="snapchat">
                   SnapChat
                 </md-checkbox>
-                <md-checkbox v-model="file.where_twitter">
+                <md-checkbox v-model="file.socialMedias" value="twitter">
                   Twitter
                 </md-checkbox>
                 <md-checkbox v-model="file.where_other">
                   other
                 </md-checkbox>
                 <md-field v-if="file.where_other">
-                  <md-input v-model="file.otherSM" name="otherSM" placeholder="Say where" />
+                  <md-input v-model="file.otherSM" name="other" placeholder="Say where" />
                 </md-field>
               </div>
 
@@ -119,7 +119,7 @@
                   CC-0 Free to use without restrictions.
                 </md-radio>
                 <md-radio v-model="file.license" value="CC-BY">
-                  CC-BY-NC My image cannot be used commercially.
+                  CC-BY Display my name every time the photo is used.
                 </md-radio>
                 <md-radio v-model="file.license" value="CC-BY-NYC">
                   CC-BY-NC My image cannot be used commercially.
@@ -214,6 +214,7 @@ export default {
             shutterspeed: response.exif.ShutterSpeedValue,
             iso: response.exif.ISOSpeed,
             focallength: response.exif.FocalLength,
+            socialMedias: [],
             date: vm.$moment().format('YYYY-MM-DD'),
             license: 'CC-0'
           }
@@ -265,16 +266,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-#customdropzone {
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-}
-
-.photoAddContainer {
-  border-bottom: 2px solid #ccc;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-}
-</style>
