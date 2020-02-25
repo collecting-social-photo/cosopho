@@ -71,7 +71,7 @@ export default {
       vm.spinnerClass = 'spinner-show'
       const response = await vm.$api.getPhotos({
         instance: vm.$store.state.instance.id,
-        initiative: vm.initiative.slug,
+        initiatives: vm.initiative.slug,
         per_page: vm.perPage,
         page: vm.page
       })
