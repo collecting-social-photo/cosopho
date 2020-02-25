@@ -37,7 +37,7 @@ export default {
     return {
       photos: null,
       perPage: 2,
-      page: 1,
+      page: 0,
       maxPage: 1,
       spinnerClass: 'spinner-hide'
     }
