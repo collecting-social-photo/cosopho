@@ -18,7 +18,7 @@ const apiFactory = ($axios, app, store) => ({
           avatar
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)
@@ -45,7 +45,7 @@ const apiFactory = ($axios, app, store) => ({
           }
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)
@@ -87,7 +87,7 @@ const apiFactory = ($axios, app, store) => ({
           }
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)
@@ -101,7 +101,7 @@ const apiFactory = ($axios, app, store) => ({
           title
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)
@@ -125,7 +125,7 @@ const apiFactory = ($axios, app, store) => ({
           }
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)
@@ -140,7 +140,7 @@ const apiFactory = ($axios, app, store) => ({
           title
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)
@@ -196,7 +196,7 @@ const apiFactory = ($axios, app, store) => ({
           id
         }
       }`,
-      variables: variables
+      variables
     }
 
     return this.makeRequest(payload)

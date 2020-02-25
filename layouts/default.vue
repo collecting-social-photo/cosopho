@@ -2,23 +2,24 @@
   <div class="page-container">
     <component :is="'style'">
       :root {
-        --md-theme-default-primary: #{{ color }} !important;
+      --md-theme-default-primary: #{{ color }} !important;
       }
     </component>
     <md-app>
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+        <md-button @click="menuVisible = !menuVisible" class="md-icon-button">
           <md-icon>menu</md-icon>
         </md-button>
         <md-button :to="localePath('contribute')" class="md-icon-button">
           <md-icon>add_circle_outline</md-icon>
         </md-button>
 
-        <span class="topnav-title"><nuxt-link :to="localePath('index')">{{ $store.state.instance.title }}</nuxt-link></span>
+        <span class="topnav-title _hide_mobile"><nuxt-link :to="localePath('index')">{{ $store.state.instance.title }}</nuxt-link></span>
         <div class="md-toolbar-section-end">
-
           <md-menu md-size="medium" md-align-trigger>
-            <md-button md-menu-trigger>Lang</md-button>
+            <md-button md-menu-trigger>
+              Lang
+            </md-button>
 
             <md-menu-content>
               <md-menu-item v-for="lang in $store.state.instance.languages" :key="lang" :to="switchLocalePath(lang)">
@@ -29,7 +30,7 @@
 
           <md-menu md-size="medium" md-align-trigger>
             <md-button v-if="$auth.loggedIn" md-menu-trigger>
-              <img class="avatar" :src="$store.state.user.avatar"/>
+              <img :src="$store.state.user.avatar" class="avatar">
             </md-button>
 
             <md-menu-content>
@@ -52,24 +53,34 @@
               Login
             </md-button>
           </md-menu>
-
         </div>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">
-          <img class="logo" :src="`data:image/png;base64,${$store.state.instance.logo}`"/>
+          <img :src="`data:image/png;base64,${$store.state.instance.logo}`" class="logo">
         </md-toolbar>
 
         <md-list>
-          <md-list-item :to="localePath('index')" @click="menuVisible=false">{{ $t('Home') }}</md-list-item>
-          <md-list-item :to="localePath('about')" @click="menuVisible=false">{{ $t('About') }}</md-list-item>
-          <md-list-item :to="localePath('contribute')" @click="menuVisible=false">{{ $t('Contribute') }}</md-list-item>
-          <md-list-item :to="localePath('explore')" @click="menuVisible=false">{{ $t('Explore') }}</md-list-item>
-          <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">{{ $t('Privacy') }}</md-list-item>
-          <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">{{ $t('Initiatives') }}</md-list-item>
+          <md-list-item :to="localePath('index')" @click="menuVisible=false">
+            {{ $t('Home') }}
+          </md-list-item>
+          <md-list-item :to="localePath('about')" @click="menuVisible=false">
+            {{ $t('About') }}
+          </md-list-item>
+          <md-list-item :to="localePath('contribute')" @click="menuVisible=false">
+            {{ $t('Contribute') }}
+          </md-list-item>
+          <md-list-item :to="localePath('explore')" @click="menuVisible=false">
+            {{ $t('Explore') }}
+          </md-list-item>
+          <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">
+            {{ $t('Privacy') }}
+          </md-list-item>
+          <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">
+            {{ $t('Initiatives') }}
+          </md-list-item>
         </md-list>
-
       </md-app-drawer>
 
       <md-app-content>
@@ -85,7 +96,7 @@ export default {
     menuVisible: false
   }),
   computed: {
-    color: function() {
+    color () {
       return this.$store.state.instance.colour || '333333'
     }
   }

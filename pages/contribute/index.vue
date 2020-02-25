@@ -6,7 +6,9 @@
       {{ initiative.title }}
     </md-radio>
     <div>
-      <md-button class="md-primary md-raised" :disabled="disabled" @click="goToUpload()">Start Uploading</md-button>
+      <md-button :disabled="disabled" @click="goToUpload()" class="md-primary md-raised">
+        Start Uploading
+      </md-button>
     </div>
   </div>
 </template>
@@ -20,23 +22,22 @@ export default {
       selectedInitiative: null
     }
   },
-  async asyncData (context) {
-    var maxPage = 1
-    let response = await context.app.$api.getInitiatives({
-      instance: context.app.store.state.instance.id,
-    })
-    const initiatives = response.data.data.initiatives
-
-    return { initiatives: initiatives }
-  },
   computed: {
-    disabled: function () {
+    disabled () {
       return !this.selectedInitiative
     }
   },
+  async asyncData (context) {
+    const response = await context.app.$api.getInitiatives({
+      instance: context.app.store.state.instance.id
+    })
+    const initiatives = response.data.data.initiatives
+
+    return { initiatives }
+  },
   methods: {
     goToUpload () {
-      this.$router.push(this.localePath({ name: "contribute-id", params: { id: this.selectedInitiative }}))
+      this.$router.push(this.localePath({ name: 'contribute-id', params: { id: this.selectedInitiative } }))
     }
   }
 }

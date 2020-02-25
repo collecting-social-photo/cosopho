@@ -1,6 +1,7 @@
 $white: #ffffff;
 $black: #000000;
 $grey: rgb(136, 127, 127);
+$break-small: 992px;
 
 body {
   font-size: 1.1rem;
@@ -20,6 +21,12 @@ h2 {
   color: var(--md-theme-default-primary) !important;
   a {
     color: var(--md-theme-default-primary) !important;
+  }
+}
+
+._hide_mobile {
+  @media screen and (max-width: $break-small) {
+    display: none !important;
   }
 }
 

@@ -2,20 +2,23 @@
   <div class="container">
     <h1>Explore</h1>
     <div v-if="photos.length">
-      <div class="photo-list" v-for="photo in photos" :key="photo.id">
+      <div v-for="photo in photos" :key="photo.id" class="photo-list">
         <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
-          <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg`" />
+          <photoComp :publicId="photo.data && photo.data.public_id" />
         </nuxt-link>
       </div>
 
-      <div class="spinner objects-spinner" v-bind:class="spinnerClass">
-        <div class="dot-flashing"></div>
+      <div v-bind:class="spinnerClass" class="spinner objects-spinner">
+        <div class="dot-flashing" />
       </div>
 
-      <div v-if="page < maxPage" v-observe-visibility="{
-        callback: visibilityChanged,
-        once: false,
-      }"></div>
+      <div
+        v-if="page < maxPage"
+        v-observe-visibility="{
+          callback: visibilityChanged,
+          once: false,
+        }"
+      />
     </div>
     <div v-else>
       No photos found 😥
@@ -24,7 +27,12 @@
 </template>
 
 <script>
+import photoComp from '~/components/photoComp.vue'
+
 export default {
+  components: {
+    photoComp
+  },
   data () {
     return {
       photos: null,
@@ -35,8 +43,8 @@ export default {
     }
   },
   async asyncData (context) {
-    var maxPage = 1
-    let response = await context.app.$api.getPhotos({
+    let maxPage = 1
+    const response = await context.app.$api.getPhotos({
       instance: context.app.store.state.instance.id,
       per_page: 2
     })
@@ -45,17 +53,17 @@ export default {
       maxPage = photos[0]._sys.pagination.maxPage
     }
 
-    return { photos: photos, maxPage: maxPage }
+    return { photos, maxPage }
   },
   methods: {
-    visibilityChanged(isVisible, entry) {
-      var vm = this
+    visibilityChanged (isVisible, entry) {
+      const vm = this
       if (isVisible && vm.page < vm.maxPage) {
         vm.loadMore()
       }
     },
-    loadMore() {
-      var vm = this
+    loadMore () {
+      const vm = this
       vm.page = vm.page + 1
       vm.fetchPhotos()
     },

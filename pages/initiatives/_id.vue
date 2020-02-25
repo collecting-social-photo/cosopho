@@ -3,27 +3,34 @@
     <h1>{{ initiative.title }}</h1>
 
     <div v-if="photos.length">
-      <div class="photo-list" v-for="photo in photos" :key="photo.id">
+      <div v-for="photo in photos" :key="photo.id" class="photo-list">
         <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
-          <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg`" />
+          <photoComp :publicId="photo.data && photo.data.public_id" />
         </nuxt-link>
       </div>
 
-      <div class="spinner objects-spinner" v-bind:class="spinnerClass">
-        <div class="dot-flashing"></div>
+      <div v-bind:class="spinnerClass" class="spinner objects-spinner">
+        <div class="dot-flashing" />
       </div>
 
-      <div v-if="page < maxPage" v-observe-visibility="{
-        callback: visibilityChanged,
-        once: false,
-      }"></div>
+      <div
+        v-if="page < maxPage"
+        v-observe-visibility="{
+          callback: visibilityChanged,
+          once: false,
+        }"
+      />
     </div>
-
   </div>
 </template>
 
 <script>
+import photoComp from '~/components/photoComp.vue'
+
 export default {
+  components: {
+    photoComp
+  },
   data () {
     return {
       initiative: null,
@@ -35,26 +42,26 @@ export default {
     }
   },
   async asyncData (context) {
-    let response = await context.app.$api.getInitiative({
+    const response = await context.app.$api.getInitiative({
       instance: context.app.store.state.instance.id,
       slug: context.params.id
     })
     const initiative = response.data.data.initiative
 
-    return { initiative: initiative }
+    return { initiative }
   },
-  mounted() {
+  mounted () {
     this.fetchPhotos()
   },
   methods: {
-    visibilityChanged(isVisible, entry) {
-      var vm = this
+    visibilityChanged (isVisible, entry) {
+      const vm = this
       if (isVisible && vm.page < vm.maxPage) {
         vm.loadMore()
       }
     },
-    loadMore() {
-      var vm = this
+    loadMore () {
+      const vm = this
       vm.page = vm.page + 1
       vm.fetchPhotos()
     },
