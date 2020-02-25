@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div>
+      <h1>Upload up to 10 photos</h1>
       <dropzone
         id="customdropzone"
         ref="el"

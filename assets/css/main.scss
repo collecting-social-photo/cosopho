@@ -2,6 +2,7 @@ $white: #ffffff;
 $black: #000000;
 $grey: rgb(136, 127, 127);
 $break-small: 992px;
+$primary-color: var(--md-theme-default-primary);
 
 body {
   font-size: 1.1rem;
@@ -12,15 +13,15 @@ body {
 h1 {
   font-size: 2em;
   margin: 1rem 0 1.68rem;
-  color: var(--md-theme-default-primary);
+  color: $primary-color;
   line-height: 110%;
   font-weight: 400;
 }
 
 h2 {
-  color: var(--md-theme-default-primary) !important;
+  color: $primary-color !important;
   a {
-    color: var(--md-theme-default-primary) !important;
+    color: $primary-color !important;
   }
 }
 
@@ -79,7 +80,7 @@ h2 {
 .md-drawer {
   width: 300px;
   max-width: calc(100vw - 125px);
-  background-color: var(--md-theme-default-primary) !important;
+  background-color: $primary-color !important;
   color: $white;
 
   button {
@@ -91,7 +92,7 @@ h2 {
   }
 
   .md-list {
-    background-color: var(--md-theme-default-primary) !important;
+    background-color: $primary-color !important;
     a, a:visited {
       color: $white;
     }
@@ -209,7 +210,7 @@ $flash-color: #cccccc;
 }
 
 #customdropzone {
-  border: 2px dashed #ccc;
+  border: 2px dashed $primary-color;
   border-radius: 10px;
 }
 
