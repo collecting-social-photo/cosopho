@@ -31,7 +31,15 @@ app.post('/', async function (req, res) {
   res.send(data)
 })
 
+app.delete('/', async function (req, res) {
+  if (req.query && req.query.id) {
+    const data = await cloudinary.uploader.destroy(req.query.id)
+    res.send(data)
+  }
+  res.end('ok')
+})
+
 module.exports = {
-  path: '/upload/',
+  path: '/cloudinary/',
   handler: app
 }

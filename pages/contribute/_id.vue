@@ -23,11 +23,16 @@
       </dropzone>
     </div>
     <div v-if="photosReady && uploadedFiles.length > 0">
-      <md-card v-for="file in uploadedFiles" :key="file.id" class="upload-card">
+      <md-card v-for="(file, index) in uploadedFiles" :key="file.id" class="upload-card">
         <md-card-content>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-size-30">
               <photoComp :publicId="file.id" />
+              <div class="center">
+                <md-button @click="deletePhoto(file, index)" class="md-accent">
+                  Delete <md-icon>delete</md-icon>
+                </md-button>
+              </div>
             </div>
             <div class="md-layout-item md-size-70">
               <md-field>
@@ -145,7 +150,7 @@
       <md-button @click="savePhotos()" class="md-raised md-primary">
         Save
       </md-button>
-      <md-button :to="localePath('contribute')" class="md-primary">
+      <md-button @click="cancelUpload()" class="md-primary">
         Cancel
       </md-button>
     </div>
@@ -169,7 +174,7 @@ export default {
       uploadedFiles: [],
       photosReady: false,
       options: {
-        url: `${this.$store.state.hostname}/upload`,
+        url: `${this.$store.state.hostname}/cloudinary`,
         maxFiles: 10,
         parallelUploads: 10,
         uploadMultiple: false,
@@ -221,6 +226,18 @@ export default {
           }
         )
       }, 500)
+    },
+    deletePhoto (file, index) {
+      const vm = this
+      vm.$delete(vm.uploadedFiles, index)
+      vm.$api.deletePhoto(file.id)
+    },
+    cancelUpload () {
+      const vm = this
+      _.each(vm.uploadedFiles, function (file) {
+        vm.$api.deletePhoto(file.id)
+      })
+      vm.$router.push({ path: vm.localePath({ name: 'contribute' }), force: true })
     },
     savePhotos () {
       const vm = this

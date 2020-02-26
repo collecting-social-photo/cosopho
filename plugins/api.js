@@ -218,6 +218,14 @@ const apiFactory = ($axios, app, store) => ({
     }
 
     return this.makeRequest(payload)
+  },
+
+  async deletePhoto (id) {
+    const hostname = store.state.hostname
+    const response = await $axios.delete(
+      `${hostname}/cloudinary?id=${id}`
+    )
+    return response
   }
 
 })
