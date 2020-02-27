@@ -34,7 +34,7 @@
             </md-button>
 
             <md-menu-content>
-              <md-menu-item :to="localePath('profile')">
+              <md-menu-item :to="localePath({ name: 'profiles-id', params: { id: $store.state.user.slug } })">
                 <span class="md-list-item-text">Profile</span>
               </md-menu-item>
 

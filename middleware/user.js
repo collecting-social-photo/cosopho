@@ -3,7 +3,8 @@ export default async function ({ app, store, redirect }) {
   if (app.$auth.loggedIn && !store.state.user) {
     // first see if user exists
     let response = await app.$api.getPerson({
-      id: app.$auth.user.sub
+      id: app.$auth.user.sub,
+      instance: store.state.instance.id
     })
 
     // if not, create user

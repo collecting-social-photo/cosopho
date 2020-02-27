@@ -10,8 +10,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPerson (variables) {
     const payload = {
-      query: `query person($id: String!) {
-        person(id: $id) {
+      query: `query person($id: String, $slug: String, $instance: String!) {
+        person(id: $id, slug: $slug, instance: $instance) {
           id
           name
           slug
@@ -44,8 +44,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPhotos (variables) {
     const payload = {
-      query: `query photos($instance: String, $per_page: Int, $page: Int, $initiatives: [String]) {
-        photos(instance: $instance, per_page: $per_page, page: $page, initiatives: $initiatives) {
+      query: `query photos($instance: String, $per_page: Int, $page: Int, $initiatives: [String], $peopleSlugs: [String]) {
+        photos(instance: $instance, per_page: $per_page, page: $page, initiatives: $initiatives, peopleSlugs: $peopleSlugs) {
           id
           title
           data {

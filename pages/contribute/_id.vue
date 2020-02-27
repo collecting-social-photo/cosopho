@@ -278,7 +278,7 @@ export default {
           position: 'top-right',
           duration: 5000
         })
-        vm.$router.push({ path: vm.localePath({ name: 'explore' }), force: true })
+        vm.$router.push({ path: vm.localePath({ name: 'profiles-id', params: { id: vm.$store.state.user.slug } }), force: true })
       }, 1000)
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${publicId}.jpg`">
+  <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/${options}/v1576673295/${publicId}.jpg`">
 </template>
 
 <script>
@@ -8,6 +8,10 @@ export default {
     publicId: {
       type: String,
       default: null
+    },
+    options: {
+      type: String,
+      default: 'w_1000'
     }
   }
 }
