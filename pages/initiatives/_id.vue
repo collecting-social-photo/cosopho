@@ -3,10 +3,12 @@
     <h1>{{ initiative.title }}</h1>
 
     <div v-if="photos.length">
-      <div v-for="photo in photos" :key="photo.id" class="photo-list">
-        <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
-          <photoComp :publicId="photo.data && photo.data.public_id" />
-        </nuxt-link>
+      <div class="grid">
+        <div v-for="photo in photos" :key="photo.id" class="grid-item">
+          <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
+            <photoComp :publicId="photo.data && photo.data.public_id" :options="'w_300,h_300,c_fill'" />
+          </nuxt-link>
+        </div>
       </div>
 
       <div v-bind:class="spinnerClass" class="spinner objects-spinner">
@@ -35,7 +37,7 @@ export default {
     return {
       initiative: null,
       photos: [],
-      perPage: 2,
+      perPage: 12,
       page: 0,
       maxPage: 1,
       spinnerClass: 'spinner-hide'

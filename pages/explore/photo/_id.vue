@@ -1,12 +1,17 @@
 <template>
   <div v-if="photo" class="container">
     <p v-if="photo.person">
-      {{ photo.person.name || photo.person.username }}
+      <nuxt-link :to="localePath({ name: 'profiles-id', params: { id: photo.person.slug } })">
+        <img :src="photo.person.avatar" class="avatar"> {{ photo.person.name || photo.person.username }}
+      </nuxt-link>
     </p>
     <photoComp :publicId="photo.data && photo.data.public_id" />
     <h3 v-if="photo.title">
       {{ photo.title }}
     </h3>
+    <p v-if="photo.story">
+      {{ photo.story }}
+    </p>
     <p v-if="photo.location">
       <i class="tiny material-icons">location_on</i> {{ photo.location }}
     </p>
@@ -17,9 +22,6 @@
       <i class="tiny material-icons">copyright</i> {{ photo.license }}
     </p>
 
-    <p v-if="photo.story">
-      {{ photo.story }}
-    </p>
     <p v-if="photo.tags && photo.tags.length">
       <md-chip v-for="tag in photo.tags" :key="tag">
         {{ tag }}

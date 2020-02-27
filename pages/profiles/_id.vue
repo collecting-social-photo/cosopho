@@ -6,7 +6,7 @@
           <img :src="person.avatar" class="big-avatar">
         </div>
         <div class="md-layout-item">
-          {{ person.slug }}
+          <div>{{ person.slug }}</div>
         </div>
       </div>
 
@@ -107,41 +107,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.grid {
-  /* Grid Fallback */
-  display: flex;
-  flex-wrap: wrap;
-
-  /* Supports Grid */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-auto-rows: minmax(150px, auto);
-  grid-gap: 1em;
-}
-
-.grid-item {
-  background: #eaeaea;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-
-  img {
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%
-  }
-
-  /* Flex Fallback */
-  flex: 1 1 200px;
-}
-
-@supports (display: grid) {
-  .module {
-    margin: 0;
-  }
-}
-
-</style>

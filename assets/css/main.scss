@@ -3,6 +3,7 @@ $black: #000000;
 $grey: rgb(136, 127, 127);
 $break-small: 992px;
 $primary-color: var(--md-theme-default-primary);
+$fadein: 1s;
 
 body {
   font-size: 1.1rem;
@@ -227,4 +228,86 @@ $flash-color: #cccccc;
 .big-avatar {
   height: 50px !important;
   border-radius: 50px;
+}
+
+.grid {
+  /* Grid Fallback */
+  display: flex;
+  flex-wrap: wrap;
+
+  /* Supports Grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+  grid-gap: 1em;
+}
+
+.grid-item {
+  background: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+
+  img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+    animation: fadein $fadein;
+    -moz-animation: fadein $fadein;
+    -webkit-animation: fadein $fadein;
+    -o-animation: fadein $fadein;
+  }
+
+  /* Flex Fallback */
+  flex: 1 1 200px;
+}
+
+.photo {
+  animation: fadein $fadein;
+  -moz-animation: fadein $fadein;
+  -webkit-animation: fadein $fadein;
+  -o-animation: fadein $fadein;
+}
+
+@supports (display: grid) {
+  .grid-item {
+    margin: 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity: 1;
+  }
 }

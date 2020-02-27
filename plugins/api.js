@@ -96,6 +96,8 @@ const apiFactory = ($axios, app, store) => ({
             id
             username
             name
+            slug
+            avatar
           }
           data {
             height

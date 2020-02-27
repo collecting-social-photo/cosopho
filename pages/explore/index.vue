@@ -2,10 +2,12 @@
   <div class="container">
     <h1>Explore</h1>
     <div v-if="photos.length">
-      <div v-for="photo in photos" :key="photo.id" class="photo-list">
-        <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
-          <photoComp :publicId="photo.data && photo.data.public_id" />
-        </nuxt-link>
+      <div class="grid">
+        <div v-for="photo in photos" :key="photo.id" class="grid-item">
+          <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
+            <photoComp :publicId="photo.data && photo.data.public_id" :options="'w_300,h_300,c_fill'" />
+          </nuxt-link>
+        </div>
       </div>
 
       <div v-bind:class="spinnerClass" class="spinner objects-spinner">
@@ -36,7 +38,7 @@ export default {
   data () {
     return {
       photos: null,
-      perPage: 2,
+      perPage: 9,
       page: 0,
       maxPage: 1,
       spinnerClass: 'spinner-hide'
@@ -46,7 +48,7 @@ export default {
     let maxPage = 1
     const response = await context.app.$api.getPhotos({
       instance: context.app.store.state.instance.id,
-      per_page: 2
+      per_page: 9
     })
     const photos = response.data.data.photos
     if (photos.length) {
