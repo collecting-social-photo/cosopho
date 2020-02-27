@@ -28,8 +28,8 @@
             </md-menu-content>
           </md-menu>
 
-          <md-menu md-size="medium" md-align-trigger>
-            <md-button v-if="$auth.loggedIn" md-menu-trigger>
+          <md-menu v-if="$auth.loggedIn && $store.state.user" md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>
               <img :src="$store.state.user.avatar" class="avatar">
             </md-button>
 
