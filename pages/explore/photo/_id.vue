@@ -66,6 +66,11 @@ export default {
       id: context.params.id
     })
     const photo = response.data.data.photo
+    const thisUser = context.app.store.state.user
+
+    if (photo.archived && photo.person.slug !== (thisUser && thisUser.slug)) {
+      return context.redirect(context.app.localePath('index'))
+    }
 
     return { photo }
   },
