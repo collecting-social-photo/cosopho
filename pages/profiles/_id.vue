@@ -6,7 +6,7 @@
           <img :src="person.avatar" class="big-avatar">
         </div>
         <div class="md-layout-item">
-          <div>{{ person.slug }}</div>
+          <div>{{ person.name || person.slug }}</div>
         </div>
       </div>
 
@@ -129,7 +129,7 @@ export default {
   head () {
     const vm = this
     return {
-      title: `${vm.person && vm.person.username} - Collecting Social Photo`
+      title: `${vm.person && (vm.person.name || vm.person.username)} - Collecting Social Photo`
     }
   }
 }
