@@ -74,6 +74,7 @@ export default {
       const response = await vm.$api.getPhotos({
         instance: vm.$store.state.instance.id,
         initiatives: vm.initiative.slug,
+        archived: false,
         per_page: vm.perPage,
         page: vm.page
       })

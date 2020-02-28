@@ -10,6 +10,17 @@
         </div>
       </div>
 
+      <md-tabs v-if="$auth.loggedIn && $store.state.user && $store.state.user.slug === person.slug" class="profile-tabs" md-alignment="centered">
+        <template slot="md-tab" slot-scope="{ tab }">
+          <div>
+            <md-icon>{{ tab.data.icon }}</md-icon> <span>{{ tab.label }}</span>
+          </div>
+        </template>
+
+        <md-tab id="tab-public" :md-template-data="{ icon: 'public' }" @click="tabClicked('public')" md-label="Public" />
+        <md-tab id="tab-archived" :md-template-data="{ icon: 'visibility_off' }" @click="tabClicked('archived')" md-label="Archived" />
+      </md-tabs>
+
       <div class="md-layout">
         <div v-if="photos.length" class="md-layout-item">
           <div class="grid">
@@ -52,6 +63,7 @@ export default {
       perPage: 9,
       page: 0,
       maxPage: 1,
+      activeTab: 'public',
       spinnerClass: 'spinner-hide'
     }
   },
@@ -88,15 +100,30 @@ export default {
     async fetchPhotos () {
       const vm = this
 
+      let archived = false
+
+      if (vm.activeTab === 'archived') {
+        archived = true
+      }
+
       vm.spinnerClass = 'spinner-show'
       const response = await vm.$api.getPhotos({
         instance: vm.$store.state.instance.id,
         peopleSlugs: vm.person.slug,
         per_page: vm.perPage,
+        archived,
         page: vm.page
       })
       vm.spinnerClass = 'spinner-hide'
       vm.photos = vm.photos.concat(response.data.data.photos)
+    },
+    tabClicked (tab) {
+      const vm = this
+      vm.photos = []
+      vm.page = 0
+      vm.maxPage = 1
+      vm.activeTab = tab
+      vm.fetchPhotos()
     }
   },
   head () {
@@ -107,3 +134,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.profile-tabs {
+  margin-bottom: 20px;
+}
+</style>

@@ -44,8 +44,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPhotos (variables) {
     const payload = {
-      query: `query photos($instance: String, $per_page: Int, $page: Int, $initiatives: [String], $peopleSlugs: [String]) {
-        photos(instance: $instance, per_page: $per_page, page: $page, initiatives: $initiatives, peopleSlugs: $peopleSlugs) {
+      query: `query photos($instance: String, $per_page: Int, $page: Int, $initiatives: [String], $peopleSlugs: [String], $archived: Boolean) {
+        photos(instance: $instance, per_page: $per_page, page: $page, initiatives: $initiatives, peopleSlugs: $peopleSlugs, archived: $archived) {
           id
           title
           data {

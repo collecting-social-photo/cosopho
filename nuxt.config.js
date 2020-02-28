@@ -70,7 +70,8 @@ module.exports = {
         'MdField',
         'MdCard',
         'MdCheckbox',
-        'MdChips'
+        'MdChips',
+        'MdTabs'
       ]
     }]
   ],
