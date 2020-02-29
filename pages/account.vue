@@ -123,6 +123,9 @@
             <md-button :disabled="sending" type="submit" class="md-raised md-primary">
               {{ buttonText }}
             </md-button>
+            <md-button :to="localePath('index')" class="md-primary">
+              Cancel
+            </md-button>
           </md-card-actions>
         </md-card>
       </form>
