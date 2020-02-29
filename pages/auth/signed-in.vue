@@ -8,7 +8,7 @@
 export default {
   nuxtI18n: false,
   layout: 'plain',
-  mounted() {
+  mounted () {
     if (this.$auth.loggedIn) {
       this.$router.push({ name: 'home' })
     }

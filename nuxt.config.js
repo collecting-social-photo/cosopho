@@ -98,6 +98,7 @@ module.exports = {
       prefix: 'auth.',
       options: {
         path: '/',
+        expires: 365,
         maxAge: 60 * 60 * 365
       }
     }

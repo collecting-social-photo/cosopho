@@ -25,6 +25,33 @@ const apiFactory = ($axios, app, store) => ({
     return this.makeRequest(payload)
   },
 
+  getPersonFull (variables) {
+    const payload = {
+      query: `query person($id: String, $slug: String, $instance: String!) {
+        person(id: $id, slug: $slug, instance: $instance) {
+          id
+          instance
+          slug
+          username
+          avatar
+          name
+          gender
+          facebook
+          instagram
+          twitter
+          personalSite
+          bio
+          email
+          dateOfBirth
+          placeOfBirth
+        }
+      }`,
+      variables
+    }
+
+    return this.makeRequest(payload)
+  },
+
   createPerson (variables) {
     const payload = {
       query: `mutation ($id: String!, $instance: String!, $username: String!, $avatar: String!, $raw: String!) {
