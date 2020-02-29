@@ -26,14 +26,14 @@
             </div>
           </div>
         </div>
-        <div v-if="$auth.loggedIn && $store.state.user && $store.state.user.slug === person.slug" class="md-layout-item md-size-10 md-small-size-80 right _hide_mobile">
+        <div v-if="isThisUser" class="md-layout-item md-size-10 md-small-size-80 right _hide_mobile">
           <md-button :to="localePath('account')" title="Edit Profile" class="md-icon-button md-raised">
             <md-icon>settings</md-icon>
           </md-button>
         </div>
       </div>
 
-      <md-tabs v-if="$auth.loggedIn && $store.state.user && $store.state.user.slug === person.slug" class="profile-tabs" md-alignment="centered">
+      <md-tabs v-if="isThisUser" class="profile-tabs" md-alignment="centered">
         <template slot="md-tab" slot-scope="{ tab }">
           <div>
             <md-icon>{{ tab.data.icon }}</md-icon> <span>{{ tab.label }}</span>
@@ -44,7 +44,7 @@
         <md-tab id="tab-archived" :md-template-data="{ icon: 'visibility_off' }" @click="tabClicked('archived')" md-label="Archived" />
       </md-tabs>
 
-      <div class="md-layout">
+      <div v-bind:class="{ 'public-top': !isThisUser }" class="md-layout">
         <div v-if="photos.length" class="md-layout-item">
           <div class="grid">
             <div v-for="photo in photos" :key="photo.id" class="grid-item">
@@ -88,6 +88,11 @@ export default {
       maxPage: 1,
       activeTab: 'public',
       spinnerClass: 'spinner-hide'
+    }
+  },
+  computed: {
+    isThisUser () {
+      return this.$auth.loggedIn && this.$store.state.user && this.$store.state.user.slug === this.person.slug
     }
   },
   async asyncData (context) {
@@ -159,6 +164,9 @@ export default {
 </script>
 
 <style lang="scss">
+.public-top {
+  margin-top: 50px;
+}
 .profile-about {
   margin-top: 20px;
   padding-bottom: 20px;
