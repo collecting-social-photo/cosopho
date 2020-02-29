@@ -43,7 +43,7 @@
               </div>
 
               <div class="md-layout-item md-small-size-100">
-                <md-field :class="getValidationClass('gender')">
+                <md-field>
                   <label for="gender">Gender</label>
                   <md-select id="gender" v-model="form.gender" :disabled="sending" name="gender" md-dense>
                     <md-option />
@@ -57,7 +57,6 @@
                       Other
                     </md-option>
                   </md-select>
-                  <span class="md-error">The gender is required</span>
                 </md-field>
               </div>
             </div>
@@ -122,7 +121,7 @@
 
           <md-card-actions>
             <md-button :disabled="sending" type="submit" class="md-raised md-primary">
-              Save
+              {{ buttonText }}
             </md-button>
           </md-card-actions>
         </md-card>
@@ -153,9 +152,8 @@ export default {
       dob: null
     },
     person: null,
-    userSaved: false,
     sending: false,
-    lastUser: null
+    buttonText: 'Save'
   }),
   validations: {
     form: {
@@ -167,20 +165,9 @@ export default {
         required,
         minLength: minLength(3)
       },
-      gender: {
-        required
-      },
       email: {
         required,
         email
-      },
-      dob: {
-        required,
-        minLength: minLength(3)
-      },
-      place_of_birth: {
-        required,
-        minLength: minLength(3)
       }
     }
   },
@@ -198,9 +185,13 @@ export default {
     this.form.username = this.person.username
     this.form.gender = this.person.gender
     this.form.email = this.person.email
-    this.form.place_of_birth = this.person.place_of_birth
-    this.form.dob = this.person.dob || null
+    this.form.placeOfBirth = this.person.placeOfBirth
+    this.form.dateOfBirth = this.person.dateOfBirth
     this.form.personalSite = this.person.personalSite
+    this.form.facebook = this.person.facebook
+    this.form.instagram = this.person.instagram
+    this.form.twitter = this.person.twitter
+    this.form.bio = this.person.bio
   },
   methods: {
     getValidationClass (fieldName) {
@@ -212,29 +203,41 @@ export default {
         }
       }
     },
-    clearForm () {
-      this.$v.$reset()
-      this.form.name = null
-      this.form.username = null
-      this.form.gender = null
-      this.form.email = null
-      this.form.place_of_birth = null
-      this.form.dob = null
-    },
-    saveUser () {
+    async saveUser () {
       this.sending = true
-      // TODO API call here
+      this.buttonText = 'Saving...'
+
+      await this.$api.updatePerson({
+        id: this.person.id,
+        instance: this.$store.state.instance.id,
+        username: this.form.username,
+        name: this.form.name,
+        gender: this.form.gender,
+        facebook: this.form.facebook,
+        instagram: this.form.instagram,
+        twitter: this.form.twitter,
+        personalSite: this.form.personalSite,
+        bio: this.form.bio,
+        email: this.form.email,
+        dateOfBirth: this.form.dateOfBirth,
+        placeOfBirth: this.form.placeOfBirth
+      })
+      this.sending = false
+      this.buttonText = 'Save'
+
+      this.$toast.success('Changes saved!', {
+        theme: 'toasted-primary',
+        position: 'top-right',
+        duration: 5000
+      })
     },
     validateUser () {
-      this.$v.$touch()
-
       if (!this.$v.$invalid) {
         this.saveUser()
       }
     }
   },
   head () {
-    const vm = this
     return {
       title: `Account - Collecting Social Photo`
     }

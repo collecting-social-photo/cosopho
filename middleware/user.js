@@ -12,8 +12,10 @@ export default async function ({ app, store, redirect }) {
       response = await app.$api.createPerson({
         id: app.$auth.user.sub,
         instance: store.state.instance.id,
-        username: app.$auth.user.name,
+        username: app.$auth.user.username,
         avatar: app.$auth.user.picture,
+        email: app.$auth.user.email,
+        name: app.$auth.user.name,
         raw: JSON.stringify(app.$auth.user)
       })
     }

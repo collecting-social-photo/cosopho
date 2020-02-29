@@ -8,7 +8,7 @@ module.exports = {
   env: {
     apiKey: process.env.API_KEY,
     apiEndpoint: process.env.API_ENDPOINT,
-    cloudinaryApi: process.env.CLOUDINARY_API,
+    cloudinaryApi: process.env.CLOUDINARY_API
 
   },
 
@@ -21,11 +21,12 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons' },
+      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', integrity: 'sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN', crossorigin: 'anonymous' }
     ],
     script: [
       { src: 'https://code.jquery.com/jquery-3.4.0.min.js', integrity: 'sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=', crossorigin: 'anonymous' },
-      { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry', crossorigin: "anonymous" }
+      { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry', crossorigin: 'anonymous' }
     ]
   },
 
@@ -35,7 +36,7 @@ module.exports = {
   },
 
   css: [
-    '@/assets/css/main.scss',
+    '@/assets/css/main.scss'
   ],
 
   plugins: [
@@ -45,7 +46,7 @@ module.exports = {
   ],
 
   buildModules: [
-    //'@nuxtjs/eslint-module'
+    // '@nuxtjs/eslint-module'
   ],
 
   modules: [

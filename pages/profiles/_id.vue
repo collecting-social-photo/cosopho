@@ -1,12 +1,35 @@
 <template>
   <div class="container">
     <div v-if="person">
-      <div class="md-layout profile-top-container">
-        <div class="md-layout-item">
+      <div class="md-layout profile-top-container profile-about">
+        <div class="md-layout-item md-size-10 md-small-size-20">
           <img :src="person.avatar" class="big-avatar">
         </div>
-        <div class="md-layout-item">
-          <div>{{ person.name || person.slug }}</div>
+        <div class="md-layout-item md-size-80 md-small-size-80">
+          <div><span class="profile-name">{{ person.name || person.slug }}</span><span v-if="person.placeOfBirth" class="profile-place"> - {{ person.placeOfBirth }}</span></div>
+          <div v-if="person.bio">
+            {{ person.bio }}
+          </div>
+
+          <div class="socials">
+            <div v-if="person.personalSite">
+              <a :href="person.personalSite" target="_blank" title="Personal Website"><i class="fa fa-globe" /></a>
+            </div>
+            <div v-if="person.twitter">
+              <a :href="`https://twitter.com/${ person.twitter.replace('@', '') }`" target="_blank" title="Twitter"><i class="fa fa-twitter" /></a>
+            </div>
+            <div v-if="person.instagram">
+              <a :href="`https://instagram.com/${ person.instagram.replace('@', '') }`" target="_blank" title="Instagram"><i class="fa fa-instagram" /></a>
+            </div>
+            <div v-if="person.facebook">
+              <a :href="person.facebook" target="_blank" title="Facebook"><i class="fa fa-facebook" /></a>
+            </div>
+          </div>
+        </div>
+        <div v-if="$auth.loggedIn && $store.state.user && $store.state.user.slug === person.slug" class="md-layout-item md-size-10 md-small-size-80 right _hide_mobile">
+          <md-button :to="localePath('account')" title="Edit Profile" class="md-icon-button md-raised">
+            <md-icon>settings</md-icon>
+          </md-button>
         </div>
       </div>
 
@@ -68,7 +91,7 @@ export default {
     }
   },
   async asyncData (context) {
-    const response = await context.app.$api.getPerson({
+    const response = await context.app.$api.getPersonFull({
       slug: context.params.id,
       instance: context.store.state.instance.id
     })
@@ -136,7 +159,35 @@ export default {
 </script>
 
 <style lang="scss">
+.profile-about {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+
+  &.profile-top-container {
+    margin-bottom: 0px;
+  }
+}
+.profile-name {
+  font-weight: bold;
+}
+.profile-place {
+  font-size: 70%;
+  color: rgb(92, 92, 92);
+}
 .profile-tabs {
   margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  margin-top: 20px;
+  div {
+    margin-right: 10px;
+  }
+
+  a, a:hover {
+    color: rgb(110, 110, 110) !important;
+  }
 }
 </style>
