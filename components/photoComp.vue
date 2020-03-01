@@ -1,5 +1,5 @@
 <template>
-  <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/${options}/v1576673295/${publicId}.jpg`" class="photo">
+  <img :src="`https://res.cloudinary.com/hftpxlihv/image/upload/${options}/v1576673295/${publicId}.jpg`" class="main-photo">
 </template>
 
 <script>
