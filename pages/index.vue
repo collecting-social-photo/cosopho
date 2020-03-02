@@ -24,11 +24,18 @@
       </div>
     </div>
     <div class="container">
-      <h1>Featured initiatives</h1>
-      <p>Explore photos within current collecting initiatives.</p>
-
-      <div v-for="initiative in initiatives" :key="initiative.slug">
-        <initiativeComp :initiative="initiative" />
+      <div class="md-layout">
+        <div class="md-layout-item md-size-50 md-small-size-100">
+          <h1>Featured initiatives</h1>
+        </div>
+        <div class="md-layout-item md-size-50 md-small-size-100">
+          <p>Explore photos within current collecting initiatives.</p>
+        </div>
+      </div>
+      <div class="home-initiatives">
+        <div v-for="initiative in initiatives" :key="initiative.slug">
+          <initiativeComp :initiative="initiative" />
+        </div>
       </div>
     </div>
   </div>

@@ -2,15 +2,18 @@
   <div class="container">
     <h1>Initiatives</h1>
     <div v-for="initiative in initiatives" :key="initiative.slug">
-      <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
-        {{ initiative.title }}
-      </nuxt-link>
+      <initiativeComp :initiative="initiative" />
     </div>
   </div>
 </template>
 
 <script>
+import initiativeComp from '~/components/initiativeComp.vue'
+
 export default {
+  components: {
+    initiativeComp
+  },
   data () {
     return {
       initiatives: null

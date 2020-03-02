@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="initiative && initiative.photos">
     <h2>
       <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
         {{ initiative.title }}
