@@ -1,13 +1,14 @@
 $white: #ffffff;
 $black: #000000;
 $grey: rgb(136, 127, 127);
+$light-grey: #ccc;
 $break-small: 992px;
 $primary-color: var(--md-theme-default-primary);
 $fadein: 1s;
 
 body {
   font-size: 1.1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", "Open Sans", sans-serif;
   background-color: #fafafa;
   height: 100%;
 }
@@ -272,10 +273,10 @@ $flash-color: #cccccc;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: fadein $fadein;
-  -moz-animation: fadein $fadein;
-  -webkit-animation: fadein $fadein;
-  -o-animation: fadein $fadein;
+  // animation: fadein $fadein;
+  // -moz-animation: fadein $fadein;
+  // -webkit-animation: fadein $fadein;
+  // -o-animation: fadein $fadein;
 }
 
 @supports (display: grid) {
@@ -371,4 +372,49 @@ $flash-color: #cccccc;
 
 .right {
   text-align: right;
+}
+
+.photo-person {
+  font-weight: 600;
+  margin-left: 10px;
+  color: $black !important;
+}
+
+.photo-details {
+  border-top: 1px solid $light-grey;
+  border-bottom: 1px solid $light-grey;
+  margin-top: 100px;
+  padding: 20px 0;
+
+
+  .photo-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .photo-story {
+    margin-bottom: 20px;
+  }
+
+  .photo-detail-item {
+    margin-bottom: 10px;
+  }
+
+  .md-chip {
+    border-radius: 0;
+    background-color: #333;
+    color: $white;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 5px;
+  }
+}
+
+.related-photos {
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    width: 23%;
+  }
 }
