@@ -17,10 +17,10 @@ export default {
     }
   },
   async asyncData (context) {
-    let response = await context.app.$api.getInstances()
+    const response = await context.app.$api.getInstances()
     const instances = response.data.data.instances
 
-    return { instances: instances }
-  },
+    return { instances }
+  }
 }
 </script>
