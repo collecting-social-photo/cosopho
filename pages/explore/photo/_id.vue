@@ -35,29 +35,29 @@
             <i class="tiny material-icons">copyright</i> {{ photo.license }}
           </div>
           <div v-if="photo.make" class="photo-detail-item">
-            <b>Make</b>: {{ photo.make }}
+            <b>{{ $t('Contribute Process-Make') }}</b>: {{ photo.make }}
           </div>
           <div v-if="photo.model" class="photo-detail-item">
-            <b>Model</b>: {{ photo.model }}
+            <b>{{ $t('Contribute Process-Model') }}</b>: {{ photo.model }}
           </div>
           <div v-if="photo.aperture" class="photo-detail-item">
-            <b>Aperture</b>: {{ photo.aperture }}
+            <b>{{ $t('Contribute Process-Aperture') }}</b>: {{ photo.aperture }}
           </div>
           <div v-if="photo.shutterSpeed" class="photo-detail-item">
-            <b>Shutter speed</b>: {{ photo.shutterSpeed }}
+            <b>{{ $t('Contribute Process-Shutter Speed') }}</b>: {{ photo.shutterSpeed }}
           </div>
           <div v-if="photo.ISO" class="photo-detail-item">
-            <b>ISO</b>: {{ photo.ISO }}
+            <b>{{ $t('Contribute Process-ISO') }}</b>: {{ photo.ISO }}
           </div>
           <div v-if="photo.focalLength" class="photo-detail-item">
-            <b>Focal length</b>: {{ photo.focalLength }}
+            <b>{{ $t('Contribute Process-Focal Length') }}</b>: {{ photo.focalLength }}
           </div>
         </div>
       </div>
     </div>
 
     <div v-if="relatedPhotos && relatedPhotos.length">
-      <h3>Related Photos</h3>
+      <h3>{{ $t('Individual Photo View-Related Photos') }}</h3>
       <div class="related-photos">
         <div v-for="relatedPhoto in relatedPhotos" :key="relatedPhoto.id">
           <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: relatedPhoto.id }})">

@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <h1>Select an initiative</h1>
-    <p>Would you like to submit to one of our ongoing collecting initiatives?</p>
+    <h1>{{ $t('Contribute Process-Select') }}</h1>
+    <p>{{ $t('Contribute Process-Select Subtitle') }}</p>
     <md-radio v-for="initiative in initiatives" :key="initiative.slug" v-model="selectedInitiative" :value="initiative.slug">
       {{ initiative.title }}
     </md-radio>
     <div>
-      <md-button :disabled="disabled" @click="goToUpload()" class="md-primary md-raised">
-        Start Uploading
+      <md-button :disabled="disabled" @click="goToUpload()" class="md-primary md-raised button-no-margin">
+        {{ $t('Contribute Process-Start Button') }}
       </md-button>
     </div>
   </div>

@@ -7,17 +7,19 @@
             <img :src="`data:image/png;base64,${$store.state.instance.logo}`">
           </div>
           <div class="intro-text">
-            Collecting Social Photographs
+            {{ $t('Homepage-Title') }}
           </div>
           <div class="intro-about">
-            Donate your digital photos to the museum. <nuxt-link :to="localePath('about')">Read more</nuxt-link>.
+            <nuxt-link :to="localePath('about')">
+              {{ $t('Homepage-Subtitle') }}
+            </nuxt-link>
           </div>
           <div class="intro-buttons">
             <md-button :to="localePath('contribute')" class="md-secondary button-big">
-              Contribute
+              {{ $t('Menu-Contribute') }}
             </md-button>
             <md-button :to="localePath('explore')" class="md-secondary button-big">
-              Explore
+              {{ $t('Menu-Explore') }}
             </md-button>
           </div>
         </div>
@@ -26,10 +28,10 @@
     <div class="container">
       <div class="md-layout">
         <div class="md-layout-item md-size-50 md-small-size-100">
-          <h1>Featured initiatives</h1>
+          <h1>{{ $t('Homepage-Featured') }}</h1>
         </div>
         <div class="md-layout-item md-size-50 md-small-size-100">
-          <p>Explore photos within current collecting initiatives.</p>
+          <p>{{ $t('Homepage-Featured subtitle') }}</p>
         </div>
       </div>
       <div class="home-initiatives">

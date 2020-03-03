@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Account</h1>
+    <h1>{{ $t('Account Page-My Account') }}</h1>
     <div>
       <form @submit.prevent="validateUser" novalidate class="md-layout">
         <md-card class="md-layout-item md-size-100">
@@ -8,16 +8,16 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('name')">
-                  <label for="name">Name</label>
+                  <label for="name">{{ $t('Account Page-Name') }}</label>
                   <md-input id="name" v-model="form.name" :disabled="sending" name="name" />
                   <span v-if="!$v.form.name.required" class="md-error">Name is required</span>
-                  <span v-else-if="!$v.form.name.minlength" class="md-error">Invalid name</span>
+                  <span v-else-if="!$v.form.name.minlength" class="md-error">Name is too short</span>
                 </md-field>
               </div>
 
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('email')">
-                  <label for="email">Email</label>
+                  <label for="email">{{ $t('Account Page-Email') }}</label>
                   <md-input
                     id="email"
                     v-model="form.email"
@@ -35,26 +35,26 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('username')">
-                  <label for="username">Username</label>
+                  <label for="username">{{ $t('Account Page-Username') }}</label>
                   <md-input id="username" v-model="form.username" :disabled="sending" name="username" />
                   <span v-if="!$v.form.username.required" class="md-error">Username is required</span>
-                  <span v-else-if="!$v.form.username.minlength" class="md-error">Invalid username</span>
+                  <span v-else-if="!$v.form.username.minlength" class="md-error">Username is too short</span>
                 </md-field>
               </div>
 
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="gender">Gender</label>
+                  <label for="gender">{{ $t('Account Page-Gender') }}</label>
                   <md-select id="gender" v-model="form.gender" :disabled="sending" name="gender" md-dense>
                     <md-option />
                     <md-option value="female">
-                      F
+                      {{ $t('Account Page-Male') }}
                     </md-option>
                     <md-option value="male">
-                      M
+                      {{ $t('Account Page-Female') }}
                     </md-option>
                     <md-option value="other">
-                      Other
+                      {{ $t('Account Page-Other') }}
                     </md-option>
                   </md-select>
                 </md-field>
@@ -64,14 +64,14 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="dateOfBirth">Date of Birth</label>
+                  <label for="dateOfBirth">{{ $t('Account Page-Birth Date') }}</label>
                   <md-input v-model="form.dateOfBirth" type="date" name="dateOfBirth" />
                 </md-field>
               </div>
 
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="placeOfBirth">Place of Birth</label>
+                  <label for="placeOfBirth">{{ $t('Account Page-Birth Place') }}</label>
                   <md-input id="placeOfBirth" v-model="form.placeOfBirth" :disabled="sending" name="placeOfBirth" />
                 </md-field>
               </div>
@@ -80,14 +80,14 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="facebook">Facebook URL</label>
+                  <label for="facebook">{{ $t('Account Page-FB URL') }}</label>
                   <md-input id="facebook" v-model="form.facebook" :disabled="sending" name="facebook" />
                 </md-field>
               </div>
 
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="instagram">Instagram Handle</label>
+                  <label for="instagram">{{ $t('Account Page-Instagram') }}</label>
                   <md-input id="instagram" v-model="form.instagram" :disabled="sending" name="instagram" />
                 </md-field>
               </div>
@@ -96,14 +96,14 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="twitter">Twitter Handle</label>
+                  <label for="twitter">{{ $t('Account Page-Twitter') }}</label>
                   <md-input id="twitter" v-model="form.twitter" :disabled="sending" name="twitter" />
                 </md-field>
               </div>
 
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="personalSite">Personal Site</label>
+                  <label for="personalSite">{{ $t('Account Page-Personal Site') }}</label>
                   <md-input id="personalSite" v-model="form.personalSite" :disabled="sending" name="personalSite" />
                 </md-field>
               </div>
@@ -112,7 +112,7 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="bio">Bio</label>
+                  <label for="bio">{{ $t('Account Page-Bio') }}</label>
                   <md-textarea v-model="form.bio" />
                 </md-field>
               </div>
@@ -156,7 +156,7 @@ export default {
     },
     person: null,
     sending: false,
-    buttonText: 'Save'
+    buttonText: null
   }),
   validations: {
     form: {
@@ -184,6 +184,7 @@ export default {
     return { person }
   },
   mounted () {
+    this.buttonText = this.$t('Account Page-Save Button')
     this.form.name = this.person.name
     this.form.username = this.person.username
     this.form.gender = this.person.gender

@@ -27,7 +27,7 @@
           </div>
         </div>
         <div v-if="isThisUser" class="md-layout-item md-size-10 md-small-size-80 right _hide_mobile">
-          <md-button :to="localePath('account')" title="Edit Profile" class="md-icon-button md-raised">
+          <md-button :to="localePath('account')" :title="$t('Account Page-My Account')" class="md-icon-button md-raised">
             <md-icon>settings</md-icon>
           </md-button>
         </div>
@@ -41,7 +41,7 @@
         </template>
 
         <md-tab id="tab-public" :md-template-data="{ icon: 'public' }" @click="tabClicked('public')" md-label="Public" />
-        <md-tab id="tab-archived" :md-template-data="{ icon: 'visibility_off' }" @click="tabClicked('archived')" md-label="Archived" />
+        <md-tab id="tab-archived" :md-template-data="{ icon: 'visibility_off' }" @click="tabClicked('archived')" :md-label="$t('Contribute Process 2-Archived')" />
       </md-tabs>
 
       <div v-bind:class="{ 'public-top': !isThisUser }" class="md-layout">

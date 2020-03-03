@@ -18,7 +18,7 @@
         <div class="md-toolbar-section-end">
           <md-menu md-size="medium" md-align-trigger>
             <md-button md-menu-trigger>
-              Lang
+              {{ $t('Menu-Languages') }}
             </md-button>
 
             <md-menu-content>
@@ -35,15 +35,17 @@
 
             <md-menu-content>
               <md-menu-item :to="localePath({ name: 'profiles-id', params: { id: $store.state.user.slug } })">
-                <span class="md-list-item-text">Profile</span>
+                <span class="md-list-item-text">
+                  {{ $t('Account Page-My Profile') }}
+                </span>
               </md-menu-item>
 
               <md-menu-item :to="localePath('account')">
-                <span class="md-list-item-text">Account</span>
+                <span class="md-list-item-text">{{ $t('Account Page-My Account') }}</span>
               </md-menu-item>
 
               <md-menu-item @click="$auth.logout()">
-                <span class="md-list-item-text">Logout</span>
+                <span class="md-list-item-text">{{ $t('Menu-Logout') }}</span>
               </md-menu-item>
             </md-menu-content>
           </md-menu>
@@ -63,22 +65,22 @@
 
         <md-list>
           <md-list-item :to="localePath('index')" @click="menuVisible=false">
-            {{ $t('Home') }}
+            {{ $t('Menu-Home') }}
           </md-list-item>
           <md-list-item :to="localePath('about')" @click="menuVisible=false">
-            {{ $t('About') }}
+            {{ $t('Menu-About') }}
           </md-list-item>
           <md-list-item :to="localePath('contribute')" @click="menuVisible=false">
-            {{ $t('Contribute') }}
+            {{ $t('Menu-Contribute') }}
           </md-list-item>
           <md-list-item :to="localePath('explore')" @click="menuVisible=false">
-            {{ $t('Explore') }}
+            {{ $t('Menu-Explore') }}
           </md-list-item>
           <md-list-item :to="localePath('privacy_and_terms')" @click="menuVisible=false">
-            {{ $t('Privacy') }}
+            {{ $t('Menu-Privacy') }}
           </md-list-item>
           <md-list-item :to="localePath('initiatives')" @click="menuVisible=false">
-            {{ $t('Initiatives') }}
+            {{ $t('Menu-Initiatives') }}
           </md-list-item>
         </md-list>
       </md-app-drawer>

@@ -2,10 +2,14 @@
   <div class="container">
     <h1>Login</h1>
     <div>
-      <md-button class="md-primary md-raised" @click="$auth.loginWith('auth0')">Login</md-button>
+      <md-button @click="$auth.loginWith('auth0')" class="md-primary md-raised button-no-margin">
+        Login
+      </md-button>
     </div>
     <div>
-      <nuxt-link :to="localePath('privacy_and_terms')">Privacy & Terms</nuxt-link>
+      <nuxt-link :to="localePath('privacy_and_terms')">
+        {{ $t('Contribute Process-Privacy Link') }}
+      </nuxt-link>
     </div>
   </div>
 </template>

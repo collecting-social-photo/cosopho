@@ -20,8 +20,8 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit ({ commit }, { req, redirect }) {
-    const subdomains = req.headers.host.split(".")
-    var subdomain = null
+    const subdomains = req.headers.host.split('.')
+    let subdomain = null
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
     } else {
@@ -60,14 +60,13 @@ export const actions = {
       }
     )
 
-    if(response.data.data.instance) {
-
-      var languages = response.data.data.instance.languages
+    if (response.data.data.instance) {
+      const languages = response.data.data.instance.languages
       languages.push('en')
 
       response.data.data.instance.languages = _.union(languages)
 
-      var currentHostname = `https://${response.data.data.instance.id}.collectingsocialphoto.com`
+      let currentHostname = `https://${response.data.data.instance.id}.collectingsocialphoto.com`
 
       if (process.env.NODE_ENV !== 'production') {
         currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
@@ -77,7 +76,6 @@ export const actions = {
       commit('SET_HOSTNAME', currentHostname)
     } else {
       redirect('/home')
-      return
     }
   }
 }

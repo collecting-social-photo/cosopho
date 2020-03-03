@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <h1>Upload up to 10 photos</h1>
+      <h1>{{ $t('Contribute Process-Upload limit') }}</h1>
       <dropzone
         id="customdropzone"
         ref="el"
@@ -14,11 +14,8 @@
       >
         <div class="dropzone-custom-content">
           <h3 class="dropzone-custom-title">
-            <md-icon>cloud_upload</md-icon> Drag and drop photos here to upload!
+            <md-icon>cloud_upload</md-icon> {{ $t('Contribute Process-drag and drop') }}
           </h3>
-          <div class="subtitle">
-            ...or click to select photos from your computer
-          </div>
         </div>
       </dropzone>
     </div>
@@ -30,72 +27,72 @@
               <photoComp :publicId="file.id" />
               <div class="center">
                 <md-button @click="deletePhoto(file, index)" class="md-accent">
-                  Delete <md-icon>delete</md-icon>
+                  {{ $t('Account Page-Delete') }} <md-icon>delete</md-icon>
                 </md-button>
               </div>
             </div>
             <div class="md-layout-item md-size-70">
               <md-field>
-                <label for="title">Short Description</label>
+                <label for="title">{{ $t('Contribute Process-Short Description') }}</label>
                 <md-input id="title" v-model="file.title" name="title" />
               </md-field>
 
               <md-field>
-                <label for="something">Tell us about this photo (limit 400 characters)</label>
+                <label for="something">{{ $t('Contribute Process-Description') }}</label>
                 <md-textarea v-model="file.story" />
               </md-field>
 
               <md-field>
-                <label for="tags">Add some tags</label>
+                <label for="tags">{{ $t('Contribute Process-Tags') }}</label>
                 <md-input v-model="file.tags" name="tags" />
-                <span class="md-helper-text">Separate the tags by using commas.</span>
+                <span class="md-helper-text">{{ $t('Contribute Process-Tags Subtitle') }}</span>
               </md-field>
 
-              <h3>We pulled this information from your photo:</h3>
+              <h3>{{ $t('Contribute Process-Exif section') }}</h3>
 
               <md-field>
-                <label for="make">Make</label>
+                <label for="make">{{ $t('Contribute Process-Make') }}</label>
                 <md-input v-model="file.make" name="make" />
               </md-field>
 
               <md-field>
-                <label for="model">Model</label>
+                <label for="model">{{ $t('Contribute Process-Model') }}</label>
                 <md-input v-model="file.model" name="model" />
               </md-field>
 
               <md-field>
-                <label for="aperture">Aperture</label>
+                <label for="aperture">{{ $t('Contribute Process-Aperture') }}</label>
                 <md-input v-model="file.aperture" type="number" name="aperture" />
               </md-field>
 
               <md-field>
-                <label for="shutterspeed">Shutter Speed</label>
+                <label for="shutterspeed">{{ $t('Contribute Process-Shutter Speed') }}</label>
                 <md-input v-model="file.shutterspeed" type="number" name="shutterspeed" />
               </md-field>
 
               <md-field>
-                <label for="iso">ISO</label>
+                <label for="iso">{{ $t('Contribute Process-ISO') }}</label>
                 <md-input v-model="file.iso" type="number" name="iso" />
               </md-field>
 
               <md-field>
-                <label for="focallength">Focal Length</label>
+                <label for="focallength">{{ $t('Contribute Process-Focal Length') }}</label>
                 <md-input v-model="file.focallength" type="number" name="focallength" />
               </md-field>
 
               <md-field>
-                <label for="location">Location</label>
+                <label for="location">{{ $t('Contribute Process-Location') }}</label>
                 <md-input v-model="file.location" name="location" />
-                <span class="md-helper-text">Please be as specific as possible. ex. London, UK</span>
+                <span class="md-helper-text">{{ $t('Contribute Process-Location subtitle') }}</span>
               </md-field>
 
               <md-field>
-                <label for="date">Date</label>
+                <label for="date">{{ $t('Contribute Process-Date') }}</label>
                 <md-input v-model="file.date" type="date" name="date" />
-                <span class="md-helper-text">Please select the date the photo was taken.</span>
+                <span class="md-helper-text">{{ $t('Contribute Process-Date Subtitle') }}</span>
               </md-field>
 
-              <h3>Where did you post this photo? Select all that apply.</h3>
+              <h3>{{ $t('Contribute Process-Social Media') }}</h3>
 
               <div>
                 <md-checkbox v-model="file.socialMedias" value="facebook">
@@ -111,44 +108,44 @@
                   Twitter
                 </md-checkbox>
                 <md-checkbox v-model="file.where_other">
-                  other
+                  {{ $t('Account Page-Other') }}
                 </md-checkbox>
                 <md-field v-if="file.where_other">
-                  <md-input v-model="file.otherSM" name="other" placeholder="Say where" />
+                  <md-input v-model="file.otherSM" name="other" />
                 </md-field>
               </div>
 
-              <h3>Select a license to choose how you want others sharing and using your image.</h3>
+              <h3>{{ $t('Contribute Process-License') }}</h3>
 
               <div>
                 <md-radio v-model="file.license" value="CC-0">
-                  CC-0 Free to use without restrictions.
+                  {{ $t('Contribute Process 2-CC0') }}
                 </md-radio>
                 <md-radio v-model="file.license" value="CC-BY">
-                  CC-BY Display my name every time the photo is used.
+                  {{ $t('Contribute Process 2-CCBY') }}
                 </md-radio>
-                <md-radio v-model="file.license" value="CC-BY-NYC">
-                  CC-BY-NC My image cannot be used commercially.
+                <md-radio v-model="file.license" value="CC-BY-NC">
+                  {{ $t('Contribute Process 2-CCBYNC') }}
                 </md-radio>
               </div>
 
-              <p><a href="https://creativecommons.org/" target="_blank">Learn more about the different image licenses.</a></p>
+              <div v-html="$t('Contribute Process 2-License Link')" />
 
-              <h3>Archived</h3>
+              <h3>{{ $t('Contribute Process 2-Archived') }}</h3>
 
               <div>
                 <md-checkbox v-model="file.archived">
-                  Archived
+                  {{ $t('Contribute Process 2-Archived') }}
                 </md-checkbox>
 
-                <p>This image should not be publicly available for 50 years, but I do wish for them to be saved for the future according to the terms and conditions.</p>
+                <p>{{ $t('Contribute Process 2-Archived Note') }}</p>
               </div>
             </div>
           </div>
         </md-card-content>
       </md-card>
       <md-button @click="savePhotos()" class="md-raised md-primary">
-        Save
+        {{ $t('Account Page-Save Button') }}
       </md-button>
       <md-button @click="cancelUpload()" class="md-primary">
         Cancel
@@ -273,7 +270,7 @@ export default {
       })
 
       setTimeout(function () {
-        vm.$toast.success('Successfully added photos!', {
+        vm.$toast.success(vm.$t('Upload Success Page-Success subtitle'), {
           theme: 'toasted-primary',
           position: 'top-right',
           duration: 5000

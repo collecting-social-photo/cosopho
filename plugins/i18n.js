@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-export default function({ store, app }) {
-
+export default function ({ store, app }) {
   if (!store.state.instance) {
     return
   }
@@ -16,12 +15,14 @@ export default function({ store, app }) {
         language
         stub
         string
+        section
         instance
       }
       instance: strings(instance: $instance, per_page: 1000) {
         language
         stub
         string
+        section
         instance
       }
     }`,
@@ -32,25 +33,24 @@ export default function({ store, app }) {
   }
   axios.post(
     `${hostname}/api`,
-    payload,
+    payload
   ).then(function (response) {
     const defaultStrings = response.data.data.default
     const instanceStrings = response.data.data.instance
-    var strings = instanceStrings
+    let strings = instanceStrings
 
     if (!strings.length) {
       strings = defaultStrings
     }
 
-    _.each(languages, function(lang) {
-      var translations = {}
-      _.each(strings, function(string) {
+    _.each(languages, function (lang) {
+      const translations = {}
+      _.each(strings, function (string) {
         if (string.language === lang) {
-          translations[string.stub] = string.string
+          translations[`${string.section}-${string.stub}`] = string.string
         }
       })
       app.i18n.setLocaleMessage(lang, translations)
     })
-
   })
 }

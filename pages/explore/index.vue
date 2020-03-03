@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Explore</h1>
+    <h1>{{ $t('Explore Page-Title') }}</h1>
     <div v-if="photos.length">
       <div class="grid">
         <div v-for="photo in photos" :key="photo.id" class="grid-item">
