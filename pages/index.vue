@@ -9,11 +9,7 @@
           <div class="intro-text">
             {{ $t('Homepage-Title') }}
           </div>
-          <div class="intro-about">
-            <nuxt-link :to="localePath('about')">
-              {{ $t('Homepage-Subtitle') }}
-            </nuxt-link>
-          </div>
+          <div v-html="$t('Homepage-Subtitle')" class="intro-about" />
           <div class="intro-buttons">
             <md-button :to="localePath('contribute')" class="md-secondary button-big">
               {{ $t('Menu-Contribute') }}

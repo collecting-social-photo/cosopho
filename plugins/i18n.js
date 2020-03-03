@@ -18,7 +18,7 @@ export default function ({ store, app }) {
         section
         instance
       }
-      instance: strings(instance: $instance, per_page: 1000) {
+      instance: strings(instance: $instance, per_page: 2000) {
         language
         stub
         string
