@@ -13,12 +13,12 @@
       </div>
       <div class="container-double">
         <div class="item b">
-          <nuxt-link v-if="initiative.photos.length > 1" :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
+          <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
             <photoComp :publicId="initiative.photos[1].data && initiative.photos[1].data.public_id" :options="'w_600,h_600,c_fill'" />
           </nuxt-link>
         </div>
         <div class="item c">
-          <nuxt-link v-if="initiative.photos.length > 2" :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
+          <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
             <photoComp :publicId="initiative.photos[2].data && initiative.photos[2].data.public_id" :options="'w_600,h_600,c_fill'" />
           </nuxt-link>
         </div>
@@ -45,23 +45,13 @@ export default {
 
 <style lang="scss" scoped>
 .photos-container {
-  display: flex;
-  flex-direction: row;
-
-  img {
-    max-width: 500px;
-    max-height: 500px;
-    padding-right: 5px;
-  }
+  display: grid;
+  grid-template-columns: 400px 197px;//2fr 1fr;
+  grid-gap: 6px;
 
   .container-double {
-    display: flex;
-    flex-direction: column;
-    img {
-      max-height: 250px;
-      max-width: 250px;
-      padding-bottom: 5px;
-    }
+    display: grid;
+    grid-gap: 6px;
   }
 }
 </style>

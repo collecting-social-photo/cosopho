@@ -28,6 +28,10 @@ h2 {
   }
 }
 
+hr {
+  border-top: 1px solid $light-grey;
+}
+
 .white {
   color: $white !important;
 }
@@ -429,6 +433,8 @@ $flash-color: #cccccc;
 
 .home-initiatives {
   border-top: 1px solid $light-grey;
+  border-bottom: 1px solid $light-grey;
+  padding-bottom: 20px;
 }
 
 .md-toolbar .logo {
@@ -438,3 +444,5 @@ $flash-color: #cccccc;
 .button-no-margin {
   margin: 20px 0 !important;
 }
+
+

@@ -1,8 +1,12 @@
 <template>
   <div class="container">
-    <h1>Initiatives</h1>
-    <div v-for="initiative in initiatives" :key="initiative.slug">
-      <initiativeComp :initiative="initiative" />
+    <h1>{{ $t('Initiatives Page-Title') }}</h1>
+    <p>{{ $t('Initiatives Page-Subtitle') }}</p>
+    <hr>
+    <div class="md-layout md-gutter">
+      <div v-for="initiative in initiatives" :key="initiative.slug" class="md-layout-item md-size-100">
+        <initiativeComp :initiative="initiative" />
+      </div>
     </div>
   </div>
 </template>

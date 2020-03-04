@@ -35,6 +35,11 @@
           <initiativeComp :initiative="initiative" />
         </div>
       </div>
+      <p>
+        <nuxt-link :to="localePath('initiatives')">
+          {{ $t('Homepage-Browse more') }}
+        </nuxt-link>
+      </p>
     </div>
   </div>
 </template>
