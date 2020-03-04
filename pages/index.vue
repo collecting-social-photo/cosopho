@@ -20,6 +20,7 @@
           </div>
         </div>
       </div>
+      <div v-if="photo && photo.person" class="home-credit">Photo by: {{ photo.person.name }}</div>
     </div>
     <div class="container">
       <div class="md-layout">
