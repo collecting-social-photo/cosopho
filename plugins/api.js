@@ -72,8 +72,8 @@ const apiFactory = ($axios, app, store) => ({
 
   updatePerson (variables) {
     const payload = {
-      query: `mutation ($id: String!, $instance: String!, $username: String, $avatar: String, $name: String, $gender: String, $facebook: String, $instagram: String, $twitter: String, $personalSite: String, $bio: String, $email: String, $dateOfBirth: String, $placeOfBirth: String) {
-        updatePerson(id: $id, instance: $instance, username: $username, avatar: $avatar, name: $name, gender: $gender, facebook: $facebook, instagram: $instagram, twitter: $twitter, personalSite: $personalSite, bio: $bio, email: $email, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth) {
+      query: `mutation ($id: String!, $instance: String!, $username: String, $avatar: String, $name: String, $gender: String, $facebook: String, $instagram: String, $twitter: String, $personalSite: String, $bio: String, $email: String, $dateOfBirth: String, $placeOfBirth: String, $deleted: Boolean) {
+        updatePerson(id: $id, instance: $instance, username: $username, avatar: $avatar, name: $name, gender: $gender, facebook: $facebook, instagram: $instagram, twitter: $twitter, personalSite: $personalSite, bio: $bio, email: $email, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth, deleted: $deleted) {
           id
           name
           slug

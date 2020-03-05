@@ -130,6 +130,19 @@
         </md-card>
       </form>
     </div>
+    <md-dialog-confirm
+      :md-active.sync="dialogActive"
+      @md-confirm="onDeleteConfirm"
+      md-title="Delete Account"
+      md-content="Are you sure you want to delete your account?"
+      md-confirm-text="Yes"
+      md-cancel-text="No"
+    />
+    <div>
+      <md-button @click="dialogActive = true" class="md-accent button-no-margin">
+        <md-icon>delete</md-icon> {{ $t('Account Page-Delete') }}
+      </md-button>
+    </div>
   </div>
 </template>
 
@@ -155,7 +168,8 @@ export default {
       dob: null
     },
     person: null,
-    sending: false
+    sending: false,
+    dialogActive: false
   }),
   validations: {
     form: {
@@ -196,6 +210,22 @@ export default {
     this.form.bio = this.person.bio
   },
   methods: {
+    onDeleteConfirm () {
+      this.deletePerson()
+    },
+    async deletePerson () {
+      await this.$api.updatePerson({
+        id: this.person.id,
+        instance: this.$store.state.instance.id,
+        deleted: true
+      })
+      this.$auth.logout()
+      this.$toast.success('Account deleted', {
+        theme: 'toasted-primary',
+        position: 'top-right',
+        duration: 5000
+      })
+    },
     getValidationClass (fieldName) {
       const field = this.$v.form[fieldName]
 

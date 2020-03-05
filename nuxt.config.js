@@ -75,7 +75,8 @@ module.exports = {
         'MdChips',
         'MdTabs',
         'MdDatepicker',
-        'MdDialog'
+        'MdDialog',
+        'MdDialogConfirm'
       ]
     }]
   ],
