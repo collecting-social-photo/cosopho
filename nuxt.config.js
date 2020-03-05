@@ -73,7 +73,9 @@ module.exports = {
         'MdCard',
         'MdCheckbox',
         'MdChips',
-        'MdTabs'
+        'MdTabs',
+        'MdDatepicker',
+        'MdDialog'
       ]
     }]
   ],

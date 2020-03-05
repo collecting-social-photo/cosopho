@@ -63,10 +63,9 @@
 
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
-                <md-field>
-                  <label for="dateOfBirth">{{ $t('Account Page-Birth Date') }}</label>
-                  <md-input v-model="form.dateOfBirth" type="date" name="dateOfBirth" />
-                </md-field>
+                <md-datepicker v-model="form.dateOfBirth">
+                  <label>Select date</label>
+                </md-datepicker>
               </div>
 
               <div class="md-layout-item md-small-size-100">
@@ -120,8 +119,9 @@
           </md-card-content>
 
           <md-card-actions>
-            <md-button :disabled="sending" type="submit" class="md-raised md-primary">
-              {{ buttonText }}
+            <span v-if="sending" class="saving">Saving...</span>
+            <md-button :disabled="sending || $v.$invalid" type="submit" class="md-raised md-primary">
+              {{ $t('Account Page-Save Button') }}
             </md-button>
             <md-button :to="localePath('index')" class="md-primary">
               Cancel
@@ -155,8 +155,7 @@ export default {
       dob: null
     },
     person: null,
-    sending: false,
-    buttonText: null
+    sending: false
   }),
   validations: {
     form: {
@@ -184,13 +183,12 @@ export default {
     return { person }
   },
   mounted () {
-    this.buttonText = this.$t('Account Page-Save Button')
     this.form.name = this.person.name
     this.form.username = this.person.username
     this.form.gender = this.person.gender
     this.form.email = this.person.email
     this.form.placeOfBirth = this.person.placeOfBirth
-    this.form.dateOfBirth = this.person.dateOfBirth
+    this.form.dateOfBirth = this.person.dateOfBirth && this.person.dateOfBirth.split('T')[0]
     this.form.personalSite = this.person.personalSite
     this.form.facebook = this.person.facebook
     this.form.instagram = this.person.instagram
@@ -203,13 +201,12 @@ export default {
 
       if (field) {
         return {
-          'md-invalid': field.$invalid && field.$dirty
+          'md-invalid': field.$invalid
         }
       }
     },
     async saveUser () {
       this.sending = true
-      this.buttonText = 'Saving...'
 
       await this.$api.updatePerson({
         id: this.person.id,
@@ -227,7 +224,6 @@ export default {
         placeOfBirth: this.form.placeOfBirth
       })
       this.sending = false
-      this.buttonText = 'Save'
 
       this.$toast.success('Changes saved!', {
         theme: 'toasted-primary',

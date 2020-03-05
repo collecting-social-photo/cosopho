@@ -87,8 +87,9 @@
               </md-field>
 
               <md-field>
-                <label for="date">{{ $t('Contribute Process-Date') }}</label>
-                <md-input v-model="file.date" type="date" name="date" />
+                <md-datepicker v-model="file.date">
+                  <label>{{ $t('Contribute Process-Date') }}</label>
+                </md-datepicker>
                 <span class="md-helper-text">{{ $t('Contribute Process-Date Subtitle') }}</span>
               </md-field>
 
