@@ -2,7 +2,7 @@
   <div class="container">
     <div class="home-container">
       <md-card v-for="instance in instances" :key="instance.id" :style="`background-color: #${instance.colour};`">
-        <a :href="`https://${instance.id}.collectingsocialphoto.com`">
+        <a :href="`https://${instance.id}.collectingsocialphoto.com`" target="_blank">
           <md-card-header>
             <md-card-header-text>
               <div class="md-title">

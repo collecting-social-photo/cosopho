@@ -196,6 +196,7 @@ const apiFactory = ($axios, app, store) => ({
             }
             person {
               name
+              username
             }
           }
         }
