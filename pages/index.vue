@@ -21,7 +21,9 @@
         </div>
       </div>
       <div v-if="photo && photo.person" class="home-credit">
-        Photo by: {{ photo.person.name || photo.person.username }}
+        Photo by: <nuxt-link :to="localePath({ name: 'explore-photo-id', params: { id: photo.id }})">
+          {{ photo.person.name || photo.person.username }}
+        </nuxt-link>
       </div>
     </div>
     <div v-if="initiatives && initiatives.length" class="container">

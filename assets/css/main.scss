@@ -350,6 +350,9 @@ $flash-color: #cccccc;
     background: $black;
     padding: 0 6px;
     font-size: 0.8rem;
+    a, a:hover {
+      color: $white;
+    }
   }
 
   .inner {
@@ -470,9 +473,9 @@ $flash-color: #cccccc;
     margin: 4px;
     display: inline-block;
     vertical-align: top;
-    color: #fff;
+    color: $white;
     a, a:hover {
-      color: #fff;
+      color: $white;
       text-decoration: none;
     }
   }
