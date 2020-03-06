@@ -55,43 +55,12 @@ hr {
   min-height: 100vh;
 }
 
-.topnav-title a {
-  color: $white !important;
+.topnav-title {
+  a, a:hover {
+    color: $white !important;
+    text-decoration: none;
+  }
 }
-
-// .md-toolbar {
-//   background-color: $black;
-//   color: $white;
-
-//   button {
-//     color: $white;
-//   }
-
-//   a {
-//     color: $white;
-
-//     &:hover {
-//       text-decoration: none;
-//     }
-//   }
-// }
-
-// .md-menu-content-container {
-//   background-color: #696868;
-//   color: $white;
-
-//   button {
-//     color: $white;
-//   }
-
-//   a, a:visited {
-//     color: $white;
-//   }
-
-//   .md-menu-item:hover {
-//     background-color: rgba($color: $black, $alpha: 0.1);
-//   }
-// }
 
 .md-drawer {
   width: 300px;
@@ -474,6 +443,12 @@ $flash-color: #cccccc;
     display: inline-block;
     vertical-align: top;
     color: $white;
+    position: relative;
+    transition: opacity ease 0.5s;
+    &:hover {
+      opacity: 0.8;
+    }
+
     a, a:hover {
       color: $white;
       text-decoration: none;
