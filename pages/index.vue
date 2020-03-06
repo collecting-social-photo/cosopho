@@ -21,7 +21,7 @@
         </div>
       </div>
       <div v-if="photo && photo.person" class="home-credit">
-        Photo by: {{ photo.person.name }}
+        Photo by: {{ photo.person.name || photo.person.username }}
       </div>
     </div>
     <div v-if="initiatives && initiatives.length" class="container">
