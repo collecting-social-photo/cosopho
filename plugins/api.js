@@ -1,11 +1,18 @@
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload) {
-    const hostname = store.state.hostname
-    return await $axios.post(
+    let defaultHostname = `https://www.collectingsocialphoto.com`
+
+    if (process.env.NODE_ENV !== 'production') {
+      defaultHostname = `http://www.cosopho.com:3000`
+    }
+
+    const hostname = store.state.hostname || defaultHostname
+    const response = await $axios.post(
       `${hostname}/api`,
       payload
     )
+    return response
   },
 
   getPerson (variables) {
@@ -162,6 +169,8 @@ const apiFactory = ($axios, app, store) => ({
         instances(per_page: $per_page) {
           id
           title
+          logo
+          colour
         }
       }`,
       variables

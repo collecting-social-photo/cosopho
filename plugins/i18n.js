@@ -51,6 +51,7 @@ export default function ({ store, app }) {
         }
       })
       app.i18n.setLocaleMessage(lang, translations)
+      store.commit('SET_LANGUAGES_LOADED', true)
     })
   })
 }

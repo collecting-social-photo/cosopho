@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :style="`background-image: url(https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg);`" class="intro">
+    <div :style="photo && `background-image: url(https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg);`" class="intro">
       <div class="inner">
         <div class="container">
           <div class="intro-logo">
@@ -20,9 +20,11 @@
           </div>
         </div>
       </div>
-      <div v-if="photo && photo.person" class="home-credit">Photo by: {{ photo.person.name }}</div>
+      <div v-if="photo && photo.person" class="home-credit">
+        Photo by: {{ photo.person.name }}
+      </div>
     </div>
-    <div class="container">
+    <div v-if="initiatives && initiatives.length" class="container">
       <div class="md-layout">
         <div class="md-layout-item md-size-50 md-small-size-100">
           <h1>{{ $t('Homepage-Featured') }}</h1>

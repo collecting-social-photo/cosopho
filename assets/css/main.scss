@@ -2,6 +2,7 @@ $white: #ffffff;
 $black: #000000;
 $grey: rgb(136, 127, 127);
 $light-grey: #ccc;
+$dark-grey: #333;
 $break-small: 992px;
 $primary-color: var(--md-theme-default-primary);
 $fadein: 1s;
@@ -337,6 +338,7 @@ $flash-color: #cccccc;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: $dark-grey;
   position: relative;
 
   .home-credit {
@@ -462,3 +464,20 @@ $flash-color: #cccccc;
   margin-right: 10px;
 }
 
+.home-container {
+  .md-card {
+    width: 100%;
+    margin: 4px;
+    display: inline-block;
+    vertical-align: top;
+    color: #fff;
+    a, a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  .home-logo {
+    width: 80%;
+  }
+}

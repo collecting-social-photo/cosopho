@@ -3,7 +3,8 @@ import axios from 'axios'
 export const state = () => ({
   user: null,
   instance: null,
-  hostname: null
+  hostname: null,
+  languagesLoaded: false
 })
 
 export const mutations = {
@@ -15,18 +16,27 @@ export const mutations = {
   },
   SET_HOSTNAME (state, hostname) {
     state.hostname = hostname || null
+  },
+  SET_LANGUAGES_LOADED (state, languagesLoaded) {
+    state.languagesLoaded = languagesLoaded || false
   }
 }
 
 export const actions = {
   async nuxtServerInit ({ commit }, { req, redirect }) {
+    let currentHostname = `https://www.collectingsocialphoto.com`
     const subdomains = req.headers.host.split('.')
     let subdomain = null
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
-    } else {
-      redirect('/home')
+    }
+
+    if (req.path === '/home') {
       return
+    }
+
+    if (subdomain === 'www') {
+      redirect('/home')
     }
 
     const payload = {
@@ -61,12 +71,10 @@ export const actions = {
     )
 
     if (response.data.data.instance) {
-      const languages = response.data.data.instance.languages
+      const languages = response.data.data.instance.languages || []
+
       languages.push('en')
-
       response.data.data.instance.languages = _.union(languages)
-
-      let currentHostname = `https://${response.data.data.instance.id}.collectingsocialphoto.com`
 
       if (process.env.NODE_ENV !== 'production') {
         currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
@@ -74,8 +82,6 @@ export const actions = {
 
       commit('SET_INSTANCE', response.data.data.instance)
       commit('SET_HOSTNAME', currentHostname)
-    } else {
-      redirect('/home')
     }
   }
 }
