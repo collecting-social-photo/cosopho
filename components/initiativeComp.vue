@@ -1,25 +1,25 @@
 <template>
-  <div v-if="initiative && initiative.photos">
+  <div v-if="photos && photos.length">
     <h2>
       <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
         {{ initiative.title }}
       </nuxt-link>
     </h2>
-    <div v-if="initiative.photos.length > 1" class="photos-container">
+    <div v-if="photos.length > 1" class="photos-container">
       <div class="item a">
         <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
-          <photoComp :publicId="initiative.photos[0].data && initiative.photos[0].data.public_id" :options="'w_600,h_600,c_fill'" />
+          <photoComp :publicId="photos[0].data && photos[0].data.public_id" :options="'w_600,h_600,c_fill'" />
         </nuxt-link>
       </div>
       <div class="container-double">
         <div class="item b">
-          <nuxt-link v-if="initiative.photos.length > 1" :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
-            <photoComp :publicId="initiative.photos[1].data && initiative.photos[1].data.public_id" :options="'w_600,h_600,c_fill'" />
+          <nuxt-link v-if="photos.length > 1" :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
+            <photoComp :publicId="photos[1].data && photos[1].data.public_id" :options="'w_600,h_600,c_fill'" />
           </nuxt-link>
         </div>
         <div class="item c">
-          <nuxt-link v-if="initiative.photos.length > 2" :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
-            <photoComp :publicId="initiative.photos[2].data && initiative.photos[2].data.public_id" :options="'w_600,h_600,c_fill'" />
+          <nuxt-link v-if="photos.length > 2" :to="localePath({ name: 'initiatives-id', params: { id: initiative.slug }})">
+            <photoComp :publicId="photos[2].data && photos[2].data.public_id" :options="'w_600,h_600,c_fill'" />
           </nuxt-link>
         </div>
       </div>
@@ -39,6 +39,15 @@ export default {
       type: Object,
       default: null
     }
+  },
+  data () {
+    return {
+      photos: null
+    }
+  },
+  mounted () {
+    this.photos = this.initiative.photos || []
+    _.remove(this.photos, { archived: true })
   }
 }
 </script>
