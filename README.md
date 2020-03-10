@@ -8,6 +8,16 @@ API_ENDPOINT=https://my_api.com/graphql
 AUTH0_DOMAIN=domain.auth0.com
 AUTH0_CLIENT_ID=abc123
 
+## Set up local hosts DNS
+The app relies on the subdomain to establish the instance ID. So you have to create a fake local hostname for this.
+Edit your local hosts file `/etc/hosts` on Mac and add the following records:
+
+127.0.0.1 www.cosopho.com
+127.0.0.1 micah-walter-674bb737a19d3046.cosopho.com
+127.0.0.1 nordic-museu-76ba77f9ebd5d275.cosopho.com
+
+To access the app you must use one of these hosts.
+
 ## Build Setup
 
 ``` bash
