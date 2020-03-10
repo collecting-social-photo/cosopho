@@ -27,7 +27,6 @@ export default function ({ store, app }) {
       }
     }`,
     variables: {
-      language: 'en',
       instance: instanceId
     }
   }
