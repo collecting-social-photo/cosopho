@@ -27,7 +27,9 @@ module.exports = {
     ],
     script: [
       { src: 'https://code.jquery.com/jquery-3.4.0.min.js', integrity: 'sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=', crossorigin: 'anonymous' },
-      { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry', crossorigin: 'anonymous' }
+      { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry', crossorigin: 'anonymous' },
+      { src: 'https://code.jquery.com/jquery-3.4.1.min.js', integrity: 'sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=', crossorigin: 'anonymous' },
+      { src: 'https://unpkg.com/packery@2/dist/packery.pkgd.min.js', crossorigin: 'anonymous' }
     ]
   },
 
@@ -43,7 +45,7 @@ module.exports = {
   plugins: [
     { src: './plugins/api.js' },
     { src: './plugins/i18n.js' },
-    { src: './plugins/observe-visibility.js' }
+    { src: './plugins/observe-visibility.js' },
   ],
 
   buildModules: [
