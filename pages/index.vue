@@ -63,6 +63,10 @@ export default {
     }
   },
   async asyncData (context) {
+    if (!context.app.store.state.instance) {
+      return context.redirect('/home')
+    }
+
     const response = await context.app.$api.getInitiatives({
       instance: context.app.store.state.instance.id,
       isFeatured: true,

@@ -194,6 +194,7 @@ const apiFactory = ($axios, app, store) => ({
               public_id
               version
             }
+            archived
             person {
               name
               username
