@@ -54,9 +54,9 @@ export default {
     return {
       instances: null,
       photos: null,
-      $grid: null,
       ticker: null,
       moving: false,
+      grid: null,
       start: 0,
       interval: 1,
       scrollerStyle: {
@@ -64,10 +64,44 @@ export default {
       }
     }
   },
+  async asyncData (context) {
+    const response = await context.app.$api.getPhotos({
+      instance: 'micah-walter-674bb737a19d3046',
+      per_page: 100,
+      archived: false
+    })
+    let photos = response.data.data.photos
+    photos = photos.concat(response.data.data.photos)
+    photos = photos.concat(response.data.data.photos)
+    photos = photos.concat(response.data.data.photos)
+
+    return {
+      photos
+    }
+  },
   mounted () {
+    const vm = this
     this.getInstances()
-    this.getPhotos()
+    // this.initPackery()
+    // this.getPhotos()
     this.toggleScroller()
+
+    if (process.client) {
+      let grid = new Packery('.gridz', {
+        itemSelector: '.grid-itemz',
+        gutter: 10,
+        horizontal: true,
+        percentPosition: true,
+        transitionDuration: '2s',
+        stagger: 100
+      })
+
+      grid.shiftLayout()
+
+      grid.on('layoutComplete', function () {
+        console.log('done!')
+      })
+    }
   },
   methods: {
     toggleScroller () {
@@ -99,17 +133,6 @@ export default {
       this.photos = response.data.data.photos
       this.photos = this.photos.concat(response.data.data.photos)
       this.photos = this.photos.concat(response.data.data.photos)
-
-      if (process.client) {
-        setTimeout(function () {
-          vm.$grid = $('.gridz').packery({
-            itemSelector: '.grid-itemz',
-            gutter: 10,
-            horizontal: true,
-            percentPosition: true
-          })
-        }, 100)
-      }
     },
     async getInstances () {
       const response = await this.$api.getInstances({
@@ -151,6 +174,7 @@ export default {
 .img-scroller {
   height: 100vh;
   position: relative;
+  display: flex;
   background-color: #000;
 }
 </style>
