@@ -11,9 +11,9 @@
       <div class="img-scroller-container">
         <div>
           <div :style="scrollerStyle" class="img-scroller gridz">
-            <div v-for="(photo, index) in photos" :key="index" :style="{ width: `200px`}" @click="toggleScroller()" class="grid-itemz">
+            <!-- <div v-for="(photo, index) in photos" :key="index" :style="{ width: `200px`}" @click="toggleScroller()" class="grid-itemz">
               <photoComp :publicId="photo.data && photo.data.public_id" />
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@ export default {
       photos: null,
       ticker: null,
       moving: false,
-      grid: null,
+      $grid: null,
       start: 0,
       interval: 1,
       scrollerStyle: {
@@ -84,10 +84,10 @@ export default {
     this.getInstances()
     // this.initPackery()
     // this.getPhotos()
-    this.toggleScroller()
 
     if (process.client) {
-      let grid = new Packery('.gridz', {
+
+      vm.$grid = $('.gridz').packery({
         itemSelector: '.grid-itemz',
         gutter: 10,
         horizontal: true,
@@ -96,10 +96,20 @@ export default {
         stagger: 100
       })
 
-      grid.shiftLayout()
+      setTimeout(function () {
+        let $items = $()
+        _.forEach(vm.photos, function (photo) {
+          const pic = $(`<div class="grid-itemz"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
+          $items = $items.add(pic)
+        })
 
-      grid.on('layoutComplete', function () {
-        console.log('done!')
+        vm.$grid.prepend($items).packery('prepended', $items)
+        vm.toggleScroller()
+      }, 2000)
+
+      vm.$grid.on('click', '.grid-itemz', function (event) {
+        vm.$grid.packery('remove', event.currentTarget)
+        vm.$grid.packery('layout')
       })
     }
   },
@@ -144,6 +154,12 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.grid-itemz {
+  width: 200px;
+}
+</style>
+
 <style lang="scss" scoped>
 .static-banner {
   position: fixed;
@@ -156,9 +172,9 @@ export default {
   z-index: 100;
   width: 400px;
   color: white;
-  -webkit-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.35);
-  -moz-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.35);
-  box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.35);
+  -webkit-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.95);
+  box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.95);
   div {
     padding: 10px;
     margin-bottom: 5px;
