@@ -10,46 +10,17 @@
     <div class="main-scroller-container">
       <div class="img-scroller-container">
         <div>
-          <div :style="scrollerStyle" class="img-scroller gridz">
-            <!-- <div v-for="(photo, index) in photos" :key="index" :style="{ width: `200px`}" @click="toggleScroller()" class="grid-itemz">
-              <photoComp :publicId="photo.data && photo.data.public_id" />
-            </div> -->
-          </div>
+          <div :style="scrollerStyle" class="img-scroller gridz" />
         </div>
       </div>
     </div>
   </div>
-
-  <!-- <div class="container">
-    <div class="home-container">
-      <md-card v-for="instance in instances" :key="instance.id" :style="`background-color: #${instance.colour};`">
-        <a :href="`https://${instance.id}.collectingsocialphoto.com`" target="_blank">
-          <md-card-header>
-            <md-card-header-text>
-              <div class="md-title">
-                {{ instance.title }}
-              </div>
-            </md-card-header-text>
-
-            <md-card-media md-big>
-              <img :src="`data:image/png;base64,${instance.logo}`" class="home-logo">
-            </md-card-media>
-          </md-card-header>
-        </a>
-      </md-card>
-    </div>
-  </div> -->
 </template>
 
 <script>
-import photoComp from '~/components/photoComp.vue'
-
 export default {
   nuxtI18n: false,
   layout: 'home',
-  components: {
-    photoComp
-  },
   data () {
     return {
       instances: null,
@@ -57,10 +28,11 @@ export default {
       ticker: null,
       moving: false,
       $grid: null,
-      start: 0,
+      start: 400,
+      startInit: 400,
       interval: 1,
       scrollerStyle: {
-        transform: 'translateX(-50px)'
+        transform: 'translateX(-400px)'
       }
     }
   },
@@ -81,9 +53,8 @@ export default {
   },
   mounted () {
     const vm = this
+    this.toggleScroller()
     this.getInstances()
-    // this.initPackery()
-    // this.getPhotos()
 
     if (process.client) {
 
@@ -104,8 +75,11 @@ export default {
         })
 
         vm.$grid.prepend($items).packery('prepended', $items)
-        vm.toggleScroller()
-      }, 2000)
+
+        setTimeout(function () {
+          vm.$grid.packery('layout')
+        }, 1000)
+      }, 1000)
 
       vm.$grid.on('click', '.grid-itemz', function (event) {
         vm.$grid.packery('remove', event.currentTarget)
@@ -123,8 +97,8 @@ export default {
         this.ticker = setInterval(() => {
           this.moving = true
           this.start += 0.05
-          if (this.start > 800) {
-            this.start = 0
+          if (this.start > 1000) {
+            this.start = this.startInit
           }
           this.scrollerStyle.transform = `translateX(-${this.start}px)`
         }, this.interval)
