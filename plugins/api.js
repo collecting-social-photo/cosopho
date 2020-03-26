@@ -181,8 +181,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getInitiatives (variables) {
     const payload = {
-      query: `query initiatives($instance: String!, $per_page: Int, $isFeatured: Boolean) {
-        initiatives(instance: $instance, per_page: $per_page, isFeatured: $isFeatured) {
+      query: `query initiatives($instance: String!, $per_page: Int, $isFeatured: Boolean, $photos_archived: Boolean) {
+        initiatives(instance: $instance, per_page: $per_page, isFeatured: $isFeatured, photos_archived: $photos_archived) {
           id
           slug
           title

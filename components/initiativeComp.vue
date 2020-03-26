@@ -47,7 +47,6 @@ export default {
   },
   mounted () {
     this.photos = this.initiative.photos || []
-    _.remove(this.photos, { archived: true })
   }
 }
 </script>

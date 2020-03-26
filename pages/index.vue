@@ -70,6 +70,7 @@ export default {
     const response = await context.app.$api.getInitiatives({
       instance: context.app.store.state.instance.id,
       isFeatured: true,
+      photos_archived: false,
       per_page: 1
     })
     const initiatives = response.data.data.initiatives
