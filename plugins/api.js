@@ -18,7 +18,7 @@ const apiFactory = ($axios, app, store) => ({
   getPerson (variables) {
     const payload = {
       query: `query person($id: String, $slug: String, $instance: String!) {
-        person(id: $id, slug: $slug, instance: $instance) {
+        person(id: $id, slug: $slug, instance: $instance, deleted: false, suspended: false) {
           id
           name
           slug
@@ -32,10 +32,29 @@ const apiFactory = ($axios, app, store) => ({
     return this.makeRequest(payload)
   },
 
-  getPersonFull (variables) {
+  getPersonDeleted (variables) {
     const payload = {
       query: `query person($id: String, $slug: String, $instance: String!) {
         person(id: $id, slug: $slug, instance: $instance) {
+          id
+          name
+          slug
+          username
+          avatar
+          deleted
+          suspended
+        }
+      }`,
+      variables
+    }
+
+    return this.makeRequest(payload)
+  },
+
+  getPersonFull (variables) {
+    const payload = {
+      query: `query person($id: String, $slug: String, $instance: String!) {
+        person(id: $id, slug: $slug, instance: $instance, deleted: false, suspended: false) {
           id
           instance
           slug
@@ -84,6 +103,9 @@ const apiFactory = ($axios, app, store) => ({
           id
           name
           slug
+          username
+          avatar
+          email
         }
       }`,
       variables

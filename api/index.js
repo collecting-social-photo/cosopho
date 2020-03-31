@@ -25,7 +25,7 @@ app.post('/', function (req, res) {
   ).then((response) => {
     res.send(response.data)
   }).catch((error) => {
-    console.log(error.message)
+    console.log(error.response.data)
   })
 })
 
