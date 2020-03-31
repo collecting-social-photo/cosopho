@@ -11,14 +11,7 @@ export default function ({ store, app }) {
 
   const payload = {
     query: `query strings($instance: String) {
-      default: strings(instance: "cosophoheroku_001", per_page: 1000) {
-        language
-        stub
-        string
-        section
-        instance
-      }
-      instance: strings(instance: $instance, per_page: 2000) {
+      instance: strings(instance: $instance, per_page: 2000, fill: true) {
         language
         stub
         string
@@ -34,13 +27,7 @@ export default function ({ store, app }) {
     `${hostname}/api`,
     payload
   ).then(function (response) {
-    const defaultStrings = response.data.data.default
-    const instanceStrings = response.data.data.instance
-    let strings = instanceStrings
-
-    if (!strings.length) {
-      strings = defaultStrings
-    }
+    const strings = response.data.data.instance
 
     _.each(languages, function (lang) {
       const translations = {}
