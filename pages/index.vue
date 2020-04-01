@@ -26,7 +26,7 @@
         </nuxt-link>
       </div>
     </div>
-    <div v-if="initiatives && initiatives.length" class="container">
+    <div v-if="photo" class="container">
       <div class="md-layout">
         <div class="md-layout-item md-size-50 md-small-size-100">
           <h1>{{ $t('Homepage-Featured') }}</h1>
@@ -35,7 +35,7 @@
           <p>{{ $t('Homepage-Featured subtitle') }}</p>
         </div>
       </div>
-      <div class="home-initiatives">
+      <div v-if="initiatives.length" class="home-initiatives">
         <div v-for="initiative in initiatives" :key="initiative.slug">
           <initiativeComp :initiative="initiative" />
         </div>
@@ -75,7 +75,7 @@ export default {
     })
     const initiatives = response.data.data.initiatives
     const initiative = initiatives && _.sample(initiatives)
-    const photo = initiative && initiative.photos.length && _.sample(initiative.photos)
+    const photo = initiative && initiative.photos && initiative.photos.length && _.sample(initiative.photos)
 
     return { photo, initiatives }
   }
