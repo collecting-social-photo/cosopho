@@ -103,17 +103,6 @@ export default {
     rando (min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
     },
-    async getPhotos () {
-      const vm = this
-      const response = await this.$api.getPhotos({
-        instance: 'micah-walter-674bb737a19d3046',
-        per_page: 100,
-        archived: false
-      })
-      this.photos = response.data.data.photos
-      this.photos = this.photos.concat(response.data.data.photos)
-      this.photos = this.photos.concat(response.data.data.photos)
-    },
     async getInstances () {
       const response = await this.$api.getInstances({
         per_page: 100
