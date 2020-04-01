@@ -27,7 +27,7 @@
               <photoComp :publicId="file.id" />
               <div class="center">
                 <md-button @click="deletePhoto(file, index)" class="md-accent">
-                  {{ $t('Account Page-Delete') }} <md-icon>delete</md-icon>
+                  <md-icon>delete</md-icon>
                 </md-button>
               </div>
             </div>
