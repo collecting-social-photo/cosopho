@@ -86,7 +86,7 @@ module.exports = {
   basic: {
     name: 'cosopho',
     pass: 'cosopho!',
-    enabled: true
+    enabled: false
   },
 
   auth: {
