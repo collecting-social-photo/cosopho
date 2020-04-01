@@ -1,7 +1,7 @@
 <template>
   <div v-if="photo" class="container">
     <p v-if="photo.person">
-      <img :src="photo.person.avatar" class="avatar">
+      <img :src="photo.person.avatar" class="avatar" onerror="this.src = '/avatar.svg';">
       <nuxt-link :to="localePath({ name: 'profiles-id', params: { id: photo.person.slug } })" class="photo-person">
         {{ photo.person.name || photo.person.username }}
       </nuxt-link>

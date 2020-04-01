@@ -30,7 +30,7 @@
 
           <md-menu v-if="$auth.loggedIn && $store.state.user" md-size="medium" md-align-trigger>
             <md-button md-menu-trigger>
-              <img :src="$store.state.user.avatar" class="avatar">
+              <img :src="$store.state.user.avatar" class="avatar" onerror="this.src = '/avatar.svg';">
             </md-button>
 
             <md-menu-content>
