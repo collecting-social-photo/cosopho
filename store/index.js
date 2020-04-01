@@ -24,7 +24,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit ({ commit }, { req, redirect }) {
-    let currentHostname = `https://www.collectingsocialphoto.com`
+    let currentHostname = `https://www.collectingsocialphoto.org`
     const subdomains = req.headers.host.split('.')
     let subdomain = null
     let nordicHack = false
@@ -45,14 +45,14 @@ export const actions = {
     } else if ((req.headers.host).includes('nordiskamuseet.collectingsocialphoto.org')) {
       subdomain = 'nordic-museu-76ba77f9ebd5d275'
       nordicHack = true
-    } else {
-      if (req.path === '/home') {
-        return
-      }
+    }
 
-      if (subdomain === 'www') {
-        redirect('/home')
-      }
+    if (req.path === '/home') {
+      return
+    }
+
+    if (subdomain === 'www') {
+      redirect('/home')
     }
 
     const payload = {
