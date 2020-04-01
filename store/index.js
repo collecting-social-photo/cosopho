@@ -27,16 +27,32 @@ export const actions = {
     let currentHostname = `https://www.collectingsocialphoto.com`
     const subdomains = req.headers.host.split('.')
     let subdomain = null
+    let nordicHack = false
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
     }
 
-    if (req.path === '/home') {
-      return
-    }
+    // TODO GROSS! Remove this once we have domains in the database
+    if ((req.headers.host).includes('stockholmslansmuseum.collectingsocialphoto.org')) {
+      subdomain = 'stockholm-co-fafaf0da5a71f82d'
+      nordicHack = true
+    } else if ((req.headers.host).includes('aalborgstadsarkiv.collectingsocialphoto.org')) {
+      subdomain = 'aalborg-city-ed1393df5c4099e5'
+      nordicHack = true
+    } else if ((req.headers.host).includes('valokuvamuseo.collectingsocialphoto.org')) {
+      subdomain = 'the-finnish--d7330c10c367d4fd'
+      nordicHack = true
+    } else if ((req.headers.host).includes('nordiskamuseet.collectingsocialphoto.org')) {
+      subdomain = 'nordic-museu-76ba77f9ebd5d275'
+      nordicHack = true
+    } else {
+      if (req.path === '/home') {
+        return
+      }
 
-    if (subdomain === 'www') {
-      redirect('/home')
+      if (subdomain === 'www') {
+        redirect('/home')
+      }
     }
 
     const payload = {
@@ -77,7 +93,11 @@ export const actions = {
       response.data.data.instance.languages = _.union(languages)
 
       if (process.env.NODE_ENV !== 'production') {
-        currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
+        if (nordicHack) {
+          currentHostname = `http://${req.headers.host}`
+        } else {
+          currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
+        }
       }
 
       commit('SET_INSTANCE', response.data.data.instance)
