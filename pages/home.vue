@@ -38,14 +38,10 @@ export default {
   },
   async asyncData (context) {
     const response = await context.app.$api.getPhotos({
-      instance: 'micah-walter-674bb737a19d3046',
       per_page: 100,
       archived: false
     })
-    let photos = response.data.data.photos
-    photos = photos.concat(response.data.data.photos)
-    photos = photos.concat(response.data.data.photos)
-    photos = photos.concat(response.data.data.photos)
+    const photos = response.data.data.photos
 
     return {
       photos
@@ -123,6 +119,9 @@ export default {
         per_page: 100
       })
       this.instances = response.data.data.instances
+      _.remove(this.instances, { id: 'micah-walter-674bb737a19d3046' })
+      _.remove(this.instances, { id: 'vanuatu-bc34e5b350e7e5ef' })
+      _.remove(this.instances, { id: 'funny-animal-565a66dd8aed5525' })
     }
   }
 }

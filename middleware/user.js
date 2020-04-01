@@ -7,8 +7,6 @@ export default async function ({ app, store, redirect }) {
       instance: store.state.instance.id
     }, process.env.SIGNATURE)
 
-    console.log(app.$auth.user.sub)
-
     if (response.data.data.person && response.data.data.person.suspended) {
       store.commit('SET_USER', null)
     }
