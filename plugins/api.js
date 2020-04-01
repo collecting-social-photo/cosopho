@@ -1,6 +1,6 @@
 const apiFactory = ($axios, app, store) => ({
 
-  async makeRequest (payload) {
+  async makeRequest (payload, session) {
     let defaultHostname = `https://www.collectingsocialphoto.com`
 
     if (process.env.NODE_ENV !== 'production') {
@@ -8,8 +8,16 @@ const apiFactory = ($axios, app, store) => ({
     }
 
     const hostname = store.state.hostname || defaultHostname
+    let path = `${hostname}/api`
+
+    if (session) {
+      path = `${hostname}/api?session=${session}`
+    } else if (store.state.user && store.state.user.sessionId) {
+      path = `${hostname}/api?session=${store.state.user.sessionId}`
+    }
+
     const response = await $axios.post(
-      `${hostname}/api`,
+      path,
       payload
     )
     return response
@@ -29,10 +37,10 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
-  getPersonDeleted (variables) {
+  getPersonAdmin (variables, session) {
     const payload = {
       query: `query person($id: String, $slug: String, $instance: String!) {
         person(id: $id, slug: $slug, instance: $instance) {
@@ -43,12 +51,13 @@ const apiFactory = ($axios, app, store) => ({
           avatar
           deleted
           suspended
+          sessionId
         }
       }`,
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, session)
   },
 
   getPersonFull (variables) {
@@ -75,28 +84,27 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
-  createPerson (variables) {
+  createPerson (variables, session) {
     const payload = {
-      query: `mutation ($id: String!, $instance: String!, $username: String!, $avatar: String!, $email: String, $raw: String!) {
-        createPerson(id: $id, instance: $instance, username: $username, avatar: $avatar, email: $email, raw: $raw) {
+      query: `mutation ($id: String!, $instance: String!, $username: String!, $avatar: String!, $raw: String!) {
+        createPerson(id: $id, instance: $instance, username: $username, avatar: $avatar, raw: $raw) {
           id
           name
           slug
           username
           avatar
-          email
         }
       }`,
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, session)
   },
 
-  updatePerson (variables) {
+  updatePerson (variables, session) {
     const payload = {
       query: `mutation ($id: String!, $instance: String!, $username: String, $avatar: String, $name: String, $gender: String, $facebook: String, $instagram: String, $twitter: String, $personalSite: String, $bio: String, $email: String, $dateOfBirth: String, $placeOfBirth: String, $deleted: Boolean) {
         updatePerson(id: $id, instance: $instance, username: $username, avatar: $avatar, name: $name, gender: $gender, facebook: $facebook, instagram: $instagram, twitter: $twitter, personalSite: $personalSite, bio: $bio, email: $email, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth, deleted: $deleted) {
@@ -111,7 +119,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, session)
   },
 
   getPhotos (variables) {
@@ -138,7 +146,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
   getPhoto (variables) {
@@ -182,7 +190,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
   getInstances (variables) {
@@ -198,7 +206,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
   getInitiatives (variables) {
@@ -227,7 +235,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
   getInitiative (variables) {
@@ -242,7 +250,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
   createPhoto (variables) {
@@ -298,7 +306,7 @@ const apiFactory = ($axios, app, store) => ({
       variables
     }
 
-    return this.makeRequest(payload)
+    return this.makeRequest(payload, false)
   },
 
   async deletePhoto (id) {

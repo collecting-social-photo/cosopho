@@ -2,14 +2,15 @@ export default async function ({ app, store, redirect }) {
   // set store user
   if (app.$auth.loggedIn && !store.state.user) {
     // first see if user exists
-    let response = await app.$api.getPersonDeleted({
+    let response = await app.$api.getPersonAdmin({
       id: app.$auth.user.sub,
       instance: store.state.instance.id
-    })
+    }, process.env.SIGNATURE)
+
+    console.log(app.$auth.user.sub)
 
     if (response.data.data.person && response.data.data.person.suspended) {
       store.commit('SET_USER', null)
-      return
     }
 
     if (response.data.data.person && response.data.data.person.deleted) {
@@ -17,20 +18,20 @@ export default async function ({ app, store, redirect }) {
       response = await app.$api.updatePerson({
         id: app.$auth.user.sub,
         instance: store.state.instance.id,
+        avatar: app.$auth.user.picture,
         deleted: false
-      })
+      }, process.env.SIGNATURE)
     } else
     if (!response.data.data.person) {
       console.log('New user! Creating.')
       response = await app.$api.createPerson({
         id: app.$auth.user.sub,
         instance: store.state.instance.id,
-        username: app.$auth.user.username,
+        username: app.$auth.user.username || app.$auth.user.name,
         avatar: app.$auth.user.picture,
-        email: app.$auth.user.email,
         name: app.$auth.user.name,
         raw: JSON.stringify(app.$auth.user)
-      })
+      }, process.env.SIGNATURE)
     }
 
     // store user

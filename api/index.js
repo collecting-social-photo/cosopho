@@ -13,12 +13,19 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
   const body = JSON.stringify(req.body)
+  const session = req.query.session
+  let apiToken = process.env.API_KEY
+
+  if (session) {
+    apiToken = `${process.env.API_KEY}-${session}`
+  }
+
   axios.post(
     process.env.API_ENDPOINT,
     body,
     {
       headers: {
-        'Authorization': `Bearer ${process.env.API_KEY}`,
+        'Authorization': `Bearer ${apiToken}`,
         'content-type': 'application/json'
       }
     }
