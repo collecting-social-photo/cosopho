@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 export default function ({ store, app }) {
+  axios.defaults.timeout = 10000
+
   if (!store.state.instance) {
     return
   }
@@ -37,6 +39,7 @@ export default function ({ store, app }) {
         }
       })
       app.i18n.setLocaleMessage(lang, translations)
+      console.log('i18n strings loaded')
       store.commit('SET_LANGUAGES_LOADED', true)
     })
   })
