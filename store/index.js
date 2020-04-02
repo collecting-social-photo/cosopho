@@ -24,7 +24,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit ({ commit }, { req, redirect }) {
-    let currentHostname = `https://www.collectingsocialphoto.org`
+    let currentHostname = `https://www.collectingsocialphoto.com`
     const subdomains = req.headers.host.split('.')
     let subdomain = null
     let nordicHack = false
