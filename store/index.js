@@ -40,6 +40,8 @@ export const actions = {
       subdomain = 'the-finnish--d7330c10c367d4fd'
     } else if ((req.headers.host).includes('nordiskamuseet.collectingsocialphoto.')) {
       subdomain = 'nordic-museu-76ba77f9ebd5d275'
+    } else if ((req.headers.host).includes('cosopho.collectingsocialphoto.')) {
+      subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
     }
 
     if (req.path === '/home') {

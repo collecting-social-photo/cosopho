@@ -42,13 +42,14 @@ const apiFactory = ($axios, app, store) => ({
 
   getPersonAdmin (variables, session) {
     const payload = {
-      query: `query person($id: String, $slug: String, $instance: String!) {
-        person(id: $id, slug: $slug, instance: $instance) {
+      query: `query person($id: String, $slug: String) {
+        person(id: $id, slug: $slug) {
           id
           name
           slug
           username
           avatar
+          instance
           deleted
           suspended
           sessionId
@@ -62,8 +63,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPersonFull (variables) {
     const payload = {
-      query: `query person($id: String, $slug: String, $instance: String!) {
-        person(id: $id, slug: $slug, instance: $instance, deleted: false, suspended: false) {
+      query: `query person($id: String, $slug: String) {
+        person(id: $id, slug: $slug, deleted: false, suspended: false) {
           id
           instance
           slug

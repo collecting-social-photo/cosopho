@@ -4,7 +4,6 @@ export default async function ({ app, store, redirect }) {
     // first see if user exists
     let response = await app.$api.getPersonAdmin({
       id: app.$auth.user.sub,
-      instance: store.state.instance.id
     }, process.env.SIGNATURE)
 
     if (response.data.data.person && response.data.data.person.suspended) {
@@ -15,7 +14,6 @@ export default async function ({ app, store, redirect }) {
       console.log('Deleted account found. Reactivating.')
       response = await app.$api.updatePerson({
         id: app.$auth.user.sub,
-        instance: store.state.instance.id,
         avatar: app.$auth.user.picture,
         deleted: false
       }, process.env.SIGNATURE)

@@ -101,6 +101,10 @@ export default {
         return 'nordiskamuseet'
       }
 
+      if (subdomain === 'connect-to-c-5f0ff3a2fc4cd1fe') {
+        return 'cosopho'
+      }
+
       return subdomain
     },
     toggleScroller () {
