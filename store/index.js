@@ -96,11 +96,6 @@ export const actions = {
         currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
       }
 
-      // TODO make this SSL when set up
-      if (nordicHack) {
-        currentHostname = `http://${req.headers.host}`
-      }
-
       commit('SET_INSTANCE', response.data.data.instance)
       commit('SET_HOSTNAME', currentHostname)
     }
