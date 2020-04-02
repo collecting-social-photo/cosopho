@@ -201,6 +201,7 @@ const apiFactory = ($axios, app, store) => ({
           title
           logo
           colour
+          defaultLanguage
         }
       }`,
       variables
