@@ -27,24 +27,19 @@ export const actions = {
     let currentHostname = `https://${req.headers.host}`
     const subdomains = req.headers.host.split('.')
     let subdomain = null
-    let nordicHack = false
     if (subdomains && subdomains.length) {
       subdomain = subdomains[0]
     }
 
     // TODO GROSS! Remove this once we have domains in the database
-    if ((req.headers.host).includes('stockholmslansmuseum.collectingsocialphoto.org')) {
+    if ((req.headers.host).includes('stockholmslansmuseum.collectingsocialphoto.')) {
       subdomain = 'stockholm-co-fafaf0da5a71f82d'
-      nordicHack = true
-    } else if ((req.headers.host).includes('aalborgstadsarkiv.collectingsocialphoto.org')) {
+    } else if ((req.headers.host).includes('aalborgstadsarkiv.collectingsocialphoto.')) {
       subdomain = 'aalborg-city-ed1393df5c4099e5'
-      nordicHack = true
-    } else if ((req.headers.host).includes('valokuvamuseo.collectingsocialphoto.org')) {
+    } else if ((req.headers.host).includes('valokuvamuseo.collectingsocialphoto.')) {
       subdomain = 'the-finnish--d7330c10c367d4fd'
-      nordicHack = true
-    } else if ((req.headers.host).includes('nordiskamuseet.collectingsocialphoto.org')) {
+    } else if ((req.headers.host).includes('nordiskamuseet.collectingsocialphoto.')) {
       subdomain = 'nordic-museu-76ba77f9ebd5d275'
-      nordicHack = true
     }
 
     if (req.path === '/home') {
