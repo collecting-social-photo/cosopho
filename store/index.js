@@ -93,11 +93,12 @@ export const actions = {
       response.data.data.instance.languages = _.union(languages)
 
       if (process.env.NODE_ENV !== 'production') {
-        if (nordicHack) {
-          currentHostname = `http://${req.headers.host}`
-        } else {
-          currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
-        }
+        currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
+      }
+
+      // TODO make this SSL when set up
+      if (nordicHack) {
+        currentHostname = `http://${req.headers.host}`
       }
 
       commit('SET_INSTANCE', response.data.data.instance)
