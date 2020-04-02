@@ -2,7 +2,7 @@
   <div>
     <div class="static-banner">
       <div v-for="instance in instances" :key="instance.id" :style="`background-color: #${instance.colour};`">
-        <a :href="`https://${instance.id}.collectingsocialphoto.com/${instance.defaultLanguage}`" target="_blank">
+        <a :href="`https://${replaceInstance(instance.id)}.collectingsocialphoto.com/${instance.defaultLanguage}`" target="_blank">
           {{ instance.title }}
         </a>
       </div>
@@ -84,6 +84,25 @@ export default {
     }
   },
   methods: {
+    replaceInstance (subdomain) {
+      if (subdomain === 'stockholm-co-fafaf0da5a71f82d') {
+        return 'stockholmslansmuseum'
+      }
+
+      if (subdomain === 'aalborg-city-ed1393df5c4099e5') {
+        return 'aalborgstadsarkiv'
+      }
+
+      if (subdomain === 'the-finnish--d7330c10c367d4fd') {
+        return 'valokuvamuseo'
+      }
+
+      if (subdomain === 'nordic-museu-76ba77f9ebd5d275') {
+        return 'nordiskamuseet'
+      }
+
+      return subdomain
+    },
     toggleScroller () {
       if (this.moving) {
         this.moving = false
