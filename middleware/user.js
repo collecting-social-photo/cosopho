@@ -35,7 +35,7 @@ export default async function ({ app, store, redirect }) {
       const person = response.data.data.person
       store.commit('SET_USER', person)
     } else {
-      console.log(`Not able to fetch user id: ${app.$auth.user.sub} for instance: ${store.state.instance.id}`, response.data.data)
+      console.log(`Not able to fetch user id: ${app.$auth.user.sub} for instance: ${store.state.instance.id}`, response.data)
       app.$auth.logout()
     }
   }

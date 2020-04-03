@@ -38,6 +38,13 @@ export default {
   },
   async asyncData (context) {
     const response = await context.app.$api.getPhotos({
+      instances: [
+        'stockholm-co-fafaf0da5a71f82d',
+        'aalborg-city-ed1393df5c4099e5',
+        'the-finnish--d7330c10c367d4fd',
+        'nordic-museu-76ba77f9ebd5d275',
+        'connect-to-c-5f0ff3a2fc4cd1fe'
+      ],
       per_page: 100,
       archived: false
     })
