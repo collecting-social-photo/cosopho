@@ -48,7 +48,7 @@ export const actions = {
       return
     }
 
-    if (subdomain === 'www' && req.path !== '/about-cosopho') {
+    if (subdomain === 'www' && !req.path.includes('about-cosopho')) {
       redirect('/home')
     }
 
