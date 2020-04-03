@@ -42,8 +42,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPersonAdmin (variables, session) {
     const payload = {
-      query: `query person($id: String, $slug: String) {
-        person(id: $id, slug: $slug) {
+      query: `query person($id: String, $instance: String!) {
+        person(id: $id, instance: $instance) {
           id
           name
           slug

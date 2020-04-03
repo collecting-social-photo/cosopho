@@ -258,7 +258,7 @@ export default {
           ISO: (photo.ISO && parseInt(photo.ISO)) || null,
           focalLength: (photo.focalLength && parseInt(photo.focalLength)) || null,
           license: photo.license || null,
-          approved: photo.approved || false,
+          approved: photo.approved || true,
           archived: photo.archived || false,
           data: JSON.stringify({
             public_id: photo.id,

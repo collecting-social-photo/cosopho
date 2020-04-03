@@ -66,8 +66,10 @@ export default {
       setTimeout(function () {
         let $items = $()
         _.forEach(vm.photos, function (photo) {
-          const pic = $(`<div class="grid-itemz"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
-          $items = $items.add(pic)
+          if (photo && photo.data && photo.data.public_id) {
+            const pic = $(`<div class="grid-itemz"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
+            $items = $items.add(pic)
+          }
         })
 
         vm.$grid.prepend($items).packery('prepended', $items)

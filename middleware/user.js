@@ -4,6 +4,7 @@ export default async function ({ app, store, redirect }) {
     // first see if user exists
     let response = await app.$api.getPersonAdmin({
       id: app.$auth.user.sub,
+      instance: store.state.instance.id
     }, process.env.SIGNATURE)
 
     if (response.data.data.person && response.data.data.person.suspended) {
@@ -25,14 +26,18 @@ export default async function ({ app, store, redirect }) {
         instance: store.state.instance.id,
         username: app.$auth.user.username || app.$auth.user.name,
         avatar: app.$auth.user.picture,
-        name: app.$auth.user.name,
         raw: JSON.stringify(app.$auth.user)
       }, process.env.SIGNATURE)
     }
 
     // store user
-    const person = response.data.data.person
-    store.commit('SET_USER', person)
+    if (response.data.data.person) {
+      const person = response.data.data.person
+      store.commit('SET_USER', person)
+    } else {
+      console.log(`Not able to fetch user id: ${app.$auth.user.sub} for instance: ${store.state.instance.id}`, response.data.data)
+      app.$auth.logout()
+    }
   }
 
   // clear store user
