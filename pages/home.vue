@@ -6,6 +6,9 @@
           {{ instance.title }}
         </a>
       </div>
+      <div v-if="instances" class="home-about">
+        <a href="/about-cosopho">Learn about Collecting Social Photo</a>
+      </div>
     </div>
     <div class="main-scroller-container">
       <div class="img-scroller-container">
@@ -186,5 +189,12 @@ export default {
   position: relative;
   display: flex;
   background-color: #000;
+}
+.home-about {
+  height: 100px;
+  background-color: #556271;
+  display: flex;
+  align-items: flex-end;
+  font-size: 14px;
 }
 </style>

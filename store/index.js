@@ -44,11 +44,11 @@ export const actions = {
       subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
     }
 
-    if (req.path === '/home') {
+    if (req.path === '/home' || req.path === '/about-cosopho') {
       return
     }
 
-    if (subdomain === 'www') {
+    if (subdomain === 'www' && req.path !== '/about-cosopho') {
       redirect('/home')
     }
 
