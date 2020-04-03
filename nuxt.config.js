@@ -110,6 +110,12 @@ module.exports = {
     }
   },
 
+  toast: {
+    position: 'top-center',
+    theme: 'toasted-primary',
+    duration: 5000
+  },
+
   i18n: {
     locales: ['en', 'sv', 'fi', 'bi', 'da'],
     lazy: true,

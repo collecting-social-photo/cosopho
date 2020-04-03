@@ -228,12 +228,12 @@ export default {
     deletePhoto (file, index) {
       const vm = this
       vm.$delete(vm.uploadedFiles, index)
-      vm.$api.deletePhoto(file.id)
+      vm.$api.deleteCloudPhoto(file.id)
     },
     cancelUpload () {
       const vm = this
       _.each(vm.uploadedFiles, function (file) {
-        vm.$api.deletePhoto(file.id)
+        vm.$api.deleteCloudPhoto(file.id)
       })
       vm.$router.push({ path: vm.localePath({ name: 'contribute' }), force: true })
     },
@@ -271,11 +271,7 @@ export default {
       })
 
       setTimeout(function () {
-        vm.$toast.success(vm.$t('Upload Success Page-Success subtitle'), {
-          theme: 'toasted-primary',
-          position: 'top-right',
-          duration: 5000
-        })
+        vm.$toast.success(vm.$t('Upload Success Page-Success subtitle'))
         vm.$router.push({ path: vm.localePath({ name: 'profiles-id', params: { id: vm.$store.state.user.slug } }), force: true })
       }, 1000)
     }

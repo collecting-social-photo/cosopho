@@ -56,6 +56,20 @@
       </div>
     </div>
 
+    <div v-if="isOwner">
+            <md-dialog-confirm
+              :md-active.sync="dialogActive"
+              @md-confirm="onDeleteConfirm"
+              md-title="Delete Photo"
+              md-content="Are you sure you want to delete this photo?"
+              md-confirm-text="Yes"
+              md-cancel-text="No"
+            />
+            <md-button @click="dialogActive = true" class="md-accent md-raised button-no-margin">
+              <md-icon>delete</md-icon> Delete Photo
+            </md-button>
+          </div>
+
     <div v-if="relatedPhotos && relatedPhotos.length">
       <h3>{{ $t('Individual Photo View-Related Photos') }}</h3>
       <div class="related-photos">
@@ -79,7 +93,9 @@ export default {
   data () {
     return {
       photo: null,
-      relatedPhotos: null
+      relatedPhotos: null,
+      dialogActive: false,
+      isOwner: false
     }
   },
   async asyncData (context) {
@@ -98,8 +114,29 @@ export default {
   },
   mounted () {
     this.getRelatedPhotos()
+    this.isOwner = this.$store.state.user && this.$store.state.user.slug === this.photo.person.slug
   },
   methods: {
+    onDeleteConfirm () {
+      this.deletePhoto()
+    },
+    async deletePhoto () {
+      const vm = this
+      if (vm.isOwner) {
+        const response = await vm.$api.deletePhoto({
+          id: vm.photo.id,
+          instance: vm.$store.state.instance.id
+        })
+
+        if (response.data.data.deletePhoto.success) {
+          vm.$api.deleteCloudPhoto(vm.photo.data && vm.photo.data.public_id)
+        }
+
+        this.$toast.success('Photo deleted')
+
+        vm.$router.push({ path: vm.localePath({ name: 'index' }), force: true })
+      }
+    },
     async getRelatedPhotos () {
       const vm = this
       const response = await vm.$api.getPhotos({

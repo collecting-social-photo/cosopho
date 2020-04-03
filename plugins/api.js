@@ -311,7 +311,21 @@ const apiFactory = ($axios, app, store) => ({
     return this.makeRequest(payload, false)
   },
 
-  async deletePhoto (id) {
+  deletePhoto (variables, session) {
+    const payload = {
+      query: `mutation ($id: String!, $instance: String!) {
+        deletePhoto(id: $id, instance: $instance) {
+          status
+          success
+        }
+      }`,
+      variables
+    }
+
+    return this.makeRequest(payload, session)
+  },
+
+  async deleteCloudPhoto (id) {
     const hostname = store.state.hostname
     const response = await $axios.delete(
       `${hostname}/cloudinary?id=${id}`
@@ -324,9 +338,9 @@ const apiFactory = ($axios, app, store) => ({
 export default ({ $axios, app, store }, inject) => {
   const api = apiFactory($axios, app, store)
 
-  // $axios.onError(error => {
-  //   app.$toast.error('There was an error loading this page. Please try again later.', { duration : 5000 })
-  // })
+  $axios.onError(() => {
+    app.$toast.error('There was an error loading this page. Please try again later.')
+  })
 
   inject('api', api)
 }

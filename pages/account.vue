@@ -220,11 +220,7 @@ export default {
         deleted: true
       })
       this.$auth.logout()
-      this.$toast.success('Account deleted', {
-        theme: 'toasted-primary',
-        position: 'top-right',
-        duration: 5000
-      })
+      this.$toast.success('Account deleted')
     },
     getValidationClass (fieldName) {
       const field = this.$v.form[fieldName]
@@ -255,11 +251,7 @@ export default {
       })
       this.sending = false
 
-      this.$toast.success('Changes saved!', {
-        theme: 'toasted-primary',
-        position: 'top-right',
-        duration: 5000
-      })
+      this.$toast.success('Changes saved!')
     },
     validateUser () {
       if (!this.$v.$invalid) {
