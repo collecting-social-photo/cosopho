@@ -45,7 +45,7 @@ module.exports = {
   plugins: [
     { src: './plugins/api.js' },
     { src: './plugins/i18n.js' },
-    { src: './plugins/observe-visibility.js' },
+    { src: './plugins/observe-visibility.js' }
   ],
 
   buildModules: [
