@@ -129,6 +129,7 @@ const apiFactory = ($axios, app, store) => ({
         photos(instance: $instance, instances: $instances, per_page: $per_page, page: $page, initiatives: $initiatives, peopleSlugs: $peopleSlugs, archived: $archived) {
           id
           title
+          instance
           data {
             height
             width

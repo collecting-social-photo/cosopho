@@ -57,18 +57,18 @@
     </div>
 
     <div v-if="isOwner">
-            <md-dialog-confirm
-              :md-active.sync="dialogActive"
-              @md-confirm="onDeleteConfirm"
-              md-title="Delete Photo"
-              md-content="Are you sure you want to delete this photo?"
-              md-confirm-text="Yes"
-              md-cancel-text="No"
-            />
-            <md-button @click="dialogActive = true" class="md-accent md-raised button-no-margin">
-              <md-icon>delete</md-icon> Delete Photo
-            </md-button>
-          </div>
+      <md-dialog-confirm
+        :md-active.sync="dialogActive"
+        @md-confirm="onDeleteConfirm"
+        md-title="Delete Photo"
+        md-content="Are you sure you want to delete this photo?"
+        md-confirm-text="Yes"
+        md-cancel-text="No"
+      />
+      <md-button @click="dialogActive = true" class="md-accent md-raised button-no-margin">
+        <md-icon>delete</md-icon> Delete Photo
+      </md-button>
+    </div>
 
     <div v-if="relatedPhotos && relatedPhotos.length">
       <h3>{{ $t('Individual Photo View-Related Photos') }}</h3>

@@ -3,7 +3,7 @@
     <div v-if="person">
       <div class="md-layout profile-top-container profile-about">
         <div class="md-layout-item md-size-10 md-small-size-20">
-          <img :src="person.avatar" class="big-avatar">
+          <img :src="person.avatar" class="big-avatar" onerror="this.src = '/avatar.svg';">
         </div>
         <div class="md-layout-item md-size-80 md-small-size-80">
           <div><span class="profile-name">{{ person.name || person.slug }}</span><span v-if="person.placeOfBirth" class="profile-place"> - {{ person.placeOfBirth }}</span></div>

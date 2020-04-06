@@ -17,6 +17,9 @@
         </div>
       </div>
     </div>
+    <md-dialog :md-active.sync="showModal" v-on:md-opened="openedModal" v-on:md-closed="closedModal">
+      <md-dialog-title>{{ photo && photo.title }}</md-dialog-title>
+    </md-dialog>
   </div>
 </template>
 
@@ -28,12 +31,14 @@ export default {
     return {
       instances: null,
       photos: null,
+      photo: {},
       ticker: null,
       moving: false,
       $grid: null,
       start: 400,
       startInit: 400,
       interval: 1,
+      showModal: false,
       scrollerStyle: {
         transform: 'translateX(-400px)'
       }
@@ -75,9 +80,9 @@ export default {
 
       setTimeout(function () {
         let $items = $()
-        _.forEach(vm.photos, function (photo) {
+        _.forEach(_.shuffle(vm.photos), function (photo) {
           if (photo && photo.data && photo.data.public_id) {
-            const pic = $(`<div class="grid-itemz"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
+            const pic = $(`<div class="grid-itemz" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
             $items = $items.add(pic)
           }
         })
@@ -90,12 +95,21 @@ export default {
       }, 1000)
 
       vm.$grid.on('click', '.grid-itemz', function (event) {
-        vm.$grid.packery('remove', event.currentTarget)
-        vm.$grid.packery('layout')
+        vm.photoSelected(event)
       })
     }
   },
   methods: {
+    photoSelected (event) {
+      this.$grid.packery('layout')
+      // vm.$grid.packery('remove', event.currentTarget)
+      const data = event.currentTarget.dataset
+      const id = data.id
+      const instance = data.instance
+      const url = `https://${this.replaceInstance(instance)}.collectingsocialphoto.com/en/explore/photo/${id}`
+      // vm.showModal = true
+      window.open(url, '_blank')
+    },
     replaceInstance (subdomain) {
       if (subdomain === 'stockholm-co-fafaf0da5a71f82d') {
         return 'stockholmslansmuseum'
@@ -119,6 +133,13 @@ export default {
 
       return subdomain
     },
+    closedModal () {
+      // this.toggleScroller()
+    },
+    openedModal () {
+      // this.toggleScroller()
+      // this.$grid.packery('layout')
+    },
     toggleScroller () {
       if (this.moving) {
         this.moving = false
@@ -128,6 +149,11 @@ export default {
         this.ticker = setInterval(() => {
           this.moving = true
           this.start += 0.05
+
+          if (this.start === 300) {
+            this.$grid.packery('layout')
+          }
+
           if (this.start > 1000) {
             this.start = this.startInit
           }
@@ -166,7 +192,7 @@ export default {
   left: 20px;
   bottom: 20px;
   font-size: 18px;
-  z-index: 100;
+  z-index: 4;
   width: 400px;
   color: white;
   -webkit-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.95);
