@@ -2,7 +2,7 @@
   <div>
     <div class="static-banner">
       <div v-for="instance in instances" :key="instance.id" :style="`background-color: #${instance.colour};`">
-        <a :href="`https://${replaceInstance(instance.id)}.collectingsocialphoto.com/${instance.defaultLanguage}`" target="_blank">
+        <a :href="`https://${replaceInstance(instance.id)}.collectingsocialphoto.org/${instance.defaultLanguage}`" target="_blank">
           {{ instance.title }}
         </a>
       </div>

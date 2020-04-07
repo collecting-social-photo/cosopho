@@ -64,7 +64,7 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-datepicker v-model="form.dateOfBirth">
-                  <label>Select date</label>
+                  <label>{{ $t('Account Page-Birth Date') }}</label>
                 </md-datepicker>
               </div>
 
