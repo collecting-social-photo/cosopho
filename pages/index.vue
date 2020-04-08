@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :style="photo && `background-image: url(https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg);`" class="intro">
+    <div :style="photo && `background-image: url(https://res.cloudinary.com/hftpxlihv/image/upload/w_1000,b_black,o_70/v1576673295/${photo.data.public_id}.jpg);`" class="intro">
       <div class="inner">
         <div class="container">
           <div class="intro-logo">
@@ -77,7 +77,15 @@ export default {
     })
     const initiatives = response.data.data.initiatives
     const initiative = initiatives && _.sample(initiatives)
-    const photo = initiative && initiative.photos && initiative.photos.length && _.sample(initiative.photos)
+
+    const photoResponse = await context.app.$api.getPhotos({
+      instance: context.app.store.state.instance.id,
+      homepage: true
+    })
+
+    const photos = photoResponse.data.data.photos
+
+    const photo = photos.length && _.sample(photos)
 
     return { photo, initiatives }
   }
