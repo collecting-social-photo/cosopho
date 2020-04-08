@@ -78,21 +78,7 @@ export default {
         stagger: 100
       })
 
-      setTimeout(function () {
-        let $items = $()
-        _.forEach(_.shuffle(vm.photos), function (photo) {
-          if (photo && photo.data && photo.data.public_id) {
-            const pic = $(`<div class="grid-itemz" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
-            $items = $items.add(pic)
-          }
-        })
-
-        vm.$grid.prepend($items).packery('prepended', $items)
-
-        setTimeout(function () {
-          vm.$grid.packery('layout')
-        }, 1000)
-      }, 1000)
+      vm.loadPhotos()
 
       vm.$grid.on('click', '.grid-itemz', function (event) {
         vm.photoSelected(event)
@@ -102,7 +88,6 @@ export default {
   methods: {
     photoSelected (event) {
       this.$grid.packery('layout')
-      // vm.$grid.packery('remove', event.currentTarget)
       const data = event.currentTarget.dataset
       const id = data.id
       const instance = data.instance
@@ -140,6 +125,31 @@ export default {
       // this.toggleScroller()
       // this.$grid.packery('layout')
     },
+    loadPhotos () {
+      const vm = this
+      setTimeout(function () {
+        let $items = $()
+        _.forEach(_.shuffle(vm.photos), function (photo) {
+          if (photo && photo.data && photo.data.public_id) {
+            const pic = $(`<div class="grid-itemz" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
+            $items = $items.add(pic)
+          }
+        })
+
+        vm.$grid.prepend($items).packery('prepended', $items)
+
+        setTimeout(function () {
+          vm.$grid.packery('layout')
+        }, 5000)
+      }, 1000)
+    },
+    removePhotos () {
+      const vm = this
+
+      $('.grid-itemz').each(function (i, obj) {
+        vm.$grid.packery('remove', obj)
+      })
+    },
     toggleScroller () {
       if (this.moving) {
         this.moving = false
@@ -150,12 +160,21 @@ export default {
           this.moving = true
           this.start += 0.05
 
-          if (this.start === 300) {
-            this.$grid.packery('layout')
-          }
+          // if (this.start === 100) {
+          //   this.$grid.packery('layout')
+          // }
 
           if (this.start > 1000) {
-            this.start = this.startInit
+            this.removePhotos()
+            this.moving = false
+            clearInterval(this.ticker)
+
+            setTimeout(() => {
+              this.start = this.startInit
+              console.log('load new pics')
+              this.loadPhotos()
+              this.toggleScroller()
+            }, 7000)
           }
           this.scrollerStyle.transform = `translateX(-${this.start}px)`
         }, this.interval)
