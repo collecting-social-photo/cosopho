@@ -2,10 +2,49 @@
   <div class="page-container">
     <div class="inner">
       <div class="container">
-        <h1>About Collecting Social Photo</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in ante metus dictum at. Eu feugiat pretium nibh ipsum consequat. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Duis convallis convallis tellus id. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Morbi tristique senectus et netus et malesuada fames ac turpis. Feugiat scelerisque varius morbi enim nunc faucibus a. Neque sodales ut etiam sit amet nisl purus in. Orci nulla pellentesque dignissim enim.</p>
-        <p>Euismod in pellentesque massa placerat. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Proin sagittis nisl rhoncus mattis. Fusce ut placerat orci nulla. Vulputate odio ut enim blandit volutpat. Cras sed felis eget velit aliquet sagittis id consectetur. Nulla at volutpat diam ut venenatis tellus in metus. Potenti nullam ac tortor vitae purus faucibus ornare. Egestas congue quisque egestas diam in arcu cursus euismod. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Diam in arcu cursus euismod quis viverra nibh. Mauris augue neque gravida in fermentum. Tincidunt tortor aliquam nulla facilisi cras fermentum. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>
-        <p>Magna fringilla urna porttitor rhoncus dolor purus non enim. Risus quis varius quam quisque id diam vel quam. Tincidunt ornare massa eget egestas purus viverra. Volutpat blandit aliquam etiam erat velit scelerisque in dictum. Ultrices tincidunt arcu non sodales neque sodales ut etiam sit. In massa tempor nec feugiat. Sit amet venenatis urna cursus eget. Interdum velit laoreet id donec ultrices. Quis vel eros donec ac odio tempor. Dolor purus non enim praesent elementum. Fusce id velit ut tortor pretium viverra. Mi sit amet mauris commodo quis imperdiet massa tincidunt nunc.</p>
+        <p><i class="fa fa-home" /> <a href="/home">Home</a></p>
+        <hr>
+
+        <h1>Collecting Social Photography</h1>
+
+        <p>Collecting Social Photography is a three year research project. The main goal is to develop new work practices  for collecting and disseminating the ephemeral everyday pictures in heritage institutions.</p>
+
+        <p>Contact: The project is hosted by Nordiska museet/Nordic Museum, contact: Kajsa Hartig, <a href="mailto:kajsa.hartig@nordiskamuseet.se">kajsa.hartig@nordiskamuseet.se</a></p>
+
+        <h2>Background</h2>
+
+        <p>In a social digital world, the role of photography has changed dramatically, something that is highly affecting how museums and archives work with photograph collections. Social media and the internet is where photographs are mainly found today. There are also large amounts of photographs saved  in mobile phones, that remain there and are never seen by anyone but the photographer him-/herself.</p>
+
+        <p>From being static and clearly delimited, regarded as scientific evidence, memories or art, the photograph has become social and often part of a dialogue, an ongoing online conversation. Photographs are no longer mainly created to preserve memories but to communicate what is now/in the present, and therefore they also become easily disposable.</p>
+
+        <p>How should museums and archives relate to the new role of photography, to the disposable mix of words and images and the large amount of data, the conversations, they are a part of? How should museums and archives avoid transforming the ephemeral to memories, where we risk losing the original meaning of the photograph in the daily communication. How can images in heritage collections be disseminated in a proper way to tell the story of contemporary photographs? Museum and archival collections are no longer controllable, defined physical units. They are boundless and interact with people and other objects. What does this mean for the future care of photographic collections?</p>
+
+        <p>The advantage of working in a Nordic setting, in this project, will enable valuable comparison of user relations, culture of sharing, trust in the institutions and existing methods of collecting and caring for digitally born photographs.</p>
+
+        <h2>Project team</h2>
+
+        <div>Kajsa Hartig, The Nordic Museum (Sweden)/Head of collections, Västernorlanns Museum, project manager of the Collecting Social Museum project, <a href="http://www.twitter.com/kajsahartig" target="_blank">@kajsahartig</a></div>
+        <div>Elisabeth Boogh, Stockholm County Museum (Sweden)</div>
+        <div>Anni Wallenius, Finnish Museum of Photography (Finland)</div>
+        <div>Bente Jensen, Aalborg City Archives (Denmark).</div>
+
+        <p>Research partners are <a href="http://www.socant.su.se/english/research/our-researchers/paula-uimonen" target="_blank">Associate Professor Paula Uimonen</a>, Department of Social Anthropology, and <a href="https://www.su.se/english/profiles/naslu-1.184049" target="_blank">Professor Anna Dahlgren</a>, Department of Art History, Stockholm University. In 2017 Professor Helena Wulff and Ph.D. Lisa Ehlin were also performing research for the project.</p>
+
+        <p>Ph.D. student Arran Rees,Centre for Critical Studies in Museums, Galleries and Heritage, University of Leeds, is collaborating with the project.</p>
+
+        <h2>Case studies</h2>
+
+        <p>During the project period we will launch pilot projects that will serve as case studies for our research. During the pilot phase, we are testing different methods of collecting. The goal is to find methods for museums and archives to collect digital images from social media, and to develop comprehensive recommendations for collecting and dissemination of photograph collections.</p>
+
+        <p>Another aspect of the project is to develop work practices around audience engagement, in terms of including and involving more people in the creation of our public cultural heritage. The aim is to explore methods for participation around, and co-creating of, photograph collections.</p>
+
+        <p>A central part of the project is to develop prototype interfaces for collecting social digital photography online. we will also look into new ways of disseminating, most likely challenging traditional ways of presenting photograph collections online.</p>
+
+        <p>The result of the project will be, in addition to cultural institutions gaining knowledge and recommendations on the collecting and disseminating of social digital photography, a series of seminars, a larger conference, an anthology and a report.</p>
+
+        <p>SAVE THE DATE The conference finishing the project will be March 19. – 20. 2020 at Nordiska Museet in Stockholm. The anthology that presents the results of the Collecting Social Photography project will be launched at the conference.</p>
+
+        <hr>
       </div>
     </div>
   </div>
@@ -19,11 +58,15 @@ export default {
 </script>
 
 <style lang="scss">
-body {
+.page-container {
   background-color: #556271;
   color: #fff;
-  h1 {
-    color: #fff;
+  h1, h2 {
+    color: #fff !important;
+  }
+  a, a:hover {
+    color: #fff !important;
+    text-decoration: underline;
   }
 }
 </style>
