@@ -30,6 +30,6 @@ $ npm install
 # serve with hot reload at http://<INSTANCE-ID>.cosopho.com:3000
 $ npm run dev
 
-# build for production and launch server.
+# build for production and launch server
 $ npm run build
 $ npm run start
