@@ -156,7 +156,11 @@ export default {
   head () {
     const vm = this
     return {
-      title: `${vm.photo && vm.photo.title} - Collecting Social Photo`
+      title: `${vm.photo && vm.photo.title} - Collecting Social Photo`,
+      meta: [
+        { hid: 'title', title: `${vm.photo && vm.photo.title}` },
+        { hid: 'description', description: `${vm.photo && vm.photo.story}` }
+      ]
     }
   }
 }

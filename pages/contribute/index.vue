@@ -42,6 +42,11 @@ export default {
     goToUpload () {
       this.$router.push(this.localePath({ name: 'contribute-id', params: { id: this.selectedInitiative } }))
     }
+  },
+  head () {
+    return {
+      title: 'Contribute - Collecting Social Photo'
+    }
   }
 }
 </script>

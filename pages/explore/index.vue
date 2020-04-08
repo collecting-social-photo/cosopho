@@ -85,6 +85,11 @@ export default {
       vm.spinnerClass = 'spinner-hide'
       vm.photos = vm.photos.concat(response.data.data.photos)
     }
+  },
+  head () {
+    return {
+      title: 'Explore - Collecting Social Photo'
+    }
   }
 }
 </script>
