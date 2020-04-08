@@ -125,8 +125,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getPhotos (variables) {
     const payload = {
-      query: `query photos($instance: String, $instances: [String], $per_page: Int, $page: Int, $initiatives: [String], $peopleSlugs: [String], $archived: Boolean) {
-        photos(instance: $instance, instances: $instances, per_page: $per_page, page: $page, initiatives: $initiatives, peopleSlugs: $peopleSlugs, archived: $archived) {
+      query: `query photos($instance: String, $instances: [String], $per_page: Int, $page: Int, $initiatives: [String], $peopleSlugs: [String], $archived: Boolean, $approved: Boolean) {
+        photos(instance: $instance, instances: $instances, per_page: $per_page, page: $page, initiatives: $initiatives, peopleSlugs: $peopleSlugs, archived: $archived, approved: $approved) {
           id
           title
           instance
@@ -214,8 +214,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getInitiatives (variables) {
     const payload = {
-      query: `query initiatives($instance: String!, $per_page: Int, $isFeatured: Boolean, $photos_archived: Boolean, $isActive: Boolean) {
-        initiatives(instance: $instance, per_page: $per_page, isFeatured: $isFeatured, photos_archived: $photos_archived, isActive: $isActive) {
+      query: `query initiatives($instance: String!, $per_page: Int, $isFeatured: Boolean, $photos_archived: Boolean, $isActive: Boolean, $photos_approved: Boolean) {
+        initiatives(instance: $instance, per_page: $per_page, isFeatured: $isFeatured, photos_archived: $photos_archived, isActive: $isActive, photos_approved: $photos_approved) {
           id
           slug
           title
@@ -243,8 +243,8 @@ const apiFactory = ($axios, app, store) => ({
 
   getInitiative (variables) {
     const payload = {
-      query: `query initiative($instance: String!, $slug: String) {
-        initiative(instance: $instance, slug: $slug) {
+      query: `query initiative($instance: String!, $slug: String, $photos_approved: Boolean) {
+        initiative(instance: $instance, slug: $slug, photos_approved: $photos_approved) {
           id
           slug
           title

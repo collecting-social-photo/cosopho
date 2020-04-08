@@ -49,6 +49,7 @@ export default {
     const response = await context.app.$api.getPhotos({
       instance: context.app.store.state.instance.id,
       archived: false,
+      approved: true,
       per_page: 9
     })
     const photos = response.data.data.photos
@@ -77,6 +78,7 @@ export default {
       const response = await vm.$api.getPhotos({
         instance: vm.$store.state.instance.id,
         archived: false,
+        approved: true,
         per_page: vm.perPage,
         page: vm.page
       })

@@ -46,6 +46,7 @@ export default {
   async asyncData (context) {
     const response = await context.app.$api.getInitiative({
       instance: context.app.store.state.instance.id,
+      photos_approved: true,
       slug: context.params.id
     })
     const initiative = response.data.data.initiative
@@ -75,6 +76,7 @@ export default {
         instance: vm.$store.state.instance.id,
         initiatives: vm.initiative.slug,
         archived: false,
+        approved: true,
         per_page: vm.perPage,
         page: vm.page
       })

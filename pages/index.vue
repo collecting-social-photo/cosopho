@@ -71,6 +71,7 @@ export default {
       instance: context.app.store.state.instance.id,
       isFeatured: true,
       isActive: true,
+      photos_approved: true,
       photos_archived: false,
       per_page: 1
     })

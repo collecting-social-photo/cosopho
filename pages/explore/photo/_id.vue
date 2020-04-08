@@ -114,7 +114,7 @@ export default {
   },
   mounted () {
     this.getRelatedPhotos()
-    this.isOwner = this.$store.state.user && this.$store.state.user.slug === this.photo.person.slug
+    this.isOwner = (this.$store.state.user && this.$store.state.user.slug) === (this.photo.person && this.photo.person.slug)
   },
   methods: {
     onDeleteConfirm () {
@@ -142,6 +142,7 @@ export default {
       const response = await vm.$api.getPhotos({
         instance: vm.$store.state.instance.id,
         archived: false,
+        approved: true,
         initiatives: vm.photo.initiative,
         per_page: 20
       })

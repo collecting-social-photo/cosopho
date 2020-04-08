@@ -140,6 +140,7 @@ export default {
         peopleSlugs: vm.person.slug,
         per_page: vm.perPage,
         archived,
+        approved: true,
         page: vm.page
       })
       vm.spinnerClass = 'spinner-hide'

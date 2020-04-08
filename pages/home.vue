@@ -54,6 +54,7 @@ export default {
         'connect-to-c-5f0ff3a2fc4cd1fe'
       ],
       per_page: 100,
+      approved: true,
       archived: false
     })
     const photos = response.data.data.photos
