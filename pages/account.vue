@@ -46,7 +46,6 @@
                 <md-field>
                   <label for="gender">{{ $t('Account Page-Gender') }}</label>
                   <md-select id="gender" v-model="form.gender" :disabled="sending" name="gender" md-dense>
-                    <md-option />
                     <md-option value="female">
                       {{ $t('Account Page-Male') }}
                     </md-option>
@@ -69,9 +68,11 @@
               </div>
 
               <div class="md-layout-item md-small-size-100">
-                <md-field>
+                <md-field :class="getValidationClass('placeOfBirth')">
                   <label for="placeOfBirth">{{ $t('Account Page-Birth Place') }}</label>
                   <md-input id="placeOfBirth" v-model="form.placeOfBirth" :disabled="sending" name="placeOfBirth" />
+                  <span v-if="!$v.form.placeOfBirth.required" class="md-error">Location is required</span>
+                  <span v-else-if="!$v.form.placeOfBirth.minlength" class="md-error">Location is too short</span>
                 </md-field>
               </div>
             </div>
@@ -161,11 +162,10 @@ export default {
   data: () => ({
     form: {
       name: null,
-      gender: null,
       email: null,
       username: null,
-      place_of_birth: null,
-      dob: null
+      placeOfBirth: null,
+      dateOfBirth: null
     },
     person: null,
     sending: false,
@@ -184,11 +184,18 @@ export default {
       email: {
         required,
         email
+      },
+      placeOfBirth: {
+        required,
+        minLength: minLength(3)
+      },
+      dateOfBirth: {
+        required
       }
     }
   },
   async asyncData (context) {
-    const response = await context.app.$api.getPersonFull({
+    const response = await context.app.$api.getPerson({
       instance: context.app.store.state.instance.id,
       id: context.app.store.state.user.id
     })
@@ -199,7 +206,7 @@ export default {
   mounted () {
     this.form.name = this.person.name
     this.form.username = this.person.username
-    this.form.gender = this.person.gender
+    this.form.gender = this.person.gender || null
     this.form.email = this.person.email
     this.form.placeOfBirth = this.person.placeOfBirth
     this.form.dateOfBirth = this.person.dateOfBirth && this.person.dateOfBirth.split('T')[0]
@@ -234,7 +241,7 @@ export default {
     async saveUser () {
       this.sending = true
 
-      await this.$api.updatePerson({
+      const payload = {
         id: this.person.id,
         instance: this.$store.state.instance.id,
         username: this.form.username,
@@ -248,8 +255,12 @@ export default {
         email: this.form.email,
         dateOfBirth: this.form.dateOfBirth,
         placeOfBirth: this.form.placeOfBirth
-      })
+      }
+
+      const response = await this.$api.updatePerson(payload)
       this.sending = false
+
+      this.$store.commit('SET_USER', response.data.data.updatePerson)
 
       this.$toast.success('Changes saved!')
     },

@@ -10,6 +10,11 @@
         {{ $t('Contribute Process-Start Button') }}
       </md-button>
     </div>
+    <div v-if="!allowUpload">
+      <md-icon>notification_important</md-icon> Please <nuxt-link :to="localePath('account')">
+        complete your profile
+      </nuxt-link> before uploading photos.
+    </div>
   </div>
 </template>
 
@@ -19,12 +24,13 @@ export default {
   data () {
     return {
       initiatives: null,
-      selectedInitiative: null
+      selectedInitiative: null,
+      allowUpload: false
     }
   },
   computed: {
     disabled () {
-      return !this.selectedInitiative
+      return !this.selectedInitiative || !this.allowUpload
     }
   },
   async asyncData (context) {
@@ -37,6 +43,11 @@ export default {
     const initiatives = response.data.data.initiatives
 
     return { initiatives }
+  },
+  mounted () {
+    if (this.$utils.profileIsReady()) {
+      this.allowUpload = true
+    }
   },
   methods: {
     goToUpload () {

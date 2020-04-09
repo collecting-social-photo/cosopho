@@ -96,7 +96,7 @@ export default {
     }
   },
   async asyncData (context) {
-    const response = await context.app.$api.getPersonFull({
+    const response = await context.app.$api.getPerson({
       slug: context.params.id,
       instance: context.store.state.instance.id
     })

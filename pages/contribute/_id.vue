@@ -184,6 +184,11 @@ export default {
     if (!context.params.id) {
       return context.redirect(context.app.localePath({ name: 'contribute' }))
     }
+
+    if (!context.app.$utils.profileIsReady()) {
+      return context.redirect(context.app.localePath({ name: 'contribute' }))
+    }
+
     return { selectedInitiative: context.params.id }
   },
   mounted () {

@@ -23,36 +23,25 @@ const apiFactory = ($axios, app, store) => ({
     return response
   },
 
-  getPerson (variables) {
-    const payload = {
-      query: `query person($id: String, $slug: String, $instance: String!) {
-        person(id: $id, slug: $slug, instance: $instance, deleted: false, suspended: false) {
-          id
-          name
-          slug
-          username
-          avatar
-        }
-      }`,
-      variables
-    }
-
-    return this.makeRequest(payload, false)
-  },
-
   getPersonAdmin (variables, session) {
     const payload = {
       query: `query person($id: String, $instance: String!) {
         person(id: $id, instance: $instance) {
           id
-          name
+          instance
           slug
           username
           avatar
-          instance
-          deleted
-          suspended
-          sessionId
+          name
+          gender
+          facebook
+          instagram
+          twitter
+          personalSite
+          bio
+          email
+          dateOfBirth
+          placeOfBirth
         }
       }`,
       variables
@@ -61,10 +50,10 @@ const apiFactory = ($axios, app, store) => ({
     return this.makeRequest(payload, session)
   },
 
-  getPersonFull (variables) {
+  getPerson (variables) {
     const payload = {
-      query: `query person($id: String, $slug: String) {
-        person(id: $id, slug: $slug, deleted: false, suspended: false) {
+      query: `query person($instance: String, $id: String, $slug: String) {
+        person(instance: $instance, id: $id, slug: $slug, deleted: false, suspended: false) {
           id
           instance
           slug
@@ -110,11 +99,20 @@ const apiFactory = ($axios, app, store) => ({
       query: `mutation ($id: String!, $instance: String!, $username: String, $avatar: String, $name: String, $gender: String, $facebook: String, $instagram: String, $twitter: String, $personalSite: String, $bio: String, $email: String, $dateOfBirth: String, $placeOfBirth: String, $deleted: Boolean) {
         updatePerson(id: $id, instance: $instance, username: $username, avatar: $avatar, name: $name, gender: $gender, facebook: $facebook, instagram: $instagram, twitter: $twitter, personalSite: $personalSite, bio: $bio, email: $email, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth, deleted: $deleted) {
           id
-          name
+          instance
           slug
           username
           avatar
+          name
+          gender
+          facebook
+          instagram
+          twitter
+          personalSite
+          bio
           email
+          dateOfBirth
+          placeOfBirth
         }
       }`,
       variables
