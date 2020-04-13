@@ -342,9 +342,9 @@ const apiFactory = ($axios, app, store) => ({
 export default ({ $axios, app, store }, inject) => {
   const api = apiFactory($axios, app, store)
 
-  $axios.onError(error => {
+  $axios.onError((error) => {
     // app.$toast.error('There was an error loading this page. Please try again later.')
-    console.log(error)
+    console.log('API Error:', error.response.data)
   })
 
   inject('api', api)

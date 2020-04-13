@@ -1,6 +1,5 @@
 <template>
-  <div class="container center">
-    <h1>Signing in...</h1>
+  <div class="container center spinner-container">
     <div class="spinner objects-spinner">
       <div class="dot-flashing" />
     </div>

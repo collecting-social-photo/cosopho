@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <div>
+    <div v-if="$store.state.languagesLoaded">
       <component :is="'style'">
         :root {
         --md-theme-default-primary: #{{ color }} !important;
@@ -90,6 +90,11 @@
           <nuxt />
         </md-app-content>
       </md-app>
+    </div>
+    <div v-else class="container center spinner-container">
+      <div class="spinner objects-spinner">
+        <div class="dot-flashing" />
+      </div>
     </div>
   </div>
 </template>
