@@ -42,6 +42,7 @@ const apiFactory = ($axios, app, store) => ({
           email
           dateOfBirth
           placeOfBirth
+          sessionId
         }
       }`,
       variables
@@ -69,6 +70,7 @@ const apiFactory = ($axios, app, store) => ({
           email
           dateOfBirth
           placeOfBirth
+          sessionId
         }
       }`,
       variables
@@ -86,6 +88,7 @@ const apiFactory = ($axios, app, store) => ({
           slug
           username
           avatar
+          sessionId
         }
       }`,
       variables
@@ -113,6 +116,7 @@ const apiFactory = ($axios, app, store) => ({
           email
           dateOfBirth
           placeOfBirth
+          sessionId
         }
       }`,
       variables
