@@ -20,8 +20,8 @@ app.post('/', function (req, res) {
     apiToken = `${process.env.API_KEY}-${session}`
   }
 
-  // TODO remove this once API issues are fixed
-  apiToken = `${process.env.API_KEY}-${process.env.SIGNATURE}`
+  // GOD mode override
+  // apiToken = `${process.env.API_KEY}-${process.env.SIGNATURE}`
 
   axios.post(
     process.env.API_ENDPOINT,

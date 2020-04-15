@@ -7,7 +7,9 @@
         </a>
       </div>
       <div v-if="instances" class="home-about">
-        <a href="/about-cosopho">Learn about Collecting Social Photo</a>
+        <nuxt-link :to="localePath('about-cosopho')">
+          Learn about Collecting Social Photo
+        </nuxt-link>
       </div>
     </div>
     <div class="main-scroller-container">
@@ -25,7 +27,6 @@
 
 <script>
 export default {
-  nuxtI18n: false,
   layout: 'home',
   data () {
     return {
@@ -57,7 +58,8 @@ export default {
       approved: true,
       archived: false
     })
-    const photos = response.data.data.photos
+    let photos = response.data.data.photos
+    photos = photos.concat(photos)
 
     return {
       photos
@@ -85,6 +87,9 @@ export default {
         vm.photoSelected(event)
       })
     }
+  },
+  beforeDestroy () {
+    this.toggleScroller()
   },
   methods: {
     photoSelected (event) {

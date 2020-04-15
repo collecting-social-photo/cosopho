@@ -44,12 +44,16 @@ export const actions = {
       subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
     }
 
-    if (req.url === '/home' || req.urk === '/about-cosopho') {
-      return
+    // if (req.url.includes('/home') || req.url.includes('/about-cosopho')) {
+    //   return
+    // }
+
+    if (subdomain === 'www' && !req.url.includes('/about-cosopho')) {
+      redirect('/en/home')
     }
 
-    if (subdomain === 'www' && req.url !== '/about-cosopho') {
-      redirect('/home')
+    if (subdomain === 'www') {
+      subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
     }
 
     const payload = {
