@@ -226,6 +226,7 @@ const apiFactory = ($axios, app, store) => ({
           id
           slug
           title
+          description
           photos {
             id
             data {
@@ -255,6 +256,7 @@ const apiFactory = ($axios, app, store) => ({
           id
           slug
           title
+          description
         }
       }`,
       variables

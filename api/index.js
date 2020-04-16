@@ -21,7 +21,7 @@ app.post('/', function (req, res) {
   }
 
   // GOD mode override
-  // apiToken = `${process.env.API_KEY}-${process.env.SIGNATURE}`
+  apiToken = `${process.env.API_KEY}-${process.env.SIGNATURE}`
 
   axios.post(
     process.env.API_ENDPOINT,

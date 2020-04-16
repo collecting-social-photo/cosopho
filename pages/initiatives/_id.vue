@@ -2,6 +2,8 @@
   <div v-if="initiative" class="container">
     <h1>{{ initiative.title }}</h1>
 
+    <p>{{ initiative.description }}</p>
+
     <div v-if="photos.length">
       <div class="grid">
         <div v-for="photo in photos" :key="photo.id" class="grid-item">
