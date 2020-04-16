@@ -58,8 +58,7 @@ export default {
       approved: true,
       archived: false
     })
-    let photos = response.data.data.photos
-    photos = photos.concat(photos)
+    const photos = response.data.data.photos
 
     return {
       photos
@@ -143,10 +142,11 @@ export default {
         })
 
         vm.$grid.prepend($items).packery('prepended', $items)
+        vm.$grid.packery('layout')
 
         setTimeout(function () {
           vm.$grid.packery('layout')
-        }, 5000)
+        }, 1000)
       }, 1000)
     },
     removePhotos () {
