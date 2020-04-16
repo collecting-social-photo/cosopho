@@ -466,3 +466,13 @@ $flash-color: #cccccc;
   align-items: center;
   justify-content: center;
 }
+
+.required {
+  color: red;
+}
+
+.required-legend {
+  display: flex;
+  align-items: center;
+  color: $grey;
+}

@@ -8,7 +8,7 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('name')">
-                  <label for="name">{{ $t('Account Page-Name') }}</label>
+                  <label for="name">{{ $t('Account Page-Name') }} <span class="required">*</span></label>
                   <md-input id="name" v-model="form.name" :disabled="sending" name="name" />
                   <span v-if="!$v.form.name.required" class="md-error">Name is required</span>
                   <span v-else-if="!$v.form.name.minlength" class="md-error">Name is too short</span>
@@ -17,7 +17,7 @@
 
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('email')">
-                  <label for="email">{{ $t('Account Page-Email') }}</label>
+                  <label for="email">{{ $t('Account Page-Email') }} <span class="required">*</span></label>
                   <md-input
                     id="email"
                     v-model="form.email"
@@ -35,7 +35,7 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('username')">
-                  <label for="username">{{ $t('Account Page-Username') }}</label>
+                  <label for="username">{{ $t('Account Page-Username') }} <span class="required">*</span></label>
                   <md-input id="username" v-model="form.username" :disabled="sending" name="username" />
                   <span v-if="!$v.form.username.required" class="md-error">Username is required</span>
                   <span v-else-if="!$v.form.username.minlength" class="md-error">Username is too short</span>
@@ -44,7 +44,7 @@
 
               <div class="md-layout-item md-small-size-100">
                 <md-field>
-                  <label for="gender">{{ $t('Account Page-Gender') }}</label>
+                  <label for="gender">{{ $t('Account Page-Gender') }} <span class="required">*</span></label>
                   <md-select id="gender" v-model="form.gender" :disabled="sending" name="gender" md-dense>
                     <md-option value="female">
                       {{ $t('Account Page-Male') }}
@@ -63,13 +63,13 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-datepicker v-model="form.dateOfBirth">
-                  <label>{{ $t('Account Page-Birth Date') }}</label>
+                  <label>{{ $t('Account Page-Birth Date') }} <span class="required">*</span></label>
                 </md-datepicker>
               </div>
 
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('placeOfBirth')">
-                  <label for="placeOfBirth">{{ $t('Account Page-Birth Place') }}</label>
+                  <label for="placeOfBirth">{{ $t('Account Page-Birth Place') }} <span class="required">*</span></label>
                   <md-input id="placeOfBirth" v-model="form.placeOfBirth" :disabled="sending" name="placeOfBirth" />
                   <span v-if="!$v.form.placeOfBirth.required" class="md-error">Location is required</span>
                   <span v-else-if="!$v.form.placeOfBirth.minlength" class="md-error">Location is too short</span>
@@ -117,17 +117,24 @@
                 </md-field>
               </div>
             </div>
-          </md-card-content>
 
-          <md-card-actions>
-            <span v-if="sending" class="saving">Saving...</span>
-            <md-button :disabled="sending || $v.$invalid" type="submit" class="md-raised md-primary">
-              {{ $t('Account Page-Save Button') }}
-            </md-button>
-            <md-button :to="localePath('index')" class="md-primary">
-              Cancel
-            </md-button>
-          </md-card-actions>
+            <div class="md-layout md-gutter">
+              <div class="md-layout-item md-small-size-100 required-legend">
+                <span class="required">*</span>=Required field
+              </div>
+              <div class="md-layout-item md-small-size-100">
+                <md-card-actions>
+                  <span v-if="sending" class="saving">Saving...</span>
+                  <md-button :disabled="sending || $v.$invalid" type="submit" class="md-raised md-primary">
+                    {{ $t('Account Page-Save Button') }}
+                  </md-button>
+                  <md-button :to="localePath('index')" class="md-primary">
+                    Cancel
+                  </md-button>
+                </md-card-actions>
+              </div>
+            </div>
+          </md-card-content>
         </md-card>
       </form>
     </div>
