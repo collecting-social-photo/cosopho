@@ -80,6 +80,8 @@
                 <md-input v-model="file.focallength" type="number" name="focallength" />
               </md-field>
 
+              <h3>{{ $t('Contribute Process-Location') }}</h3>
+
               <md-field>
                 <label for="location">{{ $t('Contribute Process-Location') }}</label>
                 <md-input v-model="file.location" name="location" />
