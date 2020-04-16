@@ -33,8 +33,9 @@
             </div>
             <div class="md-layout-item md-size-70">
               <md-field>
-                <label for="title">{{ $t('Contribute Process-Short Description') }}</label>
-                <md-input id="title" v-model="file.title" name="title" />
+                <label for="title">{{ $t('Contribute Process-Short Description') }} <span class="required">*</span></label>
+                <md-input id="title" v-model="file.title" @input="checkValidate()" name="title" />
+                <span v-if="!file.title || (file.title && file.title.length < 3)" class="md-helper-text">Field is required</span>
               </md-field>
 
               <md-field>
@@ -142,12 +143,14 @@
                 </md-checkbox>
 
                 <p>{{ $t('Contribute Process 2-Archived Note') }}</p>
+
+                <p><span class="required">*</span>=Required field</p>
               </div>
             </div>
           </div>
         </md-card-content>
       </md-card>
-      <md-button @click="savePhotos()" class="md-raised md-primary">
+      <md-button :disabled="!formValid" @click="savePhotos()" class="md-raised md-primary">
         {{ $t('Account Page-Save Button') }}
       </md-button>
       <md-button @click="cancelUpload()" class="md-primary">
@@ -172,6 +175,7 @@ export default {
     return {
       selectedInitiative: null,
       uploadedFiles: [],
+      formValid: false,
       photosReady: false,
       options: {
         url: `${this.$store.state.hostname}/cloudinary`,
@@ -204,6 +208,16 @@ export default {
     })
   },
   methods: {
+    checkValidate () {
+      _.each(this.uploadedFiles, (photo) => {
+        if (!photo.title || (photo.title && photo.title.length < 3)) {
+          this.formValid = false
+          return false
+        } else {
+          this.formValid = true
+        }
+      })
+    },
     comp () {
       this.photosReady = true
     },
@@ -214,6 +228,7 @@ export default {
         vm.uploadedFiles.push(
           {
             id: response.public_id,
+            title: null,
             dataURL: file.dataURL,
             secureUrl: response.secure_url,
             filename: file.upload.filename,
