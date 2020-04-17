@@ -39,8 +39,9 @@
               </md-field>
 
               <md-field>
-                <label for="something">{{ $t('Contribute Process-Description') }}</label>
-                <md-textarea v-model="file.story" />
+                <label for="something">{{ $t('Contribute Process-Description') }} <span class="required">*</span></label>
+                <md-textarea v-model="file.story" @input="checkValidate()" name="story" />
+                <span v-if="!file.story || (file.story && file.story.length < 3)" class="md-helper-text">Field is required</span>
               </md-field>
 
               <md-field>
@@ -210,7 +211,7 @@ export default {
   methods: {
     checkValidate () {
       _.each(this.uploadedFiles, (photo) => {
-        if (!photo.title || (photo.title && photo.title.length < 3)) {
+        if ((!photo.title || (photo.title && photo.title.length < 3)) || (!photo.story || (photo.story && photo.story.length < 3))) {
           this.formValid = false
           return false
         } else {
