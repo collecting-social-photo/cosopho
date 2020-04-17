@@ -476,3 +476,12 @@ $flash-color: #cccccc;
   align-items: center;
   color: $grey;
 }
+
+.delete-button-container {
+  display: flex;
+  align-items: center;
+  .delete-message {
+    margin-left: 15px;
+    font-style: italic;
+  }
+}

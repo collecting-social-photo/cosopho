@@ -29,7 +29,7 @@
             <i class="tiny material-icons">location_on</i> {{ photo.location }}
           </div>
           <div v-if="photo.date" class="photo-detail-item">
-            <i class="tiny material-icons">date_range</i> {{ $moment(photo.date).format('MMMM Do, YYYY') }}
+            <i class="tiny material-icons">date_range</i> {{ $moment.utc(photo.date).format('MMMM Do, YYYY') }}
           </div>
           <div v-if="photo.license" class="photo-detail-item">
             <i class="tiny material-icons">copyright</i> {{ photo.license }}
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div v-if="isOwner">
+    <div v-if="isOwner && !photoExpired">
       <md-dialog-confirm
         :md-active.sync="dialogActive"
         @md-confirm="onDeleteConfirm"
@@ -65,9 +65,16 @@
         md-confirm-text="Yes"
         md-cancel-text="No"
       />
-      <md-button @click="dialogActive = true" class="md-accent md-raised button-no-margin">
-        <md-icon>delete</md-icon> Delete Photo
-      </md-button>
+      <div class="delete-button-container">
+        <div>
+          <md-button @click="dialogActive = true" class="md-accent md-raised button-no-margin">
+            <md-icon>delete</md-icon> Delete Photo
+          </md-button>
+        </div>
+        <div class="delete-message">
+          {{ $t('Individual Photo View-Delete Photo Note') }}
+        </div>
+      </div>
     </div>
 
     <div v-if="relatedPhotos && relatedPhotos.length">
@@ -96,6 +103,11 @@ export default {
       relatedPhotos: null,
       dialogActive: false,
       isOwner: false
+    }
+  },
+  computed: {
+    photoExpired () {
+      return this.$moment.utc(this.photo.date).add(1, 'days').isBefore(this.$moment.utc(), 'day')
     }
   },
   async asyncData (context) {
