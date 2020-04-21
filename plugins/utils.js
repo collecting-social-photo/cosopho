@@ -2,7 +2,7 @@ const utilsFactory = store => ({
   profileIsReady () {
     const user = store.state.user
 
-    if (user.name && user.username && user.email && user.gender && user.dateOfBirth && user.placeOfBirth) {
+    if (user.slug && user.name && user.username && user.email && user.gender && user.dateOfBirth && user.placeOfBirth) {
       return true
     }
 
