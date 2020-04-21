@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div v-if="isOwner && !photoExpired">
+    <div v-if="$auth.loggedIn && isOwner && !photoExpired">
       <md-dialog-confirm
         :md-active.sync="dialogActive"
         @md-confirm="onDeleteConfirm"
