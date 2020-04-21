@@ -22,6 +22,13 @@
               {{ tag }}
             </md-chip>
           </div>
+          <div>
+            <p>
+              Initiative: <nuxt-link :to="localePath({ name: 'initiatives-id', params: { id: photo.initiative}})">
+                {{ photo.initiative }}
+              </nuxt-link>
+            </p>
+          </div>
         </div>
 
         <div class="md-layout-item md-size-50 md-small-size-100">

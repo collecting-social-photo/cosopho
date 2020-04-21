@@ -50,6 +50,12 @@
                 <span class="md-helper-text">{{ $t('Contribute Process-Tags Subtitle') }}</span>
               </md-field>
 
+              <md-field>
+                <label for="location">{{ $t('Contribute Process-Location') }}</label>
+                <md-input v-model="file.location" name="location" />
+                <span class="md-helper-text">{{ $t('Contribute Process-Location subtitle') }}</span>
+              </md-field>
+
               <h3>{{ $t('Contribute Process-Exif section') }}</h3>
 
               <md-field>
@@ -80,14 +86,6 @@
               <md-field>
                 <label for="focallength">{{ $t('Contribute Process-Focal Length') }}</label>
                 <md-input v-model="file.focallength" type="number" name="focallength" />
-              </md-field>
-
-              <h3>{{ $t('Contribute Process-Location') }}</h3>
-
-              <md-field>
-                <label for="location">{{ $t('Contribute Process-Location') }}</label>
-                <md-input v-model="file.location" name="location" />
-                <span class="md-helper-text">{{ $t('Contribute Process-Location subtitle') }}</span>
               </md-field>
 
               <md-field>
