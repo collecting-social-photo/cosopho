@@ -30,7 +30,11 @@ export default {
       photos_approved: true,
       photos_archived: false
     })
-    const initiatives = response.data.data.initiatives
+    const initiatives = _.sortBy(response.data.data.initiatives, function (initiative) {
+      return new Date(initiative.created)
+    }).reverse()
+
+
 
     return { initiatives }
   },

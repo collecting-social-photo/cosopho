@@ -227,6 +227,7 @@ const apiFactory = ($axios, app, store) => ({
           slug
           title
           description
+          created
           photos {
             id
             data {
