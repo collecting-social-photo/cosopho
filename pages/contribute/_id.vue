@@ -227,6 +227,7 @@ export default {
         vm.uploadedFiles.push(
           {
             id: response.public_id,
+            version: response.version,
             title: null,
             dataURL: file.dataURL,
             secureUrl: response.secure_url,
@@ -284,7 +285,8 @@ export default {
           data: JSON.stringify({
             public_id: photo.id,
             width: photo.width,
-            height: photo.height
+            height: photo.height,
+            version: photo.version
           })
         }
 
