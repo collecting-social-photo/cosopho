@@ -485,3 +485,20 @@ $flash-color: #cccccc;
     font-style: italic;
   }
 }
+
+.md-radio .md-radio-label {
+  height: auto;
+  min-height: 20px !important;
+}
+
+.md-has-textarea label {
+  white-space: nowrap;
+  width: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+
+  @media screen and (max-width: $break-small) {
+    font-size: 12px;
+  }
+}
