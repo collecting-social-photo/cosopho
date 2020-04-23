@@ -56,7 +56,8 @@ export default {
       ],
       per_page: 100,
       approved: true,
-      archived: false
+      archived: false,
+      excludeInactive: true
     })
     const photos = response.data.data.photos
 

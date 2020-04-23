@@ -79,6 +79,7 @@ export default {
         instance: vm.$store.state.instance.id,
         archived: false,
         approved: true,
+        excludeInactive: true,
         per_page: vm.perPage,
         page: vm.page
       })
