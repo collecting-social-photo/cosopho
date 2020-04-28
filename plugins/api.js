@@ -351,7 +351,7 @@ export default ({ $axios, app, store }, inject) => {
 
   $axios.onError((error) => {
     // app.$toast.error('There was an error loading this page. Please try again later.')
-    console.log('API Error:', error.response.data)
+    console.log('API Error:', error)
   })
 
   inject('api', api)
