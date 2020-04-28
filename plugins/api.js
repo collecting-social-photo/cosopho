@@ -82,7 +82,7 @@ const apiFactory = ($axios, app, store) => ({
   createPerson (variables, session) {
     const payload = {
       query: `mutation ($id: String!, $instance: String!, $username: String!, $avatar: String!, $raw: String!) {
-        createPerson(id: $id, instance: $instance, username: $username, avatar: $avatar, raw: $raw) {
+        person: createPerson(id: $id, instance: $instance, username: $username, avatar: $avatar, raw: $raw) {
           id
           name
           slug
@@ -100,7 +100,7 @@ const apiFactory = ($axios, app, store) => ({
   updatePerson (variables, session) {
     const payload = {
       query: `mutation ($id: String!, $instance: String!, $username: String, $avatar: String, $name: String, $gender: String, $facebook: String, $instagram: String, $twitter: String, $personalSite: String, $bio: String, $email: String, $dateOfBirth: String, $placeOfBirth: String, $deleted: Boolean) {
-        updatePerson(id: $id, instance: $instance, username: $username, avatar: $avatar, name: $name, gender: $gender, facebook: $facebook, instagram: $instagram, twitter: $twitter, personalSite: $personalSite, bio: $bio, email: $email, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth, deleted: $deleted) {
+        person: updatePerson(id: $id, instance: $instance, username: $username, avatar: $avatar, name: $name, gender: $gender, facebook: $facebook, instagram: $instagram, twitter: $twitter, personalSite: $personalSite, bio: $bio, email: $email, dateOfBirth: $dateOfBirth, placeOfBirth: $placeOfBirth, deleted: $deleted) {
           id
           instance
           slug
@@ -291,7 +291,7 @@ const apiFactory = ($axios, app, store) => ({
         $data: String,
         $notes: String,
         ) {
-        createPhoto(
+        photo: createPhoto(
           instance: $instance,
           personSlug: $personSlug,
           title: $title,

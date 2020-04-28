@@ -267,7 +267,7 @@ export default {
       const response = await this.$api.updatePerson(payload)
       this.sending = false
 
-      this.$store.commit('SET_USER', response.data.data.updatePerson)
+      this.$store.commit('SET_USER', response.data.data.person)
 
       this.$toast.success('Changes saved!')
     },
