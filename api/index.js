@@ -35,7 +35,8 @@ app.post('/', function (req, res) {
   ).then((response) => {
     res.send(response.data)
   }).catch((error) => {
-    console.log(error.response.data)
+    console.log('API Server Error', body)
+    console.log('API Server Error:', error)
   })
 })
 

@@ -8,6 +8,7 @@ module.exports = {
   env: {
     apiKey: process.env.API_KEY,
     apiEndpoint: process.env.API_ENDPOINT,
+    signature: process.env.SIGNATURE,
     cloudinaryApi: process.env.CLOUDINARY_API
 
   },
@@ -60,6 +61,7 @@ module.exports = {
     '@nuxtjs/auth',
     '@nuxtjs/moment',
     '@nuxtjs/toast',
+    '@nuxtjs/sentry',
     ['nuxt-vue-material', {
       theme: 'default',
       components: [
@@ -83,6 +85,10 @@ module.exports = {
       ]
     }]
   ],
+
+  sentry: {
+    dsn: 'https://beaa110ca9df445fb053347c3f3296eb@o388397.ingest.sentry.io/5225169'
+  },
 
   basic: {
     name: 'cosopho',

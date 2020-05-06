@@ -247,7 +247,7 @@ export default {
         )
       }, 500)
     },
-    deletePhoto (file, index) {
+    deletePhoto(file, index) {
       const vm = this
       vm.$delete(vm.uploadedFiles, index)
       vm.$api.deleteCloudPhoto(file.id)

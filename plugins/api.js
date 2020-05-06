@@ -1,24 +1,33 @@
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload, session) {
-    let defaultHostname = `https://www.collectingsocialphoto.com`
+    // let defaultHostname = `https://www.collectingsocialphoto.com`
 
-    if (process.env.NODE_ENV !== 'production') {
-      defaultHostname = `http://www.cosopho.com:3000`
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //   defaultHostname = `http://www.cosopho.com:3000`
+    // }
 
-    const hostname = store.state.hostname || defaultHostname
-    let path = `${hostname}/api`
+    // const hostname = store.state.hostname || defaultHostname
+    // let path = `${hostname}/api`
 
-    if (session) {
-      path = `${hostname}/api?session=${session}`
-    } else if (store.state.user && store.state.user.sessionId) {
-      path = `${hostname}/api?session=${store.state.user.sessionId}`
-    }
+    // if (session) {
+    //   path = `${hostname}/api?session=${session}`
+    // } else if (store.state.user && store.state.user.sessionId) {
+    //   path = `${hostname}/api?session=${store.state.user.sessionId}`
+    // }
+
+    const path = process.env.API_ENDPOINT
+    const apiToken = `${process.env.apiKey}-${process.env.signature}`
 
     const response = await $axios.post(
       path,
-      payload
+      payload,
+      {
+        headers: {
+          'Authorization': `Bearer ${apiToken}`,
+          'content-type': 'application/json'
+        }
+      }
     )
     return response
   },
@@ -352,6 +361,7 @@ export default ({ $axios, app, store }, inject) => {
   $axios.onError((error) => {
     // app.$toast.error('There was an error loading this page. Please try again later.')
     console.log('API Error:', error)
+    app.$sentry.captureException(error)
   })
 
   inject('api', api)

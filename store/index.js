@@ -23,7 +23,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }, { req, redirect }) {
+  async nuxtServerInit ({ commit }, { req, redirect, $sentry }) {
     let currentHostname = `https://${req.headers.host}`
     const subdomains = req.headers.host.split('.')
     let subdomain = null
@@ -76,18 +76,24 @@ export const actions = {
       }
     }
 
-    const response = await axios.post(
-      process.env.API_ENDPOINT,
-      payload,
-      {
-        headers: {
-          'Authorization': `Bearer ${process.env.API_KEY}`,
-          'content-type': 'application/json'
+    let response = null
+    try {
+      response = await axios.post(
+        process.env.apiEndpoint,
+        payload,
+        {
+          headers: {
+            'Authorization': `Bearer ${process.env.apiKey}-${process.env.signature}`,
+            'content-type': 'application/json'
+          }
         }
-      }
-    )
+      )
+    } catch (error) {
+      console.log('ServerInit Error', error)
+      $sentry.captureException(error)
+    }
 
-    if (response.data.data.instance) {
+    if (response && response.data && response.data.data.instance) {
       const languages = response.data.data.instance.languages || []
 
       languages.push('en')
