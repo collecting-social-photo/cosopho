@@ -68,7 +68,7 @@ export default {
     }
 
     const response = await context.app.$api.getInitiatives({
-      instance: context.app.store.state.instance.id,
+      instance: context.app.store.state.instance && context.app.store.state.instance.id,
       isFeatured: true,
       isActive: true,
       photos_approved: true,
@@ -84,7 +84,7 @@ export default {
     const initiative = initiatives && _.sample(initiatives)
 
     const photoResponse = await context.app.$api.getPhotos({
-      instance: context.app.store.state.instance.id,
+      instance: context.app.store.state.instance && context.app.store.state.instance.id,
       homepage: true
     })
 
