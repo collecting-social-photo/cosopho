@@ -29,9 +29,18 @@ export default function ({ store, app }) {
       instance: instanceId
     }
   }
+
+  const apiToken = `${process.env.apiKey}-${process.env.signature}`
+
   axios.post(
-    `${hostname}/api`,
-    payload
+    process.env.apiEndpoint,
+    payload,
+    {
+      headers: {
+        'Authorization': `Bearer ${apiToken}`,
+        'content-type': 'application/json'
+      }
+    }
   ).then(function (response) {
     const strings = response.data.data.instance
 

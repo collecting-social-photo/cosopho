@@ -75,6 +75,11 @@ export default {
       photos_archived: false,
       per_page: 1
     })
+
+    if (!response) {
+      return
+    }
+
     const initiatives = response.data.data.initiatives
     const initiative = initiatives && _.sample(initiatives)
 
@@ -82,6 +87,10 @@ export default {
       instance: context.app.store.state.instance.id,
       homepage: true
     })
+
+    if (!photoResponse) {
+      return
+    }
 
     const photos = photoResponse.data.data.photos
 

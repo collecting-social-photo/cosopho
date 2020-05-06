@@ -16,20 +16,25 @@ const apiFactory = ($axios, app, store) => ({
     //   path = `${hostname}/api?session=${store.state.user.sessionId}`
     // }
 
-    const path = process.env.API_ENDPOINT
+    const path = process.env.apiEndpoint
     const apiToken = `${process.env.apiKey}-${process.env.signature}`
 
-    const response = await $axios.post(
-      path,
-      payload,
-      {
-        headers: {
-          'Authorization': `Bearer ${apiToken}`,
-          'content-type': 'application/json'
+    try {
+      const response = await $axios.post(
+        path,
+        payload,
+        {
+          headers: {
+            'Authorization': `Bearer ${apiToken}`,
+            'content-type': 'application/json'
+          }
         }
-      }
-    )
-    return response
+      )
+      return response
+    } catch (error) {
+      app.$sentry.captureException(error)
+    }
+    return null
   },
 
   getPersonAdmin (variables, session) {
@@ -358,11 +363,10 @@ const apiFactory = ($axios, app, store) => ({
 export default ({ $axios, app, store }, inject) => {
   const api = apiFactory($axios, app, store)
 
-  $axios.onError((error) => {
-    // app.$toast.error('There was an error loading this page. Please try again later.')
-    console.log('API Error:', error)
-    app.$sentry.captureException(error)
-  })
+  // $axios.onError((error) => {
+  //   // app.$toast.error('There was an error loading this page. Please try again later.')
+  //   console.log('API Error')
+  // })
 
   inject('api', api)
 }
