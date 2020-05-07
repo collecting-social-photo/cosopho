@@ -112,11 +112,12 @@ export default {
   },
   async asyncData (context) {
     const response = await context.app.$api.getPhoto({
-      instance: context.app.store.state.instance && context.app.store.state.instance.id,
+      instance: context.app.store.state.instance.id,
       id: context.params.id
     })
 
     if (!response) {
+      context.error({ statusCode: 500, message: 'API failed' })
       return
     }
 
