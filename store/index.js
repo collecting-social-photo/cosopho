@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const https = require('https')
+
 export const state = () => ({
   user: null,
   instance: null,
@@ -85,7 +87,8 @@ export const actions = {
           headers: {
             'Authorization': `Bearer ${process.env.apiKey}-${process.env.signature}`,
             'content-type': 'application/json'
-          }
+          },
+          httpsAgent: new https.Agent({ rejectUnauthorized: false })
         }
       )
     } catch (error) {

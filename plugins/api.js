@@ -1,3 +1,5 @@
+const https = require('https')
+
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload, session) {
@@ -27,7 +29,8 @@ const apiFactory = ($axios, app, store) => ({
           headers: {
             'Authorization': `Bearer ${apiToken}`,
             'content-type': 'application/json'
-          }
+          },
+          httpsAgent: new https.Agent({ rejectUnauthorized: false })
         }
       )
       return response

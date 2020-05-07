@@ -116,10 +116,11 @@ export default {
       id: context.params.id
     })
 
-    if (!response) {
-      context.error({ statusCode: 500, message: 'API failed' })
-      return
-    }
+    // if (!response) {
+    //   console.log(context.app.store.state.instance)
+    //   context.error({ statusCode: 500, message: 'API failed' })
+    //   return
+    // }
 
     const photo = response.data.data.photo
     const thisUser = context.app.store.state.user
