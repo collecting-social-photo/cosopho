@@ -1,7 +1,7 @@
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload, session) {
-    // let defaultHostname = `https://www.collectingsocialphoto.com`
+    // let defaultHostname = `https://www.collectingsocialphoto.org`
 
     // if (process.env.NODE_ENV !== 'production') {
     //   defaultHostname = `http://www.cosopho.com:3000`

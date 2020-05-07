@@ -97,7 +97,7 @@ export default {
       const data = event.currentTarget.dataset
       const id = data.id
       const instance = data.instance
-      const url = `https://${this.replaceInstance(instance)}.collectingsocialphoto.com/en/explore/photo/${id}`
+      const url = `https://${this.replaceInstance(instance)}.collectingsocialphoto.org/en/explore/photo/${id}`
       // vm.showModal = true
       window.open(url, '_blank')
     },
