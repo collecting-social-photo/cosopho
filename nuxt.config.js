@@ -87,7 +87,10 @@ module.exports = {
   ],
 
   sentry: {
-    dsn: 'https://beaa110ca9df445fb053347c3f3296eb@o388397.ingest.sentry.io/5225169'
+    dsn: 'https://beaa110ca9df445fb053347c3f3296eb@o388397.ingest.sentry.io/5225169',
+    config: {
+      disabled: process.env.NODE_ENV !== 'production'
+    }
   },
 
   basic: {

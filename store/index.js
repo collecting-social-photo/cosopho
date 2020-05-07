@@ -79,7 +79,7 @@ export const actions = {
     let response = null
     try {
       response = await axios.post(
-        process.env.apiEndpoint,
+        `${process.env.apiEndpoint}?cache=${Math.random()}`,
         payload,
         {
           headers: {

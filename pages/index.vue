@@ -35,7 +35,7 @@
           <p>{{ $t('Homepage-Featured subtitle') }}</p>
         </div>
       </div>
-      <div v-if="initiatives.length" class="home-initiatives">
+      <div v-if="initiatives && initiatives.length" class="home-initiatives">
         <div v-for="initiative in initiatives" :key="initiative.slug">
           <initiativeComp :initiative="initiative" />
         </div>
@@ -62,41 +62,42 @@ export default {
       initiatives: null
     }
   },
-  async asyncData (context) {
-    if (!context.app.store.state.instance) {
-      return context.redirect('/home')
+  mounted () {
+    this.getInitiatives()
+    this.getPhoto()
+  },
+  methods: {
+    async getInitiatives () {
+      const response = await this.$api.getInitiatives({
+        instance: this.$store.state.instance.id,
+        isFeatured: true,
+        isActive: true,
+        photos_approved: true,
+        photos_archived: false,
+        per_page: 1
+      })
+
+      if (!response) {
+        console.log('Could not get initiatives')
+        return
+      }
+
+      this.initiatives = response.data.data.initiatives
+    },
+    async getPhoto () {
+      const photoResponse = await this.$api.getPhotos({
+        instance: this.$store.state.instance.id,
+        homepage: true
+      })
+
+      if (!photoResponse) {
+        console.log('Could not get photos')
+        return
+      }
+
+      const photos = photoResponse.data.data.photos
+      this.photo = photos.length && _.sample(photos)
     }
-
-    const response = await context.app.$api.getInitiatives({
-      instance: context.app.store.state.instance && context.app.store.state.instance.id,
-      isFeatured: true,
-      isActive: true,
-      photos_approved: true,
-      photos_archived: false,
-      per_page: 1
-    })
-
-    if (!response) {
-      return
-    }
-
-    const initiatives = response.data.data.initiatives
-    const initiative = initiatives && _.sample(initiatives)
-
-    const photoResponse = await context.app.$api.getPhotos({
-      instance: context.app.store.state.instance && context.app.store.state.instance.id,
-      homepage: true
-    })
-
-    if (!photoResponse) {
-      return
-    }
-
-    const photos = photoResponse.data.data.photos
-
-    const photo = photos.length && _.sample(photos)
-
-    return { photo, initiatives }
   }
 }
 </script>

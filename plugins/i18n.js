@@ -33,7 +33,7 @@ export default function ({ store, app }) {
   const apiToken = `${process.env.apiKey}-${process.env.signature}`
 
   axios.post(
-    process.env.apiEndpoint,
+    `${process.env.apiEndpoint}?cache=${Math.random()}`,
     payload,
     {
       headers: {

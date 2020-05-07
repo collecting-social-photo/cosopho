@@ -16,7 +16,7 @@ const apiFactory = ($axios, app, store) => ({
     //   path = `${hostname}/api?session=${store.state.user.sessionId}`
     // }
 
-    const path = process.env.apiEndpoint
+    const path = `${process.env.apiEndpoint}?cache=${Math.random()}`
     const apiToken = `${process.env.apiKey}-${process.env.signature}`
 
     try {
