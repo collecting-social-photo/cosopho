@@ -14,7 +14,6 @@ export default function ({ store, app }) {
 
   const instanceId = store.state.instance.id
   const languages = store.state.instance.languages
-  const hostname = store.state.hostname
 
   const payload = {
     query: `query strings($instance: String) {

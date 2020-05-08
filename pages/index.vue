@@ -82,7 +82,7 @@ export default {
         return
       }
 
-      this.initiatives = response.data.data.initiatives
+      this.initiatives = response && response.data && response.data.data && response.data.data.initiatives
     },
     async getPhoto () {
       const photoResponse = await this.$api.getPhotos({

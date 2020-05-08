@@ -111,25 +111,32 @@ export default {
     }
   },
   async asyncData (context) {
-    const response = await context.app.$api.getPhoto({
-      instance: context.app.store.state.instance.id,
-      id: context.params.id
-    })
 
-    // if (!response) {
-    //   console.log(context.app.store.state.instance)
-    //   context.error({ statusCode: 500, message: 'API failed' })
-    //   return
-    // }
+    try {
+      const response = await context.app.$api.getPhoto({
+        instance: context.app.store.state.instance.id,
+        id: context.params.id
+      })
 
-    const photo = response.data.data.photo
-    const thisUser = context.app.store.state.user
+      // if (!response) {
+      //   console.log(context.app.store.state.instance)
+      //   context.error({ statusCode: 500, message: 'API failed' })
+      //   return
+      // }
 
-    if (photo.archived && photo.person.slug !== (thisUser && thisUser.slug)) {
-      return context.redirect(context.app.localePath('index'))
+      const photo = response.data.data.photo
+      const thisUser = context.app.store.state.user
+
+      if (photo.archived && photo.person.slug !== (thisUser && thisUser.slug)) {
+        return context.redirect(context.app.localePath('index'))
+      }
+
+      return { photo }
+
+    } catch (err) {
+      console.log(err)
+      return
     }
-
-    return { photo }
   },
   mounted () {
     this.getRelatedPhotos()

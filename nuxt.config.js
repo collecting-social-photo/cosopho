@@ -44,9 +44,10 @@ module.exports = {
   ],
 
   plugins: [
+    { src: './plugins/start.js', mode: 'server' },
+    { src: './plugins/i18n.js' },
     { src: './plugins/api.js' },
     { src: './plugins/utils.js' },
-    { src: './plugins/i18n.js' },
     { src: './plugins/observe-visibility.js' }
   ],
 
@@ -135,10 +136,9 @@ module.exports = {
     }
   },
 
-  // axios: {
-  //   proxy: true,
-  //   proxyHeaders: true
-  // },
+  axios: {
+    proxyHeaders: false
+  },
 
   // proxy: {
   //   '/api': {
