@@ -102,6 +102,7 @@ module.exports = {
       login: '/auth/login-redirect',
       callback: '/auth/signed-in'
     },
+    sso: false,
     strategies: {
       local: false,
       auth0: {
@@ -136,9 +137,9 @@ module.exports = {
     }
   },
 
-  axios: {
-    proxyHeaders: false
-  },
+  // axios: {
+  //   proxyHeaders: false
+  // },
 
   // proxy: {
   //   '/api': {
@@ -150,7 +151,7 @@ module.exports = {
   // },
 
   serverMiddleware: [
-    // '~/api/index.js',
+    '~/api/index.js',
     '~/api/cloudinary.js'
   ],
 

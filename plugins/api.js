@@ -3,33 +3,26 @@ const https = require('https')
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload, session) {
-    // let defaultHostname = `https://www.collectingsocialphoto.org`
+    let defaultHostname = `https://www.collectingsocialphoto.org`
 
-    // if (process.env.NODE_ENV !== 'production') {
-    //   defaultHostname = `http://www.cosopho.com:3000`
-    // }
+    if (process.env.NODE_ENV !== 'production') {
+      defaultHostname = `http://www.cosopho.com:3000`
+    }
 
-    // const hostname = store.state.hostname || defaultHostname
-    // let path = `${hostname}/api`
+    const hostname = store.state.hostname || defaultHostname
+    let path = `${hostname}/api`
 
-    // if (session) {
-    //   path = `${hostname}/api?session=${session}`
-    // } else if (store.state.user && store.state.user.sessionId) {
-    //   path = `${hostname}/api?session=${store.state.user.sessionId}`
-    // }
-
-    const path = `${process.env.apiEndpoint}?cache=${Math.random()}`
-    const apiToken = `${process.env.apiKey}-${process.env.signature}`
+    if (session) {
+      path = `${hostname}/api?session=${session}`
+    } else if (store.state.user && store.state.user.sessionId) {
+      path = `${hostname}/api?session=${store.state.user.sessionId}`
+    }
 
     try {
       const response = await $axios.post(
         path,
         payload,
         {
-          headers: {
-            'Authorization': `Bearer ${apiToken}`,
-            'content-type': 'application/json'
-          },
           httpsAgent: new https.Agent({ rejectUnauthorized: false })
         }
       )
