@@ -24,11 +24,7 @@ export default async function ({ store, app, req, redirect, error }) {
     subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
   }
 
-  // if (req.url.includes('/home') || req.url.includes('/about-cosopho')) {
-  //   return
-  // }
-
-  if (subdomain === 'www' && !req.url.includes('/about-cosopho')) {
+  if ((subdomain === 'www' || subdomain === 'collectingsocialphoto.org') && !req.url.includes('/about-cosopho') && !req.url.includes('/home') && !req.url.includes('/about-cosopho')) {
     redirect('/en/home')
   }
 
