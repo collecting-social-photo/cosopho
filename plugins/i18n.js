@@ -1,14 +1,9 @@
 import axios from 'axios'
-const https = require('https')
 
 export default function ({ store, app }) {
   axios.defaults.timeout = 60000
 
   if (!store.state.instance) {
-    return
-  }
-
-  if (store.state.languagesLoaded) {
     return
   }
 
@@ -39,8 +34,7 @@ export default function ({ store, app }) {
       headers: {
         'Authorization': `Bearer ${apiToken}`,
         'content-type': 'application/json'
-      },
-      httpsAgent: new https.Agent({ rejectUnauthorized: false })
+      }
     }
   ).then(function (response) {
     const strings = response.data.data.instance

@@ -102,7 +102,6 @@ module.exports = {
       login: '/auth/login-redirect',
       callback: '/auth/signed-in'
     },
-    sso: false,
     strategies: {
       local: false,
       auth0: {

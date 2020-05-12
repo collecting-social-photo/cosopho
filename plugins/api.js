@@ -1,5 +1,3 @@
-const https = require('https')
-
 const apiFactory = ($axios, app, store) => ({
 
   async makeRequest (payload, session) {
@@ -21,10 +19,7 @@ const apiFactory = ($axios, app, store) => ({
     try {
       const response = await $axios.post(
         path,
-        payload,
-        {
-          httpsAgent: new https.Agent({ rejectUnauthorized: false })
-        }
+        payload
       )
       return response
     } catch (error) {
