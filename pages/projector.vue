@@ -22,8 +22,8 @@ export default {
       ticker: null,
       moving: false,
       $grid: null,
-      start: 400,
-      startInit: 400,
+      start: 200,
+      startInit: 200,
       interval: 1,
       showModal: false,
       scrollerStyle: {
@@ -160,6 +160,7 @@ export default {
           this.start += 0.05
 
           if (
+            (this.start > 400.0 && this.start < 400.1) ||
             (this.start > 550.0 && this.start < 550.1) ||
             (this.start > 800.0 && this.start < 800.1) ||
             (this.start > 1000.0 && this.start < 1000.1) ||
