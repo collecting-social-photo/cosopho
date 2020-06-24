@@ -164,16 +164,16 @@ export default {
           if (
             (this.start > 550.0 && this.start < 550.1) ||
             (this.start > 800.0 && this.start < 800.1) ||
-            (this.start > 1200.0 && this.start < 1200.1) ||
-            (this.start > 1500.0 && this.start < 1500.1) ||
-            (this.start > 1800.0 && this.start < 1800.1)
+            (this.start > 1000.0 && this.start < 1000.1) ||
+            (this.start > 1300.0 && this.start < 1300.1) ||
+            (this.start > 1500.0 && this.start < 1500.1)
           ) {
             const randomItem = Math.floor(Math.random() * $('.grid-itemz').length)
             this.$grid.packery('remove', $('.grid-itemz').eq(randomItem))
             this.$grid.packery('layout')
           }
 
-          if (this.start > 2000) {
+          if (this.start > 1800) {
             this.removePhotos()
             this.moving = false
             clearInterval(this.ticker)
