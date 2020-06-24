@@ -126,11 +126,9 @@ export default {
         _.forEach(_.shuffle(vm.photos), function (photo) {
           if (photo && photo.data && photo.data.public_id) {
             let pic = $(`<div class="grid-itemz" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
-            // if (counter % 8 === 0) {
-            //   pic = $(`<div class="grid-itemz large" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
-            // } else if (counter % 13 === 0) {
-            //   pic = $(`<div class="grid-itemz small" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
-            // }
+            if (counter % 8 === 0) {
+              pic = $(`<div class="grid-itemz large" data-id="${photo.id}" data-title="${photo.title}" data-instance="${photo.instance}"><img src="https://res.cloudinary.com/hftpxlihv/image/upload/w_1000/v1576673295/${photo.data.public_id}.jpg" class="main-photo"></div>`)
+            }
             $items = $items.add(pic)
           }
           counter++
@@ -198,12 +196,8 @@ export default {
 .grid-itemz {
   width: 200px;
 
-  &.small {
-    width: 100px;
-  }
-
   &.large {
-    width: 400px;
+    width: 410px;
   }
 }
 </style>
