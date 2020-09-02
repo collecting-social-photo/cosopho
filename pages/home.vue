@@ -198,6 +198,7 @@ export default {
       _.remove(this.instances, { id: 'micah-walter-674bb737a19d3046' })
       _.remove(this.instances, { id: 'vanuatu-bc34e5b350e7e5ef' })
       _.remove(this.instances, { id: 'funny-animal-565a66dd8aed5525' })
+      _.remove(this.instances, { id: 'stiftelsen-l-ea94dfe2c6210320' })
     }
   }
 }
