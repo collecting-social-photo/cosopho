@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default function ({ store, app, redirect }) {
+export default function ({ store, app, redirect, route }) {
   axios.defaults.timeout = 60000
 
   if (!store.state.instance) {
@@ -51,9 +51,12 @@ export default function ({ store, app, redirect }) {
       store.commit('SET_LANGUAGES_LOADED', true)
 
       // if no locale is defined, use default from API
-      if (!app.i18n.locale && process.client) {
+      if (!app.i18n.locale) {
         app.i18n.locale = store.state.instance.defaultLanguage || 'en'
-        redirect(app.localePath('index'))
+
+        if (process.client && !route.path.includes('/about-cosopho') && !route.path.includes('/projector')) {
+          redirect(app.localePath('index'))
+        }
       }
     })
   }).catch(function (error) {
