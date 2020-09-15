@@ -50,7 +50,7 @@ export default function ({ store, app, redirect }) {
 
       store.commit('SET_LANGUAGES_LOADED', true)
 
-      // if no locale is define, use default from API
+      // if no locale is defined, use default from API
       if (!app.i18n.locale && process.client) {
         app.i18n.locale = store.state.instance.defaultLanguage || 'en'
         redirect(app.localePath('index'))
