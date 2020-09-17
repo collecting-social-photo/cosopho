@@ -50,14 +50,14 @@ export default function ({ store, app, redirect, route }) {
 
       store.commit('SET_LANGUAGES_LOADED', true)
 
-      // if no locale is defined, use default from API
-      if (!app.i18n.locale) {
-        app.i18n.locale = store.state.instance.defaultLanguage || 'en'
+      // // if no locale is defined, use default from API
+      // if (!app.i18n.locale) {
+      //   app.i18n.locale = store.state.instance.defaultLanguage || 'en'
 
-        if (process.client && !route.path.includes('/about-cosopho') && !route.path.includes('/projector')) {
-          redirect(app.localePath('index'))
-        }
-      }
+      //   if (process.client && !route.path.includes('/about-cosopho') && !route.path.includes('/projector')) {
+      //     redirect(app.localePath('index'))
+      //   }
+      // }
     })
   }).catch(function (error) {
     console.log(error)

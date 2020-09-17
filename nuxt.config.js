@@ -130,7 +130,12 @@ module.exports = {
     locales: ['en', 'sv', 'fi', 'bi', 'da'],
     lazy: true,
     strategy: 'prefix',
-    detectBrowserLanguage: false
+    defaultLocale: 'en',
+    rootRedirect: 'en/',
+    detectBrowserLanguage: false,
+    vueI18n: {
+      fallbackLocale: 'en'
+    }
   },
 
   // axios: {
