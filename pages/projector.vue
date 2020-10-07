@@ -112,12 +112,6 @@ export default {
 
       console.log('Got new photos...')
 
-      if (photos.length < 50) {
-        photos = photos.concat(photos)
-        photos = photos.concat(photos)
-        photos = photos.concat(photos)
-      }
-
       vm.photos = photos
 
       setTimeout(function () {
