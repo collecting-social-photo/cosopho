@@ -48,17 +48,20 @@ export default function ({ store, app, redirect, route }) {
       })
       app.i18n.setLocaleMessage(lang, translations)
 
+    })
+
+    setTimeout(function () {
       store.commit('SET_LANGUAGES_LOADED', true)
 
-      // // if no locale is defined, use default from API
-      // if (!app.i18n.locale) {
-      //   app.i18n.locale = store.state.instance.defaultLanguage || 'en'
-
-      //   if (process.client && !route.path.includes('/about-cosopho') && !route.path.includes('/projector')) {
-      //     redirect(app.localePath('index'))
-      //   }
-      // }
-    })
+      // if no locale is defined, use default from API
+      if (process.client) {
+        if (!app.i18n.locale && app.$cookies.get('i18n_redirected')) {
+          app.i18n.setLocale(app.$cookies.get('i18n_redirected'))
+        } else {
+          app.i18n.setLocale(store.state.instance.defaultLanguage)
+        }
+      }
+    }, 500)
   }).catch(function (error) {
     console.log(error)
   })

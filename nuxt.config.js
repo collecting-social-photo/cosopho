@@ -65,6 +65,7 @@ module.exports = {
     '@nuxtjs/moment',
     '@nuxtjs/toast',
     '@nuxtjs/sentry',
+    'cookie-universal-nuxt',
     ['nuxt-vue-material', {
       theme: 'default',
       components: [
@@ -102,7 +103,8 @@ module.exports = {
   auth: {
     redirect: {
       login: '/auth/login-redirect',
-      callback: '/auth/signed-in'
+      callback: '/auth/signed-in',
+      logout: '/auth/logout'
     },
     strategies: {
       local: false,
@@ -130,26 +132,10 @@ module.exports = {
     locales: ['en', 'sv', 'fi', 'bi', 'da'],
     lazy: true,
     strategy: 'prefix',
-    defaultLocale: 'en',
-    rootRedirect: 'en/',
-    detectBrowserLanguage: false,
-    vueI18n: {
-      fallbackLocale: 'en'
+    detectBrowserLanguage: {
+      useCookie: true
     }
   },
-
-  // axios: {
-  //   proxyHeaders: false
-  // },
-
-  // proxy: {
-  //   '/api': {
-  //     target: process.env.API_ENDPOINT,
-  //     pathRewrite: {
-  //       '^/api' : '/'
-  //       }
-  //     }
-  // },
 
   serverMiddleware: [
     '~/api/index.js',
