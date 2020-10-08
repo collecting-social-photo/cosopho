@@ -6,7 +6,7 @@
 export default {
   nuxtI18n: false,
   asyncData (context) {
-    return context.redirect(context.app.localePath('auth-login'))
+    return context.redirect(context.app.localePath('index'))
   }
 }
 </script>

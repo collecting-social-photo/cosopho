@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <div v-if="$store.state.languagesLoaded">
+    <div v-if="$store.state.languagesLoaded && $i18n.locale">
       <component :is="'style'">
         :root {
         --md-theme-default-primary: #{{ color }} !important;
