@@ -23,8 +23,7 @@ export default async function ({ store, app, req, redirect, error }) {
   } else if ((req.headers.host).includes('vasternorrland.collectingsocialphoto.')) {
     subdomain = 'stiftelsen-l-ea94dfe2c6210320'
   } else {
-    // TODO: add a default instance name in .env
-    subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
+    subdomain = process.env.defaultInstanceID
   }
 
   if (subdomain === 'www' && !req.url.includes('/about-cosopho')) {
@@ -32,7 +31,7 @@ export default async function ({ store, app, req, redirect, error }) {
   }
 
   if (subdomain === 'www') {
-    subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
+    subdomain = process.env.defaultInstanceID
   }
 
   const payload = {
