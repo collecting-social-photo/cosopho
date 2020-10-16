@@ -22,6 +22,8 @@ export default async function ({ store, app, req, redirect, error }) {
     subdomain = 'nordic-museu-76ba77f9ebd5d275'
   } else if ((req.headers.host).includes('vasternorrland.collectingsocialphoto.')) {
     subdomain = 'stiftelsen-l-ea94dfe2c6210320'
+  } else if ((req.headers.host).includes('www.collectingsocialphoto.')) {
+    subdomain = 'www'
   } else {
     subdomain = process.env.defaultInstanceID
   }
