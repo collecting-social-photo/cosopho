@@ -10,8 +10,8 @@ module.exports = {
     apiEndpoint: process.env.API_ENDPOINT,
     signature: process.env.SIGNATURE,
     cloudinaryApi: process.env.CLOUDINARY_API,
-    fathom: process.env.FATHOM
-
+    fathom: process.env.FATHOM,
+    defaultInstanceID: process.env.DEFAULT_INSTANCE_ID
   },
 
   head: {

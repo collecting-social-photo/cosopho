@@ -8,11 +8,18 @@ SIGNATURE=4567
 API_ENDPOINT=https://my_api.com/graphql
 AUTH0_DOMAIN=domain.auth0.com
 AUTH0_CLIENT_ID=abc123
+DEFAULT_INSTANCE_ID=your-instance-674bb737a19d3046
 ```
 
+## Use localhost:300 for development
+
+If you've already created an instance with the Dashboard application, you can set it as your default instance. This allows you to work on the website without any changes to your local /etc/hosts file. You will only be able to navigate the default instance.
+
 ## Set up local hosts DNS
-The app relies on the subdomain to establish the instance ID. So you have to create a fake local hostname for this.
-Edit your local hosts file `/etc/hosts` on Mac/Linux as root (Windows most likey at `c:\Windows\System32\Drivers\etc\hosts` but please Google it for your OS) and add the following records:
+
+If you would like to be able to naviagate all instances locally, you will need to configure your /etc/hosts file accomodate.
+
+Edit your local hosts file `/etc/hosts` on Mac/Linux as root (Windows most likey at `c:\Windows\System32\Drivers\etc\hosts` but please Google it for your OS) and add the following records, sbstituting your own instance IDs:
 
 ``` bash
 127.0.0.1 www.cosopho.com
