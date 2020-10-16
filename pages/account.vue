@@ -102,9 +102,10 @@
               </div>
 
               <div class="md-layout-item md-small-size-100">
-                <md-field>
+                <md-field :class="getValidationClass('personalSite')">
                   <label for="personalSite">{{ $t('Account Page-Personal Site') }}</label>
-                  <md-input id="personalSite" v-model="form.personalSite" :disabled="sending" name="personalSite" />
+                  <md-input id="personalSite" v-model="form.personalSite" :disabled="sending" name="personalSite" type="url" />
+                  <span v-if="!$v.form.personalSite.url" class="md-error">Not a valid url</span>
                 </md-field>
               </div>
             </div>
@@ -159,7 +160,8 @@ import { validationMixin } from 'vuelidate'
 import {
   required,
   email,
-  minLength
+  minLength,
+  url
 } from 'vuelidate/lib/validators'
 
 export default {
@@ -172,7 +174,8 @@ export default {
       email: null,
       username: null,
       placeOfBirth: null,
-      dateOfBirth: null
+      dateOfBirth: null,
+      personalSite: null
     },
     person: null,
     sending: false,
@@ -198,6 +201,9 @@ export default {
       },
       dateOfBirth: {
         required
+      },
+      personalSite: {
+        url
       }
     }
   },
