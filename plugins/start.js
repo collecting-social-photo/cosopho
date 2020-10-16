@@ -20,12 +20,12 @@ export default async function ({ store, app, req, redirect, error }) {
     subdomain = 'the-finnish--d7330c10c367d4fd'
   } else if ((req.headers.host).includes('nordiskamuseet.collectingsocialphoto.')) {
     subdomain = 'nordic-museu-76ba77f9ebd5d275'
-  } else if ((req.headers.host).includes('cosopho.collectingsocialphoto.')) {
-    subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
   } else if ((req.headers.host).includes('vasternorrland.collectingsocialphoto.')) {
     subdomain = 'stiftelsen-l-ea94dfe2c6210320'
+  } else {
+    // TODO: add a default instance name in .env
+    subdomain = 'connect-to-c-5f0ff3a2fc4cd1fe'
   }
-
 
   if (subdomain === 'www' && !req.url.includes('/about-cosopho')) {
     redirect('/en/home')
@@ -82,12 +82,12 @@ export default async function ({ store, app, req, redirect, error }) {
     response.data.data.instance.languages = _.union(languages)
 
     if (process.env.NODE_ENV !== 'production') {
-      currentHostname = `http://${response.data.data.instance.id}.cosopho.com:3000`
+      currentHostname = 'http' + currentHostname.substr(5)
     }
 
     store.commit('SET_INSTANCE', response.data.data.instance)
     store.commit('SET_HOSTNAME', currentHostname)
   } else {
-    console.log("NO INSTANCE")
+    console.log('NO INSTANCE')
   }
 }
