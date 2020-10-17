@@ -8,10 +8,12 @@ const formData = require('express-form-data')
 app.use(cors())
 
 const config = {
-  'api_key': '978561673254743',
-  'cloud_name': 'hftpxlihv',
-  'api_secret': 'F2Y2nU_RheZf8tDz8Z1EMq7ZCpg'
+  'api_key': process.env.CLOUDINARY_API_KEY,
+  'cloud_name': process.env.CLOUDINARY_NAME,
+  'api_secret': process.env.CLOUDINARY_API_SECRET
 }
+
+console.log(config)
 
 const options = {
   uploadDir: os.tmpdir(),
